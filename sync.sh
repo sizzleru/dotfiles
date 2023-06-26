@@ -5,3 +5,7 @@ git pull
 function setup() {
 	\ls -p src | grep -v / | xargs -I% cp src/% $HOME/%
 }
+
+setup
+unset setup
+source ~/.bash_profile
