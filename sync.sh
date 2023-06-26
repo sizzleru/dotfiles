@@ -4,7 +4,7 @@ git pull
 
 function setup() {
 	ls -Ap src | grep -v / | while read -r file; do
-		if [[ -L ~/$file ]]; then
+		if [[ -L ~/$file || -f ~/$file ]]; then
 			rm ~/$file
 		fi
 		ln -s $(pwd)/src/$file ~/$file
