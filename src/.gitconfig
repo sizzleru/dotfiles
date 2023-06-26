@@ -7,15 +7,20 @@
 	alias = config --get-regexp ^alias
 	profile = "!echo name: $(git config user.name), email: $(git config user.email)"
 	change = "!f() {\
-		if [ ! $(ps ax | grep [s]sh-agent | wc -l) -gt 0 ] ; then\
-			eval $(ssh-agent -s);\
-			trap "ssh-agent -k" exit;\
+		ssh-add -l &> /dev/null;\
+		if [ "$?" == 2 ]; then\
+			test -r ~/.ssh-agent && eval "$(<!/.ssh-agent)" > /dev/null\
+			ssh-add -l &> /dev/null\
+			if [ "$?" == 2 ]; then\
+				(umask 066; ssh-agent > ~/.ssh-agent);\
+				eval "$(<~/.ssh-agent)" > /dev/null;\
+			fi;\
 		fi;\
 		ssh-add -D;\
 		ssh-add ~/.ssh/id_$1;\
-		if [[ $1 == "sizzleru" ]]; then\
+		if [[ $1 == sizzleru ]]; then\
 			git config --replace-all user.name $1;\
-		elif [[ $1 == "work" ]]; then\
+		elif [[ $1 == work ]]; then\
 			git config --replace-all user.name \"Timothy Ongko\";\
 		fi;\
 		git config user.email $1@sizzleru.com;\
