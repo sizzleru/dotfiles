@@ -1,3 +1,6 @@
+[[ -f ~/.bashrc ]] && . ~/.bashrc;
+[[ ! -n "$SSH_TTY" ]] && startx && xrdb -merge ~/.Xresources;
+
 SSH_ENV="$HOME/.ssh/agent-environment"
 
 function start_agent {
