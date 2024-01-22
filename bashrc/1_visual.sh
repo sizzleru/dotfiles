@@ -48,12 +48,11 @@ case $(whoami) in
 		;;
 esac
 
-DIRECTORY=$(echo ${PWD/\// } | sed -r 's?/?\\e[2m|>\\e[0m?g')
-
-export PS1="\n\d @ \t ($HOSTNAME_LOGO)\n\e[1;${USER_COLOR}m\u\e[0m : $DIRECTORY\n -> "
+export-ps1() {
+	export PS1="\n\d @ \t ($HOSTNAME_LOGO)\n\e[1;${USER_COLOR}m\u\e[0m : $(echo ${PWD/\// } | sed -r 's?/?\\e[2m|>\\e[0m?g')\n -> "
+}
 export PS2=" ===> "
 
 
 unset $HOSTNAME_LOGO
 unset $USER_COLOR
-unset $DIRECTORY

@@ -13,6 +13,11 @@ if [[ ! -L $PWD/.bashrc ]] || [[ ! -e $PWD/.bashrc ]]; then
 	ln -fs $PWD/.bashrc $HOME/.bashrc 
 fi
 
+# Create a symbolic link to the repo's bashrc for root
+if [[ ! -L $PWD/.bashrc ]] || [[ ! -e $PWD/.bashrc ]]; then
+	sudo ln -fs $PWD/.bashrc /root/.bashrc
+fi
+
 # Create a symbolic link to the repo's inputrc
 if [[ ! -L $PWD/.inputrc ]] || [[ ! -e $PWD/.inputrc ]]; then
 	ln -fs $PWD/.inputrc $HOME/.inputrc
