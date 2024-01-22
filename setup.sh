@@ -8,8 +8,6 @@ if [[ ! $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
 	exit 1 
 fi
 
-unset $response
-
 # Create a symbolic link to the repo's bashrc
 if [[ ! -L $PWD/.bashrc ]] || [[ ! -e $PWD/.bashrc ]]; then
 	ln -fs $PWD/.bashrc $HOME/.bashrc 
@@ -19,6 +17,15 @@ fi
 if [[ ! -L $PWD/.inputrc ]] || [[ ! -e $PWD/.inputrc ]]; then
 	ln -fs $PWD/.inputrc $HOME/.inputrc
 fi
+
+# Create a symbolic to the repo's bash_profile
+if [[ ! -L $PWD/.bash_profile ]] || [[ ! -e $PWD/.bash_profile ]]; then
+	ln -fs $PWD/.bash_profile $HOME/.bash_profile
+fi
+
+# Remove .profile from $HOME
+if [[ -f $HOME/.profile ]]; then
+	rm $HOME/.profile
 
 # Copy over configs for applications
 if [[ ! -d $HOME/.config/ ]]; then
@@ -36,4 +43,6 @@ for app in $(ls $PWD/.config/); do
 	done
 done
 
+unset $response
 unset $app
+unset $app_file
