@@ -19,3 +19,21 @@ fi
 if [[ ! -L $PWD/.inputrc ]] || [[ ! -e $PWD/.inputrc ]]; then
 	ln -fs $PWD/.inputrc $HOME/.inputrc
 fi
+
+# Copy over configs for applications
+if [[ ! -d $HOME/.config/ ]]; then
+	mkdir $HOME/.config/
+fi
+
+for app in $(ls $PWD/.config/); do
+	if [[ ! -d $HOME/.config/$app ]]; then
+		mkdir $HOME/.config/$app
+	fi
+	for app_file in $(ls $PWD/.config/$app/); do
+		if [[ ! -L $PWD/.config/$app/$app_file ]] || [[ ! -e $PWD/.config/$app/$app_file ]]; then
+			ln -fs $PWD/.config/$app/$app_file $HOME/.config/$app/$app_file
+		fi
+	done
+done
+
+unset $app

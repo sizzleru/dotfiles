@@ -1,0 +1,5 @@
+[manager]
+sort_by = "alphabetical"
+sort_reverse = false
+linemode = "permissions"
+show_hidden = true
