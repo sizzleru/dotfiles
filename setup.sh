@@ -19,13 +19,9 @@ if [[ ! -L $PWD/.inputrc ]] || [[ ! -e $PWD/.inputrc ]]; then
 fi
 
 # Create a symbolic to the repo's bash_profile
-if [[ ! -L $PWD/.bash_profile ]] || [[ ! -e $PWD/.bash_profile ]]; then
-	ln -fs $PWD/.bash_profile $HOME/.bash_profile
+if [[ ! -L $PWD/.profile ]] || [[ ! -e $PWD/.profile ]]; then
+	ln -fs $PWD/.profile $HOME/.profile
 fi
-
-# Remove .profile from $HOME
-if [[ -f $HOME/.profile ]]; then
-	rm $HOME/.profile
 
 # Copy over configs for applications
 if [[ ! -d $HOME/.config/ ]]; then

@@ -1,0 +1,2 @@
+# Defaults
+EDITOR=nvim
