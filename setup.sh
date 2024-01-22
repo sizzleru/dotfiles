@@ -10,5 +10,5 @@ fi
 
 # Create a symbolic link to the repo's bashrc
 if [[ ! -L $PWD/.bashrc ]] || [[ ! -e $PWD/.bashrc ]]; then
-	ln -fs $HOME/.bashrc $PWD/.bashrc
+	ln -fs $PWD/.bashrc $HOME/.bashrc 
 fi

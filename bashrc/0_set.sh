@@ -1,1 +1,1 @@
-set -vxo vi 
+set -o vi 
