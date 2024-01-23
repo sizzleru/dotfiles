@@ -3,7 +3,7 @@
 dirname $0 || exit 1 # Check if running bash
 
 # Request permission to replace $HOME/.bashrc with a symbolic link
-read -rp "This will replace your \$HOME/.bashrc and other dotfiles in \$HOME, are you sure? [y/N] " response
+read -rp "This will replace several files in your \$HOME directory such as .bashrc, .profile, etc. Are you sure?" response
 if [[ ! $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
 	exit 1 
 fi
