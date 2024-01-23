@@ -1,53 +1,53 @@
 case $(hostnamectl --static) in
-	tree)
-		HOSTNAME_LOGO=🌳
-		;;
-	
-	moon)
-		HOSTNAME_LOGO=🌕
-		;;
-	
-	academy)
-		HOSTNAME_LOGO=🏫
-		;;
-	
-	daisy)
-		HOSTNAME_LOGO=🌼
-		;;
+tree)
+	HOSTNAME_LOGO=🌳
+	;;
 
-	forest)
-		HOSTNAME_LOGO=🌲
-		;;
+moon)
+	HOSTNAME_LOGO=🌕
+	;;
 
-	city)
-		HOSTNAME_LOGO=🏙️
-		;;
+academy)
+	HOSTNAME_LOGO=🏫
+	;;
 
-	workshop)
-		HOSTNAME_LOGO=🛠️
-		;;
+daisy)
+	HOSTNAME_LOGO=🌼
+	;;
 
-	*)
-		HOSTNAME_LOGO=❓
-		;;
+forest)
+	HOSTNAME_LOGO=🌲
+	;;
+
+city)
+	HOSTNAME_LOGO=🏙️
+	;;
+
+workshop)
+	HOSTNAME_LOGO=🛠️
+	;;
+
+*)
+	HOSTNAME_LOGO=❓
+	;;
 esac
 
 case $(whoami) in
-	sizzleru)
-		USER_COLOR=33
-		;;
-	
-	kagi)
-		USER_COLOR=46
-		;;
-	
-	root)
-		USER_COLOR=31
-		;;
-	
-	*)
-		USER_COLOR=30
-		;;
+sizzleru)
+	USER_COLOR=33
+	;;
+
+kagi)
+	USER_COLOR=46
+	;;
+
+root)
+	USER_COLOR=31
+	;;
+
+*)
+	USER_COLOR=30
+	;;
 esac
 
 exit-ps1() {
@@ -56,11 +56,11 @@ exit-ps1() {
 }
 
 git-ps1() {
-[[ $(git rev-parse --abbrev-ref HEAD) ]] &> /dev/null && echo "・ ($(git rev-parse --abbrev-ref HEAD), $(git status --short | wc -l) unstaged, $(git diff --cached --numstat | wc -l) staged, $(git cherry -v | wc -l) unpushed)"
+	[[ $(git rev-parse --abbrev-ref HEAD) ]] &>/dev/null && echo "・ @ $(git rev-parse --abbrev-ref HEAD) ($(git status --short | wc -l) \e[1;31munstaged\e[0m, $(git diff --cached --numstat | wc -l) \e[1;33mstaged\e[0m, $(git cherry -v | wc -l) \e[1;32munpushed\e[0m)"
 }
 
 jobs-ps1() {
-	[[ $(jobs | wc -l) -gt 0 ]] && echo "・⚙ ($(jobs | wc -l))" 
+	[[ $(jobs | wc -l) -gt 0 ]] && echo "・⚙ ($(jobs | wc -l))"
 }
 
 export PS0="\n  \e[1;35m==>>\e[0m  "
