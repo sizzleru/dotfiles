@@ -56,7 +56,7 @@ exit-ps1() {
 }
 
 git-ps1() {
-[[ $(git rev-parse --abbrev-ref HEAD) ]] &> /dev/null && echo "・ ($(git rev-parse --abbrev-ref HEAD), $(git status --short | wc -l) unstaged, $(git diff --cached --numstat | wc -l) staged, $(git log --branches --not --remotes | wc -l) unpushed)"
+[[ $(git rev-parse --abbrev-ref HEAD) ]] &> /dev/null && echo "・ ($(git rev-parse --abbrev-ref HEAD), $(git status --short | wc -l) unstaged, $(git diff --cached --numstat | wc -l) staged, $(git cherry -v | wc -l | wc -l) unpushed)"
 }
 
 jobs-ps1() {
