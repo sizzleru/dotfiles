@@ -1,0 +1,4 @@
+git
+nvim
+kitty
+CaskaydiaCove Nerd Font

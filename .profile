@@ -8,4 +8,4 @@ for profile_file in $(ls -r $REAL_PATH/profile); do
 done
 
 unset profile_file
-unset $REAL_PATH
+unset REAL_PATH

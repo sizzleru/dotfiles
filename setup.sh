@@ -44,6 +44,6 @@ for app in $(ls $PWD/.config/); do
 	done
 done
 
-unset $response
-unset $app
-unset $app_file
+unset response
+unset app
+unset app_file

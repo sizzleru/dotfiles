@@ -21,8 +21,8 @@ prompt() {
 		fi
 	fi
 
-	unset $default
-	unset $response
+	unset default
+	unset response
 }
 
 # Verifies number input

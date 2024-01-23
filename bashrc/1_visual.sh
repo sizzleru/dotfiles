@@ -68,7 +68,3 @@ export-ps1() {
 	export PS1="\n\n\d @ \t <| $(exit-ps1)$(jobs-ps1)$(git-ps1) |>\n\e[1;${USER_COLOR}m\u\e[0m ($HOSTNAME_LOGO) : $(echo ${PWD/\// } | sed -r 's?/?\\e[2m|>\\e[0m?g')\n -> "
 }
 export PS2=" ===> "
-
-
-unset $HOSTNAME_LOGO
-unset $USER_COLOR
