@@ -10,7 +10,6 @@ set editing-mode vi;
 set echo-control-characters on;
 set enable-keypad on;
 set enable-meta-key on;
-set expand-tilde on;
 set history-preserve-point on;
 set history-size -1;
 set horizontal-scroll-mode off;
