@@ -1,0 +1,67 @@
+[user]
+	email = sizzleru@sizzleru.com
+	name = sizzleru
+	
+[alias]
+	# General
+	alias = config --get-regexp ^alias
+	profile = "!echo name: $(git config user.name), email: $(git config user.email)"
+	change = "!f() {\
+		ssh-add -D;\
+		if [ -z $1 ]; then\
+			ssh-add ~/.ssh/id_ed25519;\
+			git config --replace-all user.name sizzleru;\
+			git config --replace-all user.email github@sizzleru.com;\
+		elif [ $1 = work ] || [ $1 = university ]; then\
+			ssh-add ~/.ssh/id_$1;\
+			git config --replace-all user.name \"Timothy Ongko\";\
+			git config --replace-all user.email github.$1@sizzleru.com;\
+		fi;\
+	}; f"
+
+	# Statistics
+	lgfull = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''%C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+	lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(white)%s%C(reset) %C(dim white) %C(bold yellow)%d%C(reset)' --all
+	s = status --show-stash --ahead-behind
+
+	# Branching
+	br = branch -a --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
+	sw = "!f() {\
+		if $(git show-ref --verify --quiet refs/heads/$1) || $(git show-ref --verify --quiet refs/remotes/origin/$1); then\
+			git switch $1;\
+		else\
+			git switch -c $1;\
+		fi\
+	}; f"
+	del = "!f() {\
+		if git show-ref --verify --quiet refs/heads/$1; then\
+			git branch -d $1;\
+		fi;\
+		if git show-ref --verify --quiet refs/remotes/origin/$1; then\
+			git push origin --delete $1;\
+		fi\
+	}; f"
+	m = "!git merge --no-ff --no-edit $1"
+
+	# Stashing
+	sl = stash list
+	ss = stash save
+	sa = "!sh -c 'git stash apply stash@{$1}' -"
+	sd = "!sh -c 'git stash drop stash@{$1}' -"
+
+	# Checking work
+	review = status --verbose --show-stash --ahead-behind -v
+	changes = diff HEAD~1
+
+	# Staging work
+	a = add -A
+	undo = reset --soft HEAD~1
+	unstage = restore --staged
+	rst = clean -fd
+
+	# Commiting work
+	c = "commit -m"
+	ca = "commit -am"
+
+	# Pushing work
+	p = "!git push --set-upstream origin @"
