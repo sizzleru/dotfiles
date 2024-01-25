@@ -1,0 +1,49 @@
+#!/bin/bash
+
+dirname $0 || exit 1 # Check if running bash
+
+q_flag='v'
+s_flag=false while getopts 'qr' flag; do
+
+  case "${flag}" in
+    q) q_flag='' ;;
+    s) s_flag=true ;;
+    *) echo "Usage: setup [qs]"
+
+# Request permission to replace $HOME/.bashrc with a symbolic link
+read -rp "This will replace several files in your \$HOME directory such as .bashrc, .profile, etc. Are you sure? [y/N] " response
+if [[ ! $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
+	exit 1
+fi
+
+# Create a symbolic link for each dotfile in the root of $HOME
+for dotfile in $(find -maxdepth 1 -type f -name ".*" | grep -v ".gitignore"); do
+	if [[ ! -L $HOME/$dotfile ]] || [[ ! -e $HOME/$dotfile ]]; then
+		ln -${v_flag}fs $PWD/$dotfile $HOME/$dotfile
+		if [[ "$s_flag" = true ]]; then
+			ln -${v_flag}fs $PWD/$dotfile /root/$dotfile
+		fi
+	fi
+done
+
+# Copy over configs for applications
+if [[ ! -d $HOME/.config/ ]]; then
+	mkdir -v $HOME/.config/
+fi
+
+for app in $(ls $PWD/.config/); do
+	if [[ ! -d $HOME/.config/$app ]]; then
+		mkdir -v $HOME/.config/$app
+	fi
+	for app_file in $(ls $PWD/.config/$app/); do
+		if [[ ! -L $PWD/.config/$app/$app_file ]] || [[ ! -e $PWD/.config/$app/$app_file ]]; then
+			ln -vfs $PWD/.config/$app/$app_file $HOME/.config/$app/$app_file
+		fi
+	done
+done
+
+unset response
+unset app
+unset app_file
+unset q_flag
+unset s_flag
