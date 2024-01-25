@@ -3,12 +3,15 @@
 dirname $0 || exit 1 # Check if running bash
 
 q_flag='v'
-s_flag=false while getopts 'qr' flag; do
+s_flag=false
 
-  case "${flag}" in
-    q) q_flag='' ;;
-    s) s_flag=true ;;
-    *) echo "Usage: setup [qs]"
+while getopts 'qs' flag; do
+	case "${flag}" in
+	q) q_flag='' ;;
+	s) s_flag=true ;;
+	*) echo "Usage: setup [qs]" ;;
+	esac
+done
 
 # Request permission to replace $HOME/.bashrc with a symbolic link
 read -rp "This will replace several files in your \$HOME directory such as .bashrc, .profile, etc. Are you sure? [y/N] " response
