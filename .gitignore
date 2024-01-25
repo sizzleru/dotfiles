@@ -1,5 +1,4 @@
 # Swap files
 *.swp
-
-# neovim (Temporary while figuring out nvim configs)
-.config/nvim/
+*~
+*.bak
