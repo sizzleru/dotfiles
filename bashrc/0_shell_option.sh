@@ -1,7 +1,6 @@
 # Shopt options
 
 shopt -s cmdhist
-shopt -s direxpand
 shopt -s dotglob
 shopt -s execfail
 shopt -s expand_aliases
