@@ -1,5 +1,6 @@
 # Shopt options
 
+shopt -s checkwinsize
 shopt -s cmdhist
 shopt -s dotglob
 shopt -s execfail
