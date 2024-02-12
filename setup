@@ -24,9 +24,9 @@ fi
 # Create a symbolic link for each dotfile in the root of $HOME
 for dotfile in $(find -maxdepth 1 -type f -name ".*" | grep -v ".gitignore"); do
     if [[ ! -L $HOME/$dotfile ]] || [[ ! -e $HOME/$dotfile ]]; then
-        ln -${v_flag}fs $PWD/$dotfile $HOME/$dotfile
+        ln -${q_flag}fs $PWD/$dotfile $HOME/$dotfile
         if [[ "$s_flag" = true ]]; then
-            ln -${v_flag}fs $PWD/$dotfile /root/$dotfile
+            ln -${q_flag}fs $PWD/$dotfile /root/$dotfile
         fi
     fi
 done
