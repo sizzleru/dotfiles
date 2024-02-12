@@ -4,11 +4,9 @@ dirname $0 || exit 1 # Check if running bash
 
 q_flag='v'
 s_flag=false
-a_flag=false
 
 while getopts 'qs' flag; do
     case "${flag}" in
-        a) a_flag=true ;;
         q) q_flag='' ;;
         s) s_flag=true ;;
         *) echo "Usage: setup [qs]" ;;
@@ -32,10 +30,8 @@ for dotfile in $(find -maxdepth 1 -type f -name ".*" | grep -v ".gitignore"); do
 done
 
 # Copy over configs for applications
-if [[ "$a_flag" = true ]]; then
-    if [[ ! -d $HOME/.config/ ]]; then
-        mkdir -v $HOME/.config/
-    fi
+if [[ ! -d $HOME/.config/ ]]; then
+mkdir -v $HOME/.config/
 fi
 
 for app in $(ls $PWD/.config/); do
