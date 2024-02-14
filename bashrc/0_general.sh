@@ -3,5 +3,12 @@ alias profile="source $HOME/.profile"
 alias v=$EDITOR
 
 function l() {
-    ls --color=always --si --hyperlink=always -AFhHlNq | awk '{print $1, $3, $4, $9}' | tail --lines=+2
+    for f in *; do
+        file_stat=$(stat -c '%U:%G?(%A %a)?%n' "$f")
+        if [[ -L "$f" ]]; then
+            printf "%s?->?%s\n" "$file_stat" "$(readlink $f)"
+        else
+            echo "$file_stat"
+        fi
+    done | column -ts ':' -R 1 -o ':' | column -ts '?' -o ' '
 }
