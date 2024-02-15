@@ -12,3 +12,12 @@ function l() {
         fi
     done | column -ts ':' -R 1 -o ':' | column -ts '?' -o ' '
 }
+
+function s() {
+    if [[ -z $(command -v kitten) ]]; then
+        return 1
+    else
+        kitten ssh "sizzleru@$1"
+    fi
+}
+
