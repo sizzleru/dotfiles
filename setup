@@ -1,50 +1,36 @@
-#!/bin/bash
+#!/bin/bash -i
 
 dirname $0 || exit 1 # Check if running bash
 
+source "$PWD/.config/bash/bashrc/0_helper.sh" # Source initially to use functions
+source "$PWD/.config/bash/profile/0_xdg_specification.sh" # Source initially to use XDG vars
+
+# Flag management
 q_flag='v'
 s_flag=false
-
 while getopts 'qs' flag; do
-    case "${flag}" in
+    case "$flag" in
         q) q_flag='' ;;
         s) s_flag=true ;;
         *) echo "Usage: setup [qs]" ;;
     esac
 done
 
-# Request permission to replace $HOME/.bashrc with a symbolic link
-read -rp "This will replace several files in your \$HOME directory such as .bashrc, .profile, etc. Are you sure? [y/N] " response
-if [[ ! $response =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    exit 1
-fi
+prompt 'This will make changes in XDG and $HOME directories, are you sure?' false # Request permission
 
-# Create a symbolic link for each dotfile in the root of $HOME
-for dotfile in $(find -maxdepth 1 -type f -name ".*" | grep -v ".gitignore"); do
-    ln -${q_flag}fs $PWD/$dotfile $HOME/$dotfile
-    if [[ "$s_flag" = true ]]; then
-        ln -${q_flag}fs $PWD/$dotfile /root/$dotfile
+# Copy over application config
+mkdir -p$q_flag "$XDG_CONFIG_HOME"
+for app in $(find $PWD/.config -mindepth 1 -maxdepth 1 -type d -printf '%f\n'); do
+    if [[ ! -L "$XDG_CONFIG_HOME/$app" ]] || [[ ! -e "$XDG_CONFIG_HOME" ]]; then
+        ln -fs$q_flag "$PWD/.config/$app" "$XDG_CONFIG_HOME/$app"
     fi
 done
 
-# Copy over configs for applications
-if [[ ! -d $HOME/.config/ ]]; then
-mkdir -v $HOME/.config/
-fi
+# Additional setup for applications that doesn't follow XDG Base Directory specification
+ln -fs$q_flag "$XDG_CONFIG_HOME/bash/.bashrc" "$HOME/.bashrc"
+ln -fs$q_flag "$XDG_CONFIG_HOME/bash/.profile" "$HOME/.profile"
+ln -fs$q_flag "$XDG_CONFIG_HOME/git/.gitconfig" "$HOME/.gitconfig"
 
-for app in $(ls $PWD/.config/); do
-    if [[ ! -d $HOME/.config/$app ]]; then
-        mkdir -v $HOME/.config/$app
-    fi
-    for app_file in $(ls $PWD/.config/$app/); do
-        if [[ ! -L $PWD/.config/$app/$app_file ]] || [[ ! -e $PWD/.config/$app/$app_file ]]; then
-        ln -vfs $PWD/.config/$app/$app_file $HOME/.config/$app/$app_file
-        fi
-    done
-done
-
-unset response
 unset app
-unset app_file
 unset q_flag
 unset s_flag
