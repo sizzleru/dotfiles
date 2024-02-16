@@ -51,7 +51,7 @@ function exit-ps1() {
 }
 
 function git-ps1() {
-    [[ $(git rev-parse --abbrev-ref HEAD) ]] &>/dev/null && echo "・ @ $(e $(git rev-parse --abbrev-ref HEAD) cyan underline) ($(git status --short | wc -l) $(e unstaged red bold), $(git diff --cached --numstat | wc -l) $(e staged yellow bold), $(git log --stat @{u}..HEAD | grep \| | wc -l) $(e unpushed green bold))"
+    [[ $(git rev-parse --abbrev-ref HEAD) ]] &>/dev/null && echo "・ @ $(e $(git rev-parse --abbrev-ref HEAD) cyan underline) ($(git status --short | wc -l) $(e unstaged red bold), $(git diff --cached --numstat | wc -l) $(e staged yellow bold), $(if (git rev-parse --abbrev-ref $(git rev-parse --abbrev-ref HEAD)@{u}&> /dev/null) 2> /dev/null; then git log --stat @{u}..HEAD | grep \| | wc -l; else echo 0; fi) $(e unpushed green bold))"
 }
 
 function jobs-ps1() {
