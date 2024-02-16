@@ -22,7 +22,7 @@ prompt 'This will make changes in XDG and $HOME directories, are you sure?' fals
 mkdir -p$q_flag "$XDG_CONFIG_HOME"
 for app in $(find $PWD/.config -mindepth 1 -maxdepth 1 -type d -printf '%f\n'); do
     if [[ ! -L "$XDG_CONFIG_HOME/$app" ]] || [[ ! -e "$XDG_CONFIG_HOME" ]]; then
-        ln -fs$q_flag "$PWD/.config/$app" "$XDG_CONFIG_HOME/$app"
+        ln -fs$q_flag "$PWD/.config/$app" "$XDG_CONFIG_HOME/"
     fi
 done
 
