@@ -21,3 +21,12 @@ function s() {
     fi
 }
 
+function copy() {
+    mkdir -p "$2" && tar -cf - -C "$1" ./ | bar -s $(du -sb "$1" | awk '{ print $1 }') | tar -xf - -C "$2"
+}
+
+function move() {
+    copy "$1" "$2" && rm -r "$1"
+}
+
+alias remove='gio trash'
