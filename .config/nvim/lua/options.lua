@@ -24,4 +24,4 @@ vim.opt.softtabstop = 4
 vim.opt.statuscolumn = "%=%{v:relnum?v:relnum:v:lnum} "
 vim.opt.statusline = "%<%f %h%m%r%=%-14.(%l,%c%V%) %P 「できるよ！」"
 vim.opt.undofile = true
-
+vim.opt.wrap = false
