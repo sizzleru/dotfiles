@@ -76,7 +76,7 @@
 [init]
     defaultBranch = main
 [merge]
-    conflictstyle = zdiff3 # adds additional information during conflicts
+    conflictstyle = diff3 # adds additional information during conflicts
     tool = nvim
 [push]
     default = current
