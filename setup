@@ -1,8 +1,7 @@
-#!/bin/bash -i
+#!/bin/bash
 
 dirname $0 || exit 1 # Check if running bash
 
-source "$PWD/.config/bash/bashrc/0_helper.sh" # Source initially to use functions
 source "$PWD/.config/bash/profile/0_xdg_specification.sh" # Source initially to use XDG vars
 
 # Flag management
@@ -16,7 +15,7 @@ while getopts 'qs' flag; do
     esac
 done
 
-prompt 'This will make changes in XDG and $HOME directories, are you sure?' false # Request permission
+szh prompt -ns 'This will make changes in XDG and $HOME directories, are you sure?' || exit 1 # Request permission
 
 # Copy over application config
 mkdir -p$q_flag "$XDG_CONFIG_HOME"
