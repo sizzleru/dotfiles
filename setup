@@ -30,6 +30,13 @@ ln -fs$q_flag "$XDG_CONFIG_HOME/bash/.bashrc" "$HOME/.bashrc"
 ln -fs$q_flag "$XDG_CONFIG_HOME/bash/.profile" "$HOME/.profile"
 ln -fs$q_flag "$XDG_CONFIG_HOME/bash/.inputrc" "$HOME/.inputrc"
 
+if [[ "$s_flag" = true ]]; then
+    sudo ln -fs$q_flag "$PWD/.config/bash/.bashrc" '/root/.bashrc'
+    sudo ln -fs$q_flag "$PWD/.config/bash/.profile" '/root/.profile'
+    sudo ln -fs$q_flag "$PWD/.config/bash/.inputrc" '/root/.inputrc'
+    sudo ln -fs$q_flag "$PWD/.config/bash/bash.bashrc" '/etc/bash.bashrc'
+fi
+
 unset app
 unset q_flag
 unset s_flag
