@@ -29,3 +29,4 @@ CARGO_HOME="$XDG_DATA_HOME/cargo" # Rust#Cargo
 GHCUP_USE_XDG_DIRS=true # ghcup-hs-bin
 STACK_XDG=1 # Haskell#Stack
 VSCODE_PORTABLE="$XDG_DATA_HOME/vscode" # Visual Studio Code
+RANGER_LOAD_DEFAULT_RC=false # ranger
