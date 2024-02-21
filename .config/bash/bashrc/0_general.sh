@@ -1,6 +1,7 @@
 alias bashrc="source $HOME/.bashrc"
 alias profile="source $HOME/.profile"
 alias v=$EDITOR
+alias python=python3
 
 function l() {
     if [[ -n "$(ls -A . 2>/dev/null)" ]]; then
