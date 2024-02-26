@@ -158,9 +158,9 @@ if [[ -d "${HOME}"/.mozc ]]; then
 fi
 
 # NSS
-if [[ -d "${HOME}"/.pki ]]; then
-    mv "${HOME}"/.pki "${XDG_DATA_HOME}"/pki
-fi
+#if [[ -d "${HOME}"/.pki ]]; then
+#    mv "${HOME}"/.pki "${XDG_DATA_HOME}"/pki
+#fi
 
 # vim
 if [[ -d "${HOME}"/.vim ]]; then

@@ -34,6 +34,6 @@ GOPATH="$XDG_DATA_HOME/go" # Go
 GOMODCACHE="$XDG_CACHE_HOME/go/mod" # Go
 MATHEMATICA_USERBASE="${XDG_CONFIG_HOME}"/mathematica # Mathematica
 GVIMINIT='let $MYGVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/gvimrc" : "$XDG_CONFIG_HOME/nvim/init.gvim" | so $MYGVIMRC' # vim
-VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.vim" | so $MYVIMRC' # vim
+VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.lua" | so $MYVIMRC' # vim
 SSB_HOME="$XDG_DATA_HOME"/zoom # zoom
 HISTFILE="$XDG_STATE_HOME"/bash/history
