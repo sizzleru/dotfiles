@@ -16,7 +16,6 @@ vim.opt.list = true
 vim.opt.matchpairs = "(:),{:},[:],<:>"
 vim.opt.mouse = "iv"
 vim.opt.number = true
-vim.opt.opendevice = true
 vim.opt.shiftwidth = 4
 vim.opt.shiftround = true
 vim.opt.smartindent = true
