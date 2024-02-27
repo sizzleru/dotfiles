@@ -47,4 +47,4 @@ function move() {
 }
 
 alias remove='gio trash'
-alias dcu='sudo docker compose up --build --detached --remove-orphans'
+alias dcu='sudo docker compose up --build --detach --remove-orphans'
