@@ -26,7 +26,7 @@ function l() {
             echo ""
         done
     else
-        ll $1
+        ll "$1"
     fi
 }
 
@@ -47,3 +47,4 @@ function move() {
 }
 
 alias remove='gio trash'
+alias dcu='sudo docker compose up --build --detached --remove-orphans'
