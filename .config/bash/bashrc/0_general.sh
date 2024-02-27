@@ -3,8 +3,8 @@ alias profile="source $HOME/.profile"
 alias v=$EDITOR
 alias python=python3
 
-function l() {
-    if [[ -n "$(ls -A . 2>/dev/null)" ]]; then
+function ll() {
+    if [[ -n "$(ls -A $1 2>/dev/null)" ]]; then
         for f in *; do
             file_stat=$(stat -c '%U:%G?(%A %a)?%n' "$f")
             if [[ -L "$f" ]]; then
@@ -15,6 +15,18 @@ function l() {
         done | column -ts ':' -R 1 -o ':' | column -ts '?' -o ' '
     else
         echo ''
+    fi
+}
+
+function l() {
+    if [[ $# -gt 0 ]]; then
+        for dir in $@; do
+            echo "${dir}/:"
+            ll "${dir}"
+            echo ""
+        done
+    else
+        ll .
     fi
 }
 
