@@ -37,3 +37,4 @@ GVIMINIT='let $MYGVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/gvimrc" : "$XDG_C
 VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.lua" | so $MYVIMRC' # vim
 SSB_HOME="$XDG_DATA_HOME"/zoom # zoom
 HISTFILE="$XDG_STATE_HOME"/bash/history
+DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker

@@ -26,7 +26,7 @@ function l() {
             echo ""
         done
     else
-        ll .
+        ll $1
     fi
 }
 
