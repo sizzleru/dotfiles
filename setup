@@ -35,6 +35,7 @@ if [[ "$s_flag" = true ]]; then
     sudo ln -fs$q_flag "$PWD/.config/bash/.profile" '/root/.profile'
     sudo ln -fs$q_flag "$PWD/.config/bash/.inputrc" '/root/.inputrc'
     sudo ln -fs$q_flag "$PWD/.config/bash/bash.bashrc" '/etc/bash.bashrc'
+    sudo ln -fs$q_flag /usr/bin/python3 /usr/bin/python
 fi
 
 unset app
