@@ -2,7 +2,7 @@
 
 dirname $0 || exit 1 # Check if running bash
 
-source "$PWD/.config/bash/profile/0_xdg_specification.sh" # Source initially to use XDG vars
+source "$PWD/.config/bash/profile/1_xdg_specification.sh" # Source initially to use XDG vars
 
 # Flag management
 q_flag='v'
