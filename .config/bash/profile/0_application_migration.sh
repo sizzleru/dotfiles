@@ -199,3 +199,8 @@ fi
 if [[ -f "${HOME}"/.lesskey ]]; then
     mv "${HOME}"/.lesskey "${XDG_CONFIG_HOME}"/lesskey
 fi
+
+# dircolors
+if [[ -f "${HOME}/.dircolors" ]]; then
+    mv "${HOME}/.dircolors" "${XDG_CONFIG_HOME}/dircolors"
+fi
