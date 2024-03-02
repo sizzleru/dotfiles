@@ -4,14 +4,14 @@ alias v=$EDITOR
 alias python=python3
 
 function ll() {
-    path=${1%/}
+    path="${1%/}"
     if [[ -n "$(ls -A $path 2>/dev/null)" ]]; then
-        for f in "$path"/*; do
+        for f in "${path}"/*; do
             file_stat=$(stat -c '%U:%G?(%A %a)' "$f")
             if [[ -L "$f" ]]; then
-                printf "%s?%s?->?%s\n" "$file_stat" "$(readlink $f)" "$(basename $f)"
+                printf "%s?%s?->?%s\n" "$file_stat" "'$(basename "$f")'" "'$(readlink "$f")'"
             else
-                printf "%s?%s\n" "${file_stat}" "$(basename $f)"
+                printf "%s?%s\n" "${file_stat}" "'$(basename "$f")'"
             fi
         done | column -ts ':' -R 1 -o ':' | column -ts '?' -o ' '
     else
