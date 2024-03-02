@@ -9,9 +9,9 @@ function ll() {
         for f in "${path}"/*; do
             file_stat=$(stat -c '%U:%G?(%A %a)' "$f")
             if [[ -L "$f" ]]; then
-                printf "%s?%s?->?%s\n" "$file_stat" "'$(basename "$f")'" "'$(readlink "$f")'"
+                printf "%s?%s?->?%s\n" "$file_stat" "$(basename "$f")" "$(readlink "$f")"
             else
-                printf "%s?%s\n" "${file_stat}" "'$(basename "$f")'"
+                printf "%s?%s\n" "${file_stat}" "$(basename "$f")"
             fi
         done | column -ts ':' -R 1 -o ':' | column -ts '?' -o ' '
     else
