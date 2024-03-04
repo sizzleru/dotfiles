@@ -1,0 +1,72 @@
+! Extensions
+URxvt.perl-ext-common: default,matcher,selection-to-clipboard,resize-font,-confirm-paste
+
+! Clipboard
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+URxvt.clipboard.autocopy: true
+URxvt.keysym.Control-c: eval:selection_to_clipboard
+URxvt.keysym.Control-v: eval:paste_clipboard
+
+! Scrollback
+URxvt*scrollWithBuffer: true
+URxvt.secondaryScreen: 1
+URxvt.secondaryScroll: 0
+URxvt.secondaryWheel: 1
+
+! Links
+URxvt.keysym.C-Delete: perl:matcher:last
+URxvt.keysym.M-Delete: perl:matcher:list
+URxvt.matcher.rend.0: Uline Bold fg5
+
+! Terminal printing
+URxvt*termName: rxvt
+URxvt.print-pipe: "cat > /dev/null"
+
+! Shortcuts
+URxvt*skipBuiltinGlyphs: true
+
+! fonts
+URxvt.font: xft:Meslo LG S DZ for Powerline:style=Regular:size=15
+URxvt.boldFont: xft:Meslo LG S DZ for Powerline:style=Bold:size=15
+URxvt.italicFont: xft:Meslo LG S DZ for Powerline:style=Italic:size=15
+URxvt.boldItalicfont: xft:Meslo LG S DZ for Powerline:style=Bold Italic:size=15
+
+! Terminal visuals
+URxvt*transparent: true
+URxvt*shading: 30
+URxvt*blurRadius: 0
+URxvt*depth: 32
+URxvt.letterSpace: -1
+URxvt.lineSpace: 0
+!URxvt.geometry: 92x24
+URxvt.geometry: 400x400
+URxvt.internalBorder: 24
+URxvt.cursorBlink: true
+URxvt.cursorUnderline: false
+URxvt.saveline: 2048
+URxvt.scrollBar: false
+URxvt.scrollBar_right: false
+URxvt.urgentOnBell: true
+URxvt.depth: 24
+
+! Color scheme
+*.foreground:   #8ca68c
+*.background:   #131513
+*.cursorColor:  #8ca68c
+*.color0:       #131513
+*.color1:       #e6193c
+*.color2:       #29a329
+*.color3:       #c3c322
+*.color4:       #3d62f5
+*.color5:       #ad2bee
+*.color6:       #1999b3
+*.color7:       #8ca68c
+*.color8:       #687d68
+*.color9:       #e6193c
+*.color10:      #29a329
+*.color11:      #c3c322
+*.color12:      #3d62f5
+*.color13:      #ad2bee
+*.color14:      #1999b3
+*.color15:      #f0fff0

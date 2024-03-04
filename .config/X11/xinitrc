@@ -1,0 +1,3 @@
+xrdb -merge "${XDG_CONFIG_HOME}/X11/xresources"
+xset +fp "${XDG_DATA_HOME}/fonts"
+exec i3
