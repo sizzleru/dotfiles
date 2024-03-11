@@ -41,3 +41,8 @@ if [ -x /usr/lib/command-not-found -o -x /usr/share/command-not-found/command-no
         fi
     }
 fi
+
+# source in XDG specifications if it doesnt exist at home
+if [[ ! -f "${HOME}/.bashrc" ]]; then
+    source "${XDG_CONFIG_HOME}/bash/bashrc"
+fi

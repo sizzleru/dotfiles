@@ -1,0 +1,7 @@
+[[ "${-}" != *i* ]] && return # Check if running interactively
+
+for bashrc_file in $(szh find -c "${XDG_CONFIG_HOME}/bash/bashrc_files"); do
+    source "${XDG_CONFIG_HOME}/bash/bashrc_files/${bashrc_file}"
+done
+
+unset bashrc_file

@@ -1,0 +1,7 @@
+[[ -f "${XDG_CONFIG_HOME}/bash/bashrc" ]] && source "${XDG_CONFIG_HOME}/bash/bashrc" # invoke bashrc
+
+for profile_file in $(szh find -c "${XDG_CONFIG_HOME}/bash/profile_files"); do
+    source "${XDG_CONFIG_HOME}/bash/profile_files/${profile_file}"
+done
+
+unset profile_file

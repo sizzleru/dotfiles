@@ -1,5 +1,5 @@
-alias bashrc="source $HOME/.bashrc"
-alias profile="source $HOME/.profile"
+alias bashrc="source ${XDG_CONFIG_HOME}/bash/bashrc"
+alias profile="source ${XDG_CONFIG_HOME}/bash/bash_profile"
 alias v=$EDITOR
 alias python=python3
 
