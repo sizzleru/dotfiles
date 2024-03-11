@@ -1,37 +1,37 @@
 #!/bin/bash
 
-source "$PWD/.config/bash/profile/1_xdg_specification.sh" # Source initially to use XDG vars
+szh xdg -ae # Make sure XDG variables are setup
 
 # Flag management
 q_flag='v'
-s_flag=false
+s_flag='false'
 while getopts 'qs' flag; do
-    case "$flag" in
+    case "${flag}" in
         q) q_flag='' ;;
-        s) s_flag=true ;;
-        *) echo "Usage: setup [qs]" ;;
+        s) s_flag='true' ;;
+        *) szh usage '[qs]' ;;
     esac
 done
 
 szh prompt -ns 'This will make changes in XDG and $HOME directories, are you sure?' || exit 1 # Request permission
 
 # Copy over application config
-mkdir -p$q_flag "$XDG_CONFIG_HOME"
-for app in $(find $PWD/.config -mindepth 1 -maxdepth 1 -type d -printf '%f\n'); do
-    ln -fs$q_flag "$PWD/.config/$app" "$XDG_CONFIG_HOME/"
+mkdir "-p${q_flag}" "${XDG_CONFIG_HOME}"
+for app in "$(szh find -t 'd')"; do
+    ln "-fs${q_flag}" "${PWD}/.config/${app}" "${XDG_CONFIG_HOME}"
 done
 
 # Additional setup for applications that doesn't follow XDG Base Directory specification
-ln -fs$q_flag "$XDG_CONFIG_HOME/bash/.bashrc" "$HOME/.bashrc"
-ln -fs$q_flag "$XDG_CONFIG_HOME/bash/.profile" "$HOME/.profile"
-ln -fs$q_flag "$XDG_CONFIG_HOME/bash/.inputrc" "$HOME/.inputrc"
+ln "-fs${q_flag}" "${XDG_CONFIG_HOME}/bash/.bashrc" "${HOME}/.bashrc"
+ln "-fs${q_flag}" "${XDG_CONFIG_HOME}/bash/.profile" "${HOME}/.profile"
+ln "-fs${q_flag}" "${XDG_CONFIG_HOME}/bash/.inputrc" "${HOME}/.inputrc"
 
-if [[ "$s_flag" = true ]]; then
-    sudo ln -fs$q_flag "$PWD/.config/bash/.bashrc" '/root/.bashrc'
-    sudo ln -fs$q_flag "$PWD/.config/bash/.profile" '/root/.profile'
-    sudo ln -fs$q_flag "$PWD/.config/bash/.inputrc" '/root/.inputrc'
-    sudo ln -fs$q_flag "$PWD/.config/bash/bash.bashrc" '/etc/bash.bashrc'
-    sudo ln -fs$q_flag /usr/bin/python3 /usr/bin/python
+if [[ "${s_flag}" = true ]]; then
+    sudo ln "-fs${q_flag}" "${PWD}/.config/bash/.bashrc" '/root/.bashrc'
+    sudo ln "-fs${q_flag}" "${PWD}/.config/bash/.profile" '/root/.profile'
+    sudo ln "-fs${q_flag}" "${PWD}/.config/bash/.inputrc" '/root/.inputrc'
+    sudo ln "-fs${q_flag}" "${PWD}/.config/bash/bash.bashrc" '/etc/bash.bashrc'
+    sudo ln "-fs${q_flag}" '/usr/bin/python3' '/usr/bin/python'
 fi
 
 unset app
