@@ -28,9 +28,9 @@ ln "-fs${q_flag}" "${XDG_CONFIG_HOME}/bash/.inputrc" "${HOME}/.inputrc"
 CWD="${BASH_SOURCE[0]}"
 
 if [[ "${s_flag}" = true ]]; then
-    sudo ln "-fs${q_flag}" "${PWD}/.config/bash/.inputrc" '/root/.inputrc'
-    sudo ln "-fs${q_flag}" "${PWD}/.config/bash/bash.bashrc" '/etc/bash.bashrc'
     sudo ln "-fs${q_flag}" "${PWD}/.config/bash/profile" '/etc/profile'
+    sudo ln "-fs${q_flag}" "${PWD}/.config/bash/bash.bashrc" '/etc/bash.bashrc'
+    sudo ln "-fs${q_flag}" "${PWD}/.config/bash/inputrc" '/etc/inputrc'
     sudo ln "-fs${q_flag}" '/usr/bin/python3' '/usr/bin/python'
 fi
 
