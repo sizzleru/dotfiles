@@ -1,18 +1,22 @@
 case $(hostnamectl --static) in
-    tree) HOSTNAME_LOGO=🌳 ;;
-    moon) HOSTNAME_LOGO=🌕 ;;
     academy) HOSTNAME_LOGO=🏫 ;;
+    city) HOSTNAME_LOGO=🏙️ ;;
     daisy) HOSTNAME_LOGO=🌼 ;;
     forest) HOSTNAME_LOGO=🌲 ;;
-    city) HOSTNAME_LOGO=🏙️ ;;
+    moon) HOSTNAME_LOGO=🌕 ;;
+    power) HOSTNAME_LOGO=⚡ ;;
+    space) HOSTNAME_LOGO=🌌 ;;
+    stone) HOSTNAME_LOGO=🪨 ;;
+    tree) HOSTNAME_LOGO=🌳 ;;
     workshop) HOSTNAME_LOGO=🛠️ ;;
     *) HOSTNAME_LOGO=❓ ;;
 esac
 
 case $(whoami) in
-    sizzleru) USER_COLOR=yellow ;;
     kagi) USER_COLOR=cyan ;;
     root) USER_COLOR=red ;;
+    sizzleru) USER_COLOR=yellow ;;
+    tongko) USER_COLOR=green ;;
     *) USER_COLOR=default ;;
 esac
 
