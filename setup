@@ -17,7 +17,7 @@ szh prompt -ns 'This will make changes in XDG and $HOME directories, are you sur
 
 # Copy over application config
 mkdir "-p${q_flag}" "${XDG_CONFIG_HOME}"
-for app in "$(szh find -t 'd')"; do
+for app in $(szh find -c '.config' -t 'd'); do
     ln "-fs${q_flag}" "${PWD}/.config/${app}" "${XDG_CONFIG_HOME}"
 done
 unset app
