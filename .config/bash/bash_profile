@@ -1,7 +1,18 @@
+source "${XDG_CONFIG_HOME:-${HOME}/.config}/XDG/variables.sh"
+
+set -a
+
 for profile_file in "${XDG_CONFIG_HOME}/bash/profile_files"/* ; do
     source "${profile_file}"
 done
 
-[[ -f "${XDG_CONFIG_HOME}/bash/bashrc" ]] && source "${XDG_CONFIG_HOME}/bash/bashrc" # invoke bashrc
+if [[ -f "${XDG_CONFIG_HOME}/bash/bashrc" ]]; then
+    source "${XDG_CONFIG_HOME}/bash/bashrc" # invoke bashrc
+fi
 
+set -a
 unset profile_file
+
+if [[ -z ${DISPLAY} ]] && [[ $(tty) = /dev/tty1 ]]; then
+    startx
+fi
