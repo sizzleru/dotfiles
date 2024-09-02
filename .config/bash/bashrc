@@ -2,8 +2,7 @@
 
 # Checks XDG Base Directory Specification
 if [[ -z "${XDG_ACTIVE}" ]]; then
-    echo 'Requires XDG Base Directory Specification, checkout https://specifications.freedesktop.org/basedir-spec/latest/#referencing'
-    exit 1
+    echo 'Warning: XDG Base Directory Specification is not defined, checkout https://specifications.freedesktop.org/basedir-spec/latest/#referencing'
 fi
 
 # Find all the files needed to be sourced
