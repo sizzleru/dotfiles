@@ -1,7 +1,17 @@
 [[ "${-}" != *i* ]] && return # Check if running interactively
 
-for bashrc_file in $(szh find -c "${XDG_CONFIG_HOME}/bash/bashrc_files" | sort -r); do
-    source "${XDG_CONFIG_HOME}/bash/bashrc_files/${bashrc_file}"
+# Checks XDG Base Directory Specification
+if [[ -z "${XDG_ACTIVE}" ]]; then
+    echo 'Requires XDG Base Directory Specification, checkout https://specifications.freedesktop.org/basedir-spec/latest/#referencing'
+    exit 1
+fi
+
+# Find all the files needed to be sourced
+bashrc_files_path="$(echo "$(dirname "$(realpath "${BASH_SOURCE[0]}")")/bashrc_files")"
+bashrc_files="$(find "${bashrc_files_path}" -maxdepth 1 -type f -printf '%f\n' | sort -r)"
+
+for bashrc_file in ${bashrc_files}; do
+    source "${bashrc_files_path}/${bashrc_file}"
 done
 
-unset bashrc_file
+unset bashrc_file bashrc_files bashrc_files_path

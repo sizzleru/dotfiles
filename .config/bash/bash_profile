@@ -1,15 +1,16 @@
-source "${XDG_CONFIG_HOME:-${HOME}/.config}/XDG/variables.sh"
+# Find all the files needed to be sourced
+profile_files_path="$(echo "$(dirname "$(realpath "${BASH_SOURCE[0]}")")/profile_files")"
+profile_files="$(find "${profile_files_path}" -maxdepth 1 -type f -printf '%f\n' | sort -r)"
 
-set -a
-
-for profile_file in "${XDG_CONFIG_HOME}/bash/profile_files"/* ; do
-    source "${profile_file}"
+set -a # Export all following variables set
+for profile_file in ${profile_files}; do
+    source "${profile_files_path}/${profile_file}"
 done
+set +a # Finish exports
 
-set +a
-
-unset profile_file
-
-if [[ -z ${DISPLAY} ]] && [[ $(tty) = /dev/tty1 ]]; then
+# Start X environment
+if [[ -z "${DISPLAY}" ]] && [[ "$(tty)" = /dev/tty1 ]] && [[ "$(command -v startx)" ]]; then
     startx
 fi
+
+unset profile_file profile_files profile_files_path
