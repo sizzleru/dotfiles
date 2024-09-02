@@ -47,5 +47,9 @@ function move() {
     copy "$1" "$2" && rm -r "$1"
 }
 
+function f() {
+    eval $(history | fzf -e | sed -E "s/^ *[0-9]* *//g")
+}
+
 alias remove='gio trash'
 alias dcu='sudo docker compose up --build --detach --remove-orphans'
