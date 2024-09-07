@@ -1,38 +1,58 @@
 #!/bin/bash
 
-szh xdg -ae # Make sure XDG variables are setup
+# Error checking
+set -euo pipefail
 
-# Flag management
-q_flag='v'
-s_flag='false'
-while getopts 'hsq' flag; do
-    case "${flag}" in
-        s) s_flag='true' ;;
-        q) q_flag='' ;;
-        *) szh usage '[-h(help)s(udo)q(uiet)]' || exit 1 ;;
-    esac
-done
+# Set XDG variables
+: "${XDG_CONFIG_HOME:=${HOME}/.config}"
+: "${XDG_DATA_HOME:=${HOME}/.local/share}"
 
-szh prompt -ns 'This will make changes in XDG and $HOME directories, are you sure?' || exit 1 # Request permission
+# Prompting
+function prompt() {
+    read -rp "${1:?missing message parameter for prompt} [Y/n] " response
+    if [[ ! "${response}" =~ ^([yY][eE][sS]|[yY])$ ]] && [[ ! -z "${response}" ]]; then
+        unset response && return 1
+    else
+        unset response && return 0
+    fi
+}
 
-# Copy over application config
-mkdir "-p${q_flag}" "${XDG_CONFIG_HOME}"
-for app in $(szh find -c '.config' -t 'd'); do
-    ln "-fs${q_flag}" "${PWD}/.config/${app}" "${XDG_CONFIG_HOME}"
-done
-unset app
+CURRENT_DIR="$(dirname "$(readlink -f "${0}")")"
 
-# Additional setup for applications that doesn't follow XDG Base Directory specification
-ln "-fs${q_flag}" "${XDG_CONFIG_HOME}/bash/.inputrc" "${HOME}/.inputrc"
+# ~/.config files
+prompt 'Would you like to copy over ~/.config files?' || exit 1
+#[[ -d "${XDG_CONFIG_HOME}" ]] && echo "${XDG_CONFIG_HOME} exists, please backup before running script. Exiting..." && exit 1
+#ln -vfs "${CURRENT_DIR}/.config" "${HOME}/.config"
 
-CWD="${BASH_SOURCE[0]}"
-
-if [[ "${s_flag}" = true ]]; then
-    sudo ln "-fs${q_flag}" "${PWD}/.config/bash/profile" '/etc/profile'
-    sudo ln "-fs${q_flag}" "${PWD}/.config/bash/bash.bashrc" '/etc/bash.bashrc'
-    sudo ln "-fs${q_flag}" "${PWD}/.config/bash/inputrc" '/etc/inputrc'
-    sudo ln "-fs${q_flag}" '/usr/bin/python3' '/usr/bin/python'
+# Bash files
+if $(prompt 'Would you like to link the bash files? (type No if you want to migrate bash to XDG)'); then
+    for file in bashrc bash_profile inputrc; do
+        [[ -f "${HOME}/.${file}" ]] && echo "${HOME}/.${file} exists, please backup before running script. Exiting..." && exit 1
+        ln -vfs "${CURRENT_DIR}/.config/bash/${file}" "${HOME}/.${file}"
+    done
+    unset file
 fi
 
-unset q_flag
-unset s_flag
+# Migrating to XDG
+if $(prompt 'Would you like to migrate non XDG-compliant applications?'); then
+    for file in $(find "${CURRENT_DIR}/xdg" -maxdepth 1 -type f); do
+        if $(prompt "Would you like to migrate ${file}?"); then
+            "${file}"
+        fi
+    done
+fi
+
+## Additional setup for applications that doesn't follow XDG Base Directory specification
+#ln "-fs${q_flag}" "${XDG_CONFIG_HOME}/bash/.inputrc" "${HOME}/.inputrc"
+#
+#CWD="${BASH_SOURCE[0]}"
+#
+#if [[ "${s_flag}" = true ]]; then
+#    sudo ln "-fs${q_flag}" "${PWD}/.config/bash/profile" '/etc/profile'
+#    sudo ln "-fs${q_flag}" "${PWD}/.config/bash/bash.bashrc" '/etc/bash.bashrc'
+#    sudo ln "-fs${q_flag}" "${PWD}/.config/bash/inputrc" '/etc/inputrc'
+#    sudo ln "-fs${q_flag}" '/usr/bin/python3' '/usr/bin/python'
+#fi
+#
+#unset q_flag
+#unset s_flag
