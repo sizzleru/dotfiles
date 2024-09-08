@@ -1,30 +1,16 @@
-# /etc/profile: system-wide .profile file for the Bourne shell (sh(1))
-# and Bourne compatible shells (bash(1), ksh(1), ash(1), ...).
+# Find all the files needed to be sourced
+profile_files_path="$(echo "$(dirname "$(realpath "${BASH_SOURCE[0]}")")/profile_files")"
+profile_files="$(find "${profile_files_path}" -maxdepth 1 -type f -printf '%f\n' | sort -r)"
 
-if [ "${PS1-}" ]; then
-  if [ "${BASH-}" ] && [ "$BASH" != "/bin/sh" ]; then
-    # The file bash.bashrc already sets the default PS1.
-    # PS1='\h:\w\$ '
-    if [ -f /etc/bash.bashrc ]; then
-      . /etc/bash.bashrc
-    fi
-  else
-    if [ "$(id -u)" -eq 0 ]; then
-      PS1='# '
-    else
-      PS1='$ '
-    fi
-  fi
+set -a # Export all following variables set
+for profile_file in ${profile_files}; do
+    source "${profile_files_path}/${profile_file}"
+done
+set +a # Finish exports
+
+unset profile_file profile_files profile_files_path
+
+# Start X environment
+if [[ -z "${DISPLAY}" ]] && [[ "$(tty)" = /dev/tty1 ]] && [[ "$(command -v startx)" ]]; then
+    startx
 fi
-
-if [ -d /etc/profile.d ]; then
-  for i in /etc/profile.d/*.sh; do
-    if [ -r $i ]; then
-      . $i
-    fi
-  done
-  unset i
-fi
-
-source "${XDG_CONFIG_HOME}/bash/bash_profile"
-source /etc/bash.bashrc

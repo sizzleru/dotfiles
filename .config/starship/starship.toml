@@ -1,17 +1,3 @@
-#case $(hostnamectl --static) in
-#    academy) HOSTNAME_LOGO=🏫 ;;
-#    city) HOSTNAME_LOGO=🏙️ ;;
-#    daisy) HOSTNAME_LOGO=🌼 ;;
-#    forest) HOSTNAME_LOGO=🌲 ;;
-#    moon) HOSTNAME_LOGO=🌕 ;;
-#    power) HOSTNAME_LOGO=⚡ ;;
-#    space) HOSTNAME_LOGO=🌌 ;;
-#    stone) HOSTNAME_LOGO=🪨 ;;
-#    tree) HOSTNAME_LOGO=🌳 ;;
-#    workshop) HOSTNAME_LOGO=🛠️ ;;
-#    *) HOSTNAME_LOGO=❓ ;;
-#esac
-
 #format = '''
 #[ ┌───────────────────> ](bold green)
 #[ │](bold green) $all
@@ -66,7 +52,7 @@ number_threshold = 1
 symbol = '⚙'
 
 [custom.hostname]
-command = "hostnamectl hostname | xargs ${XDG_CONFIG_HOME}/starship/hostname.sh"
+command = "hostnamectl hostname | xargs ${XDG_CONFIG_HOME:-${HOME}/.config}/starship/hostname.sh"
 when = true
 shell = 'bash'
 format = '[❨$output❩]($style) '

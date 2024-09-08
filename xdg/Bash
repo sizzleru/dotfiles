@@ -11,14 +11,15 @@ fi
 
 if prompt 'Would you like to migrate the .bashrc file? (this requires sudo permission for editing /etc/bash.bashrc)'; then
     # source in XDG specifications if it doesnt exist at home
-    sudo tee -a /etc/bash.bashrc <<-EOF
-    if [[ -f "${XDG_CONFIG_HOME}/bash/bashrc ]]; then
-        source "${XDG_CONFIG_HOME}/bash/bashrc"
-    else
-        if [[ -f "${HOME}/.bashrc" ]]; then
-            source "${HOME}/.bashrc"
-        fi
-    EOF
+    sudo tee -a /etc/bash.bashrc <<EOF
+if [[ -f "${XDG_CONFIG_HOME}/bash/bashrc" ]]; then
+    source "${XDG_CONFIG_HOME}/bash/bashrc"
+else
+    if [[ -f "${HOME}/.bashrc" ]]; then
+        source "${HOME}/.bashrc"
+    fi
+fi
+EOF
 fi
 
 if prompt 'Would you like to remove the .bashrc file?'; then
@@ -27,13 +28,23 @@ if prompt 'Would you like to remove the .bashrc file?'; then
     fi
 fi
 
-if prompt 'Would you like to migrate the .bash_profile file? (this requires sudo permission for editing /etc/profile)'; then
+if prompt 'Would you like to migrate the .bash_profile file? (this requires sudo permission for creating /etc/profile.d/profile.sh)'; then
     # source in XDG specifications if it doesnt exist at home
-    sudo tee -a /etc/bash.bashrc <<EOF
-    if [[ ! -f "${HOME}/.bash_profile" || ! -f  "${HOME}/.profile" ]]; then
-        source "${XDG_CONFIG_HOME}/bash/bashrc"
-    fi
+    sudo tee /etc/profile.d/profile.sh <<EOF
+if [[ ! -f "${HOME}/.bash_profile" && ! -f  "${HOME}/.profile" ]]; then
+    source "${XDG_CONFIG_HOME}/bash/profile"
+fi
 EOF
+fi
+
+if prompt 'Would you like to remove the .(bash_)profile file?'; then
+    if [[ -f "${HOME}/.bash_profile" ]]; then
+        rm "${HOME}/.bash_profile"
+    fi
+
+    if [[ -f "${HOME}/.profile" ]]; then
+        rm "${HOME}/.profile"
+    fi
 fi
 
 unset XDG_STATE_FOLDER
