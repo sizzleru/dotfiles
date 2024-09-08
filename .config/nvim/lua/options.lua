@@ -1,4 +1,4 @@
-vim.opt.autoindent = true
+vim.opt.autoindent = false
 vim.opt.backup = true
 vim.opt.backupdir = "$XDG_STATE_HOME/nvim/backup/,/tmp/"
 vim.opt.backupskip = "/tmp/*"
@@ -6,7 +6,6 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.confirm = true
 vim.opt.cursorcolumn = true
 vim.opt.cursorline = true
---vim.opt.debug = "msg,throw"
 vim.opt.dictionary = "/usr/share/dict/words"
 vim.opt.diff = true
 vim.opt.expandtab = true

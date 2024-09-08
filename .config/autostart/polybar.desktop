@@ -1,0 +1,4 @@
+[Desktop Entry]
+Exec=/home/sizzleru/.config/polybar/launch.sh
+Name=polybar
+Type=Application

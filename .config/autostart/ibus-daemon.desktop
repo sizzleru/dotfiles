@@ -1,0 +1,4 @@
+[Desktop Entry]
+Exec=bash -c 'ibus-daemon -drx'
+Name=ibus-daemon
+Type=Application

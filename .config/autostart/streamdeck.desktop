@@ -1,0 +1,4 @@
+[Desktop Entry]
+Exec=bash -c 'streamdeck -n'
+Name=streamdeck
+Type=Application
