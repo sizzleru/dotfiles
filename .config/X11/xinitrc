@@ -1,4 +1,11 @@
 #!/bin/sh
 
+# Monitors
+xrandr --output DP-4 --primary
+xrandr --output DP-0 --left-of DP-4
+xrandr --output DP-2 --above DP-4
+xrandr --output HDMI-0 --right-of DP-4
+
+# i3
 xrdb -merge "${XDG_CONFIG_HOME:-${HOME}/.config}/i3/config"
-exec 'i3'
+exec bash -c i3 -V &>> /home/sizzleru/.cache/i3/i3.log
