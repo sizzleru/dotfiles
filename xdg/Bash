@@ -1,0 +1,39 @@
+XDG_STATE_FOLDER="${XDG_STATE_HOME}/bash"
+
+if prompt 'Would you like to migrate the .bash_history file?'; then
+# bash history
+    if [[ -f "${HOME}/.bash_history" ]]; then
+        echo "HISTFILE='${XDG_STATE_FOLDER}/history'" | tee -a "${XDG_CONFIG_HOME}/bash/profile_files/0_app.sh"
+        mkdir -pv "${XDG_STATE_FOLDER}"
+        mv -v "${HOME}/.bash_history" "${XDG_STATE_FOLDER}/history"
+    fi
+fi
+
+if prompt 'Would you like to migrate the .bashrc file? (this requires sudo permission for editing /etc/bash.bashrc)'; then
+    # source in XDG specifications if it doesnt exist at home
+    sudo tee -a /etc/bash.bashrc <<-EOF
+    if [[ -f "${XDG_CONFIG_HOME}/bash/bashrc ]]; then
+        source "${XDG_CONFIG_HOME}/bash/bashrc"
+    else
+        if [[ -f "${HOME}/.bashrc" ]]; then
+            source "${HOME}/.bashrc"
+        fi
+    EOF
+fi
+
+if prompt 'Would you like to remove the .bashrc file?'; then
+    if [[ -f "${HOME}/.bashrc" ]]; then
+        rm -v "${HOME}/.bashrc"
+    fi
+fi
+
+if prompt 'Would you like to migrate the .bash_profile file? (this requires sudo permission for editing /etc/profile)'; then
+    # source in XDG specifications if it doesnt exist at home
+    sudo tee -a /etc/bash.bashrc <<EOF
+    if [[ ! -f "${HOME}/.bash_profile" || ! -f  "${HOME}/.profile" ]]; then
+        source "${XDG_CONFIG_HOME}/bash/bashrc"
+    fi
+EOF
+fi
+
+unset XDG_STATE_FOLDER

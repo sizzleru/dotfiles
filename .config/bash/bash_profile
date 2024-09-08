@@ -8,9 +8,13 @@ for profile_file in ${profile_files}; do
 done
 set +a # Finish exports
 
+unset profile_file profile_files profile_files_path
+
 # Start X environment
 if [[ -z "${DISPLAY}" ]] && [[ "$(tty)" = /dev/tty1 ]] && [[ "$(command -v startx)" ]]; then
     startx
 fi
 
-unset profile_file profile_files profile_files_path
+if command -v dex; then
+    dex -a
+fi

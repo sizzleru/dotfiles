@@ -1,0 +1,22 @@
+XDG_FOLDER="${XDG_CONFIG_HOME}/X11"
+
+if prompt 'Would you like to migrate the .xinitrc file? (Requires sudo to edit /usr/bin/startx)'; then
+    if [[ -f "${HOME}/.xinitrc" ]]; then
+        echo "XINITRC='${XDG_FOLDER}/xinitrc'" | tee -a "${XDG_CONFIG_HOME}/bash/profile_files/0_app.sh"
+        mkdir -pv "${XDG_FOLDER}"
+        mv -v "${HOME}/.xinitrc" "${XDG_FOLDER}/xinitrc"
+        if [[ -f /usr/bin/startx ]]; then
+            sed 's|userclientrc="${XSERVERRC}"|userserverc="${XSERVERRC}"|g' /usr/bin/startx | sudo tee /usr/bin/startx
+        fi
+    fi
+fi
+
+if prompt 'Would you like to migrate the .xserverrc file?'; then
+    if [[ -f "${HOME}/.xserverrc" ]]; then
+        echo "XSERVERRC='${XDG_FOLDER}/xserverrc'" | tee -a "${XDG_CONFIG_HOME}/bash/profile_files/0_app.sh"
+        mkdir -pv "${XDG_FOLDER}"
+        mv -v "${HOME}/.xserverrc" "${XDG_FOLDER}/xserverc"
+    fi
+fi
+
+unset XDG_FOLDER

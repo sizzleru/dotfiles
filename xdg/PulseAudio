@@ -1,0 +1,15 @@
+XDG_FOLDER="${XDG_CONFIG_HOME}/pulse"
+XDG_FILE="${XDG_FOLDER}/cookie"
+FILE="${HOME}/.pulse-cookie"
+
+
+if [[ -f "${FILE}" ]]; then
+    echo 'Requesting permission to edit /etc/pulse/client.conf'
+    sed "s|; cookie-file =|cookie-file = ${XDG_CONFIG_HOME}/pulse/cookie|g" /etc/pulse/client.conf | sudo tee /etc/pulse/client.conf
+    mkdir -pv "${XDG_FOLDER}"
+    mv -v "${FILE}" "${XDG_FILE}"
+fi
+
+unset XDG_FOLDER
+unset XDG_FILE
+unset FILE

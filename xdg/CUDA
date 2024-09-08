@@ -1,9 +1,9 @@
-XDG_FOLDER="${XDG_CACHE_HOME:-${HOME}/.cache}/nv"
+XDG_FOLDER="${XDG_CACHE_HOME}/nv"
 FOLDER="${HOME}/.nv"
 
 
 if [[ -d "${FOLDER}" ]]; then
-    echo "CUDA_CACHE_PATH='${XDG_FOLDER}'" | tee -a "${XDG_CONFIG_HOME:-${HOME}/.config}/bash/profile_files/0_app.sh"
+    echo "CUDA_CACHE_PATH='${XDG_FOLDER}'" | tee -a "${XDG_CONFIG_HOME}/bash/profile_files/0_app.sh"
     mv -v "${FOLDER}" "${XDG_FOLDER}"
 fi
 

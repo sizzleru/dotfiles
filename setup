@@ -6,6 +6,8 @@ set -euo pipefail
 # Set XDG variables
 : "${XDG_CONFIG_HOME:=${HOME}/.config}"
 : "${XDG_DATA_HOME:=${HOME}/.local/share}"
+: "${XDG_CACHE_HOME:=${HOME}/.cache}"
+: "${XDG_STATE_HOME:=${HOME}/.local/state}"
 
 # Prompting
 function prompt() {
@@ -36,11 +38,15 @@ fi
 # Migrating to XDG
 if $(prompt 'Would you like to migrate non XDG-compliant applications?'); then
     for file in $(find "${CURRENT_DIR}/xdg" -maxdepth 1 -type f); do
-        if $(prompt "Would you like to migrate ${file}?"); then
-            "${file}"
+        if $(prompt "Would you like to migrate $(basename ${file})?"); then
+            source "${file}"
         fi
     done
 fi
+
+unset prompt
+unset XDG_CONFIG_HOME XDG_DATA_HOME XDG_CACHE_HOME
+unset pipefail
 
 ## Additional setup for applications that doesn't follow XDG Base Directory specification
 #ln "-fs${q_flag}" "${XDG_CONFIG_HOME}/bash/.inputrc" "${HOME}/.inputrc"

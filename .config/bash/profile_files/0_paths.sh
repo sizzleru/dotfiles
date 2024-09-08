@@ -1,1 +1,1 @@
-PATH=/usr/sbin:/usr/bin:/sbin:/bin:"${XDG_BIN_HOME}"
+PATH=/usr/sbin:/usr/bin:/sbin:/bin:"${HOME}/.local/bin"

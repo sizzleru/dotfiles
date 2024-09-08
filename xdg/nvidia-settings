@@ -1,10 +1,10 @@
-XDG_FOLDER="${XDG_CONFIG_HOME:-${HOME}/.config}/nvidia"
+XDG_FOLDER="${XDG_CONFIG_HOME}/nvidia"
 XDG_FILE="${XDG_FOLDER}/settings"
 FILE="${HOME}/.nvidia-settings-rc"
 
 
 if [[ -f "${FILE}" ]]; then
-    echo "alias nvidia-settings='nvidia-settings --config=${XDG_FILE}'" | tee -a "${XDG_CONFIG_HOME:-${HOME}/.config}/bash/profile_files/0_app.sh"
+    echo "alias nvidia-settings='nvidia-settings --config=${XDG_FILE}'" | tee -a "${XDG_CONFIG_HOME}/bash/profile_files/0_app.sh"
     mkdir -pv "${XDG_FOLDER}"
     mv -v "${FILE}" "${XDG_FILE}"
 fi
