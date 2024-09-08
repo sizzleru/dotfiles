@@ -1,5 +1,5 @@
-alias bashrc="source ${XDG_CONFIG_HOME}/bash/bashrc"
-alias profile="source ${XDG_CONFIG_HOME}/bash/bash_profile"
+alias bashrc="source ${XDG_CONFIG_HOME:-${HOME}/.config}/bash/bashrc"
+alias profile="source ${XDG_CONFIG_HOME:-${HOME}/.config}/bash/bash_profile"
 alias v="${EDITOR}"
 alias python=python3
 
@@ -48,7 +48,7 @@ function move() {
 }
 
 function f() {
-    eval $(history | fzf -e | sed -E "s/^ *[0-9]* *//g")
+    fc -s $(history | fzf -e | awk '{ print $1 }')
 }
 
 alias remove='gio trash'

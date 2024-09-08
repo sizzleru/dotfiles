@@ -7,3 +7,6 @@ alias nvidia-settings='nvidia-settings --config=/home/sizzleru/.config/nvidia/se
 HISTFILE='/home/sizzleru/.local/state/bash/history'
 XINITRC='/home/sizzleru/.config/X11/xinitrc'
 INPUTRC='/home/sizzleru/.config/readline/inputrc'
+GTK_IM_MODULE='ibus'
+QT_IM_MODULE='ibus'
+XMODIFIERS=@im='ibus'

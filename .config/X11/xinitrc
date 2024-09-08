@@ -1,27 +1,4 @@
 #!/bin/sh
 
-# Display
-xrandr --output DP-4 --primary
-xrandr --output DP-0 --left-of DP-4
-xrandr --output DP-2 --above DP-4
-xrandr --output HDMI-0 --right-of DP-4
-
-# Desktop Environment
-picom --config ${XDG_CONFIG_HOME:-${HOME}/.config}/picom/picom.conf --daemon
-feh --no-fehbg --bg-scale ${HOME}/Pictures/backgrounds/2560x1440/main.png
-"${XDG_CONFIG_HOME:-${HOME}.config}/polybar/launch.sh" &
-
-# General Application
-flameshot &
-streamdeck -n &
-
-# Mounts
-#sshfs sizzleru@moon:/home/sizzleru/Music /home/sizzleru/Music
-#sshfs sizzleru@moon:/home/sizzleru/Documents /home/sizzleru/Documents
-
-# i3
 xrdb -merge "${XDG_CONFIG_HOME:-${HOME}/.config}/i3/config"
 exec 'i3'
-
-# Autostart apps
-dex -a &> /dev/null
