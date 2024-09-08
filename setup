@@ -22,9 +22,10 @@ function prompt() {
 CURRENT_DIR="$(dirname "$(readlink -f "${0}")")"
 
 # ~/.config files
-prompt 'Would you like to copy over ~/.config files?' || exit 1
-#[[ -d "${XDG_CONFIG_HOME}" ]] && echo "${XDG_CONFIG_HOME} exists, please backup before running script. Exiting..." && exit 1
-#ln -vfs "${CURRENT_DIR}/.config" "${HOME}/.config"
+if $(prompt 'Would you like to copy over ~/.config files?'); then
+    [[ -d "${XDG_CONFIG_HOME}" ]] && echo "${XDG_CONFIG_HOME} exists, please backup before running script. Exiting..." && exit 1
+    ln -vfs "${CURRENT_DIR}/.config" "${HOME}/.config"
+fi
 
 # Bash files
 if $(prompt 'Would you like to link the bash files? (type No if you want to migrate bash to XDG)'); then
