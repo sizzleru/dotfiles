@@ -4,3 +4,34 @@ backup
 
 # logs
 *.log
+.config/ChiTuBox v1.8.0
+.config/FreeTube
+.config/GIMP/2.10
+.config/MusicBrainz
+.config/PrusaSlicer
+.config/Soundux
+.config/Thunar
+.config/Todoist
+.config/audacity
+.config/cubocore
+.config/dconf
+.config/discord
+.config/easytag
+.config/fontconfig
+.config/go/telemetry/local
+.config/gtk-2.0
+.config/gtk-3.0
+.config/heroic
+.config/ibus/bus
+.config/ibus-anthy
+.config/obs-studio
+.config/pulse
+.config/rofi
+.config/systemd/user/default.target.wants
+.config/vlc
+.config/xfce4/xfconf/xfce-perchannel-xml
+.config/QtProject.conf
+.config/electron-builder.json
+.config/mimeapps.list
+.config/user-dirs.dirs
+.config/user-dirs.locale

@@ -1,0 +1,14 @@
+XDG_FOLDER="${XDG_CONFIG_HOME}/readline"
+XDG_FILE="${XDG_FOLDER}/inputrc"
+FILE="${HOME}/.inputrc"
+
+
+if [[ -f "${FILE}" ]]; then
+    echo "INPUTRC='${XDG_FILE}'" | tee -a "${XDG_CONFIG_HOME}/bash/profile_files/0_app.sh"
+    mkdir -pv "${XDG_FOLDER}"
+    mv -v "${FILE}" "${XDG_FILE}"
+fi
+
+unset XDG_FOLDER
+unset XDG_FILE
+unset FILE
