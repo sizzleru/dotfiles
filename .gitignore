@@ -33,3 +33,4 @@ backup
 .config/BetterDiscord/data
 .config/Thunar
 .config/ibus-anthy
+.config/ibus/bus

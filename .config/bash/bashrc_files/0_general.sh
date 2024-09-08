@@ -51,5 +51,14 @@ function f() {
     fc -s $(history | fzf -e | awk '{ print $1 }')
 }
 
+function y() {
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+    yazi "$@" --cwd-file="$tmp"
+    if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+        builtin cd -- "$cwd"
+    fi
+    rm -f -- "$tmp"
+}
+
 alias remove='gio trash'
 alias dcu='sudo docker compose up --build --detach --remove-orphans'
