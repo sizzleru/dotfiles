@@ -52,7 +52,7 @@ number_threshold = 1
 symbol = '⚙'
 
 [custom.hostname]
-command = "hostnamectl hostname | xargs ${XDG_CONFIG_HOME:-${HOME}/.config}/starship/hostname.sh"
+command = "if hostnamectl &> /dev/null ; then hostnamectl hostname; else hostname; fi | xargs ${XDG_CONFIG_HOME:-${HOME}/.config}/starship/hostname.sh"
 when = true
 shell = 'bash'
 format = '[❨$output❩]($style) '
