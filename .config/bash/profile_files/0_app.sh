@@ -16,3 +16,7 @@ FZF_DEFAULT_OPTS=" \
 --color=marker:#babbf1,fg+:#c6d0f5,prompt:#ca9ee6,hl+:#e78284 \
 --color=selected-bg:#51576d \
 --multi"
+#XAUTHORITY='/run/user/1000/xorg-xauth/Xauthority'
+WGETRC='/home/sizzleru/.config/wget/wgetrc'
+alias wget='wget --hsts=file=/home/sizzleru/.cache/wget/wget-hsts'
+alias yarn='yarn --use-yarnrc /home/sizzleru/.config/yarn/config'

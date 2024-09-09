@@ -1,0 +1,14 @@
+XDG_FOLDER="${XDG_CONFIG_HOME}/yarn"
+XDG_FILE="${XDG_FOLDER}/config"
+FILE="${HOME}/.yarnrc"
+
+
+if [[ -f "${FILE}" ]]; then
+    echo "alias yarn='yarn --use-yarnrc ${XDG_FILE}'" | tee -a "${XDG_CONFIG_HOME}/bash/profile_files/0_app.sh"
+    mkdir -pv "${XDG_FOLDER}"
+    mv -v "${FILE}" "${XDG_FILE}"
+fi
+
+unset XDG_FOLDER
+unset XDG_FILE
+unset FILE

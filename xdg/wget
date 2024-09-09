@@ -1,0 +1,23 @@
+XDG_CONFIG_FOLDER="${XDG_CONFIG_HOME}/wget"
+XDG_CACHE_FOLDER="${XDG_CACHE_HOME}/wget"
+
+if prompt 'Would you like to migrate ~/.wgetrc?'; then
+    echo "WGETRC='${XDG_CONFIG_FOLDER}/wgetrc'" | tee -a "${XDG_CONFIG_HOME}/bash/profile_files/0_app.sh"
+    mkdir -pv "${XDG_CONFIG_FOLDER}"
+
+    if [[ -f "${HOME}/.wgetrc" ]]; then
+        mv -v "${HOME}/.wgetrc" "${XDG_CONFIG_FOLDER}/wgetrc"
+    fi
+fi
+
+if prompt 'Would you like to migrate ~/.wget-hsts?'; then
+    echo "alias wget='wget --hsts=file=${XDG_CACHE_FOLDER}/wget-hsts'" | tee -a "${XDG_CONFIG_HOME}/bash/profile_files/0_app.sh"
+    mkdir -pv "${XDG_CACHE_FOLDER}"
+
+    if [[ -f "${HOME}/.wget-hsts" ]]; then
+        mv -v "${HOME}/.wget-hsts" "${XDG_CACHE_FOLDER}/wget-hsts"
+    fi
+fi
+
+unset XDG_CONFIG_FOLDER
+unset XDG_CACHE_FOLDER
