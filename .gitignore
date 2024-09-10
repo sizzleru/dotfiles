@@ -34,3 +34,4 @@ backup
 .config/Thunar
 .config/ibus-anthy
 .config/ibus/bus
+.config/docker/config.json
