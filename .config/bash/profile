@@ -4,7 +4,7 @@ profile_files="$(find "${profile_files_path}" -maxdepth 1 -type f | sort -r)"
 
 set -a # Export all following variables set
 for profile_file in ${profile_files}; do
-    source "${profile_files_path}/${profile_file}"
+    source "${profile_file}"
 done
 set +a # Finish exports
 
