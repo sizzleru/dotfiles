@@ -2,10 +2,10 @@
 
 # Find all the files needed to be sourced
 bashrc_files_path="$(echo "$(dirname "$(realpath "${BASH_SOURCE[0]}")")/bashrc_files")"
-bashrc_files="$(find "${bashrc_files_path}" -maxdepth 1 -type f -printf '%f\n' | sort -r)"
+bashrc_files="$(find "${bashrc_files_path}" -maxdepth 1 -type f | sort -r)"
 
 for bashrc_file in ${bashrc_files}; do
-    source "${bashrc_files_path}/${bashrc_file}"
+    source "${bashrc_file}"
 done
 
 unset bashrc_file bashrc_files bashrc_files_path
