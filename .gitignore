@@ -38,3 +38,7 @@ backup
 .config/OpenKJ
 .config/pavucontrol.ini
 .config/nvidia
+.config/homepage
+.config/lazygit
+.config/sauerbraten
+.config/watchtower
