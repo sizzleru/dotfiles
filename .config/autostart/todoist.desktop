@@ -1,4 +1,4 @@
 [Desktop Entry]
-Exec=todoist
+Exec=i3-msg 'workspace 3; exec todoist'
 Name=todoist
 Type=Application

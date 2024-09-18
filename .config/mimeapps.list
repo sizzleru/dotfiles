@@ -6,7 +6,9 @@ inode/directory=thunar.desktop
 text/plain=nvim.desktop
 x-scheme-handler/http=vivaldi-stable.desktop
 x-scheme-handler/https=vivaldi-stable.desktop
+application/octet-stream=vlc.desktop
 
 [Added Associations]
 x-scheme-handler/mailto=userapp-Thunderbird-NNG3S2.desktop;
 x-scheme-handler/mid=userapp-Thunderbird-NNG3S2.desktop;
+application/octet-stream=vlc.desktop;

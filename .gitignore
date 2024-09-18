@@ -35,3 +35,6 @@ backup
 .config/ibus-anthy
 .config/ibus/bus
 .config/docker/config.json
+.config/OpenKJ
+.config/pavucontrol.ini
+.config/nvidia

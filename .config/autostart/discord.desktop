@@ -1,4 +1,4 @@
 [Desktop Entry]
-Exec=discord
+Exec=i3-msg 'workspace 4; exec discord'
 Name=discord
 Type=Application

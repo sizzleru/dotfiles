@@ -1,5 +1,8 @@
 #!/bin/sh
 
+xrandr --setprovideroutputsource modesetting NVIDIA-0
+xrandr --auto
+
 # Monitors
 xrandr --output DP-4 --primary
 xrandr --output DP-0 --left-of DP-4
