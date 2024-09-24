@@ -1,14 +1,28 @@
 [Default Applications]
+# Mail
 x-scheme-handler/mailto=userapp-Thunderbird-NNG3S2.desktop
-message/rfc822=userapp-Thunderbird-NNG3S2.desktop
 x-scheme-handler/mid=userapp-Thunderbird-NNG3S2.desktop
+message/rfc822=userapp-Thunderbird-NNG3S2.desktop
+
+# File Browser
 inode/directory=thunar.desktop
-text/plain=nvim.desktop
+
+# Web Browser
 x-scheme-handler/http=vivaldi-stable.desktop
 x-scheme-handler/https=vivaldi-stable.desktop
+
+# Videos
 application/octet-stream=vlc.desktop
 
+# Text
+application/javascript=nvim.desktop
+text/plain=nvim.desktop
+inode/x-empty=nvim.desktop
+
 [Added Associations]
+# Mail
 x-scheme-handler/mailto=userapp-Thunderbird-NNG3S2.desktop;
 x-scheme-handler/mid=userapp-Thunderbird-NNG3S2.desktop;
+
+# Videos
 application/octet-stream=vlc.desktop;
