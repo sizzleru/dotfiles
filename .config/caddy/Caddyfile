@@ -1,0 +1,165 @@
+{
+    acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
+    admin 0.0.0.0:2019
+    email {env.CLOUDFLARE_EMAIL}
+}
+
+#aqua.sizzleru.com:80 {
+#    tls {
+#        dns cloudflare {env.CLOUDFLARE_TOKEN}
+#    }
+#
+#    reverse_proxy aqua:80
+#}
+
+aqua.sizzleru.com {
+    tls {
+        dns cloudflare {env.CLOUDFLARE_TOKEN}
+    }
+
+    reverse_proxy aqua
+}
+
+maimai.sizzleru.com {
+    tls {
+        dns cloudflare {env.CLOUDFLARE_TOKEN}
+    }
+
+    reverse_proxy aqua:22345
+}
+
+bitwarden.sizzleru.com {
+    tls {
+        dns cloudflare {env.CLOUDFLARE_TOKEN}
+    }
+
+    reverse_proxy vaultwarden:80
+}
+
+blog.sizzleru.com {
+    tls {
+        dns cloudflare {env.CLOUDFLARE_TOKEN}
+    }
+
+    reverse_proxy mkdocs:8000
+}
+
+docker.sizzleru.com {
+    tls {
+        dns cloudflare {env.CLOUDFLARE_TOKEN}
+    }
+
+    reverse_proxy registry:5000
+}
+
+filebrowser.sizzleru.com {
+    tls {
+        dns cloudflare {env.CLOUDFLARE_TOKEN}
+    }
+
+    reverse_proxy filebrowser:8080
+}
+
+grafana.sizzleru.com {
+    tls {
+        dns cloudflare {env.CLOUDFLARE_TOKEN}
+    }
+
+    reverse_proxy grafana:3000
+}
+
+homepage.sizzleru.com {
+    tls {
+        dns cloudflare {env.CLOUDFLARE_TOKEN}
+    }
+
+    reverse_proxy homepage:3000
+}
+
+homeassistant.sizzleru.com {
+    tls {
+        dns cloudflare {env.CLOUDFLARE_TOKEN}
+    }
+
+    reverse_proxy homeassistant:8123
+}
+
+jdownloader.sizzleru.com {
+    tls {
+        dns cloudflare {env.CLOUDFLARE_TOKEN}
+    }
+
+    reverse_proxy jdownloader:5800
+}
+
+komga.sizzleru.com {
+    tls {
+        dns cloudflare {env.CLOUDFLARE_TOKEN}
+    }
+
+    reverse_proxy komga:25600
+}
+
+plex.sizzleru.com {
+    tls {
+        dns cloudflare {env.CLOUDFLARE_TOKEN}
+    }
+
+    reverse_proxy plex:32400
+}
+
+stablediffusion.sizzleru.com {
+    tls {
+        dns cloudflare {env.CLOUDFLARE_TOKEN}
+    }
+
+    reverse_proxy stablediffusion:7860
+}
+
+tautulli.sizzleru.com {
+    tls {
+        dns cloudflare {env.CLOUDFLARE_TOKEN}
+    }
+
+    reverse_proxy tautulli:8181
+}
+
+uptimekuma.sizzleru.com {
+    tls {
+        dns cloudflare {env.CLOUDFLARE_TOKEN}
+    }
+
+    reverse_proxy uptimekuma:3001
+}
+
+qdirstat.sizzleru.com {
+    tls {
+        dns cloudflare {env.CLOUDFLARE_TOKEN}
+    }
+
+    reverse_proxy qdirstat:3000
+}
+
+sauerbraten.sizzleru.com
+    tls {
+        dns cloudflare {env.CLOUDFLARE_TOKEN}
+    }
+
+    reverse_proxy sauerbraten:28785
+}
+
+speedtest.sizzleru.com {
+    tls {
+        dns cloudflare {env.CLOUDFLARE_TOKEN}
+    }
+
+    reverse_proxy speedtest:80
+}
+
+transmission.sizzleru.com {
+    tls {
+        dns cloudflare {env.CLOUDFLARE_TOKEN}
+    }
+
+    reverse_proxy transmission:9091
+}

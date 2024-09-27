@@ -1,0 +1,195 @@
+site_name: sizzleru's blog
+site_author: sizzleru <blog@sizzleru.com>
+site_url: https://blog.sizzleru.com
+repo_url: https://github.com/sizzleru
+nav:
+  - Home: home/index.md
+  - Blog: index.md
+  - Tags: tags.md
+plugins:
+  - blog:
+      blog_dir: .
+      blog_toc: true
+      categories_toc: true
+      draft: true
+  # - blog:
+  #     blog_dir: python
+  #     blog_toc: true
+  #     categories_toc: true
+  #     draft: true
+  # - blog:
+  #     blog_dir: blogging
+  #     blog_toc: true
+  #     categories_toc: true
+  #     draft: true
+  # - blog:
+  #     blog_dir: steamdeck
+  #     blog_toc: true
+  #     categories_toc: true
+  #     draft: true
+  # - blog:
+  #     blog_dir: caddy
+  #     blog_toc: true
+  #     categories_toc: true
+  #     draft: true
+  # - blog:
+  #     blog_dir: maths
+  #     blog_toc: true
+  #     categories_toc: true
+  #     draft: true
+  # - blog:
+  #     blog_dir: linux
+  #     blog_toc: true
+  #     categories_toc: true
+  #     draft: true
+  # - blog:
+  #     blog_dir: diy-maimai
+  #     blog_toc: true
+  #     categories_toc: true
+  #     draft: true
+  # - blog:
+  #     blog_dir: roadtrips
+  #     blog_toc: true
+  #     categories_toc: true
+  #     draft: true
+  # - blog:
+  #     blog_dir: novels
+  #     blog_toc: true
+  #     categories_toc: true
+  #     draft: true
+  # - blog:
+  #     blog_dir: bitwarden
+  #     blog_toc: true
+  #     categories_toc: true
+  #     draft: true
+  - search
+  - tags:
+      tags_file: tags.md
+  - offline
+  - glightbox
+theme:
+  name: material
+  palette:
+  - media: "(prefers-color-scheme)"
+    toggle:
+      icon: material/brightness-auto
+      name: Switch to light mode
+  - media: "(prefers-color-scheme: light)"
+    scheme: default
+    toggle:
+      icon: material/brightness-7
+      name: Switch to dark mode
+  - media: "(prefers-color-scheme: dark)"
+    scheme: slate
+    toggle:
+      icon: material/brightness-4
+      name: Switch to system preference
+  language: en
+  icon:
+    tag:
+      python: fontawesome/brands/python
+      mkdocs: simple/materialformkdocs
+    logo: material-file-document-multiple
+  favicon: 'assets/favicon.png'
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.sections
+    - navigation.prune
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - toc.integrate
+    - search.suggest
+    - search.highlighting
+    - search.share
+    - content.code.copy
+  icon:
+    admonition:
+      note: octicons/tag-16
+      abstract: octicons/checklist-16
+      info: octicons/info-16
+      tip: octicons/squirrel-16
+      success: octicons/check-16
+      question: octicons/question-16
+      warning: octicons/alert-16
+      failure: octicons/x-circle-16
+      danger: octicons/zap-16
+      bug: octicons/bug-16
+      example: octicons/beaker-16
+      quote: octicons/quote-16
+    tag:
+      Python: fontawesome/brands/html5
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets:
+      auto_append:
+        - includes/abbreviations.md
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.tasklist:
+      custom_checkbox: true
+extra:
+  alternate:
+    - name: English
+      link: /en/
+      lang: en
+    - name: Japanese
+      link: /ja/
+      lang: ja
+  homepage: https://blog.sizzleru.com/
+  tags:
+    Python: python
+    MkDocs: mkdocs
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/sizzleru
+    - icon: fontawesome/brands/discord
+      link: https://discordapp.com/users/267526691323248641
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/sizzleru
+    - icon: simple/plex
+      link: https://plex.sizzleru.com
+    - icon: simple/jellyfin
+      link: https://jellyfin.sizzleru.com
+      icon: simple/lichess
+      link: https://lichess.org/@/sizzleru
+    - icon: simple/steam
+      link: https://steamcommunity.com/id/sizzleru/
+    - icon: simple/myanimelist
+      link: https://myanimelist.net/profile/sizzleru
+    - icon: simple/anilist
+      link: https://anilist.co/user/sizzleru/
+    - icon: simple/osu
+      link: https://osu.ppy.sh/users/6699548
+    - icon: simple/twitch
+      link: https://www.twitch.tv/sizzleru
+copyright: Copyright &copy; 2023 - 2024 sizzleru
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+watch:
+  - includes
