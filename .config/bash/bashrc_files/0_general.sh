@@ -60,5 +60,15 @@ function y() {
     rm -f -- "$tmp"
 }
 
+function shutdown() {
+	ps -ax | grep -v grep | grep sshfs | awk '{ print $1 }' | sudo xargs -I % kill -9 %
+    poweroff
+}
+
+function restart() {
+	ps -ax | grep -v grep | grep sshfs | awk '{ print $1 }' | sudo xargs -I % kill -9 %
+    reboot
+}
+
 alias remove='gio trash'
 alias dcu='sudo docker compose up --build --detach --remove-orphans'

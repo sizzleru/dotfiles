@@ -1,0 +1,18 @@
+XDG_FOLDER="${XDG_DATA_HOME}/factorio"
+XDG_FILE="${XDG_FOLDER}/factorio"
+FILE="${HOME}/.factorio"
+
+
+if [[ -f "${FILE}" ]]; then
+	if [[ "${HOME}/Games/Launcher/Steam/steamapps/common/Factorio" ]]; then
+
+/home/sizzleru/Games/Launcher/Steam/steamapps/common/Factorio
+
+    echo "PYTHON_HISTORY='${XDG_FILE}'" | tee -a "${XDG_CONFIG_HOME}/bash/profile_files/0_app.sh"
+    mkdir -pv "${XDG_FOLDER}"
+    mv -v "${FILE}" "${XDG_FILE}"
+fi
+
+unset XDG_FOLDER
+unset XDG_FILE
+unset FILE
