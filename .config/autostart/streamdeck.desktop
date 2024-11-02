@@ -1,4 +1,1 @@
-[Desktop Entry]
-Exec=bash -c 'streamdeck -n'
-Name=streamdeck
-Type=Application
+/usr/share/applications/streamdeck-ui.desktop

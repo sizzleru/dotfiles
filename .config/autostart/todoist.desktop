@@ -1,4 +1,1 @@
-[Desktop Entry]
-Exec=i3-msg 'workspace 3; exec todoist'
-Name=todoist
-Type=Application
+/usr/share/applications/todoist.desktop
