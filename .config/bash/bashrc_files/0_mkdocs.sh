@@ -17,7 +17,7 @@ function blog-cd() {
 }
 
 function blog-update() {
-    FILE="$(find ${XDG_DOCUMENTS_DIR:-${HOME}/Documents}/blog/posts/ -type f | fzf -e)" || return 1
+    FILE="$(find ${XDG_DOCUMENTS_DIR:-${HOME}/Documents}/blog/posts/ -maxdepth 1 -type f | fzf -e)" || return 1
     TEMP_FILE="$(mktemp)"
     sed -E "s/updated: ([0-9]|-)+/updated: $(date +'%Y-%m-%d')/g" "${FILE}" > "${TEMP_FILE}"
     mv "${TEMP_FILE}" "${FILE}"
@@ -89,7 +89,7 @@ function blog-create() {
 }
 
 function blog-finish() {
-    FILE="$(find ${XDG_DOCUMENTS_DIR:-${HOME}/Documents}/blog/posts/ -type f | fzf -e)" || return 1
+    FILE="$(find ${XDG_DOCUMENTS_DIR:-${HOME}/Documents}/blog/posts/ -maxdepth 1 -type f | fzf -e)" || return 1
     TEMP_FILE="$(mktemp)"
     sed -E "s/draft: true/draft: false/g" "${FILE}" > "${TEMP_FILE}"
     mv "${TEMP_FILE}" "${FILE}"
@@ -97,7 +97,7 @@ function blog-finish() {
 }
 
 function blog-open() {
-    FILE="$(find ${XDG_DOCUMENTS_DIR:-${HOME}/Documents}/blog/posts/ -type f | fzf -e)" || return 1
+    FILE="$(find ${XDG_DOCUMENTS_DIR:-${HOME}/Documents}/blog/posts/ -maxdepth 1 -type f | fzf -e)" || return 1
     TEMP_FILE="$(mktemp)"
     sed -E "s/draft: false/draft: true/g" "${FILE}" > "${TEMP_FILE}"
     mv "${TEMP_FILE}" "${FILE}"
