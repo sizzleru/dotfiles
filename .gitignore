@@ -42,3 +42,8 @@ backup
 .config/lazygit
 .config/sauerbraten
 .config/watchtower
+.config/Code - OSS
+.config/HPI
+.config/komorebi
+.config/torbrowser
+.config/simple-update-notifier
