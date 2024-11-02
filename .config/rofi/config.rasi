@@ -1,17 +1,21 @@
 configuration{
-    modi: "run,drun,window";
+    modi: "run,ssh,window,filebrowser,keys";
     lines: 5;
-    font: "Sarasa Nerd Font 14";
+    font: "Ioveska Nerd Font 14";
     show-icons: true;
     icon-theme: "Oranchelo";
-    terminal: "st";
+    terminal: "kitty";
     drun-display-format: "{icon} {name}";
     location: 0;
     disable-history: false;
     hide-scrollbar: true;
-    display-drun: "   Apps ";
     display-run: "   Run ";
-    display-window: " 﩯  window";
+    display-drun: "   Apps ";
+    display-window: "  window";
+	display-ssh: "  SSH";
+	display-filebrowser: " Files";
+	display-keys: "  Keys";
+	display-combi: "󰕘  All";
     /* display-Network: " 󰤨  Network"; */
     sidebar-mode: true;
 }
