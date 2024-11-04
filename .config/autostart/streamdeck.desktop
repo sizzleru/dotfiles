@@ -1,1 +1,10 @@
-/usr/share/applications/streamdeck-ui.desktop
+[Desktop Entry]
+Name=Stream Deck UI
+GenericName=Stream Deck UI
+Comment=Application used to configure Elgato Stream Deck products
+Terminal=false
+Type=Application
+Exec=python /usr/bin/streamdeck -n
+MimeType=application/x-executable;
+Categories=Network;
+Icon=elgato.png
