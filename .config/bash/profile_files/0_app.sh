@@ -20,3 +20,4 @@ FZF_DEFAULT_OPTS=" \
 WGETRC='/home/sizzleru/.config/wget/wgetrc'
 alias wget='wget --hsts=file=/home/sizzleru/.cache/wget/wget-hsts'
 alias yarn='yarn --use-yarnrc /home/sizzleru/.config/yarn/config'
+GTK2_RC_FILES='/home/sizzleru/.config/gtk-2.0/settings.ini'
