@@ -17,8 +17,6 @@ backup
 .config/easytag
 .config/fontconfig
 .config/go/telemetry/local
-.config/gtk-2.0
-.config/gtk-3.0
 .config/heroic
 .config/obs-studio
 .config/pulse
