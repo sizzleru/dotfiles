@@ -45,3 +45,4 @@ backup
 .config/komorebi
 .config/torbrowser
 .config/simple-update-notifier
+.config/rbw/config.json

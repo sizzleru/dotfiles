@@ -70,5 +70,8 @@ function restart() {
     reboot
 }
 
+function logout() {
+	i3-msg exit
+}
 alias remove='gio trash'
 alias dcu='sudo docker compose up --build --detach --remove-orphans'
