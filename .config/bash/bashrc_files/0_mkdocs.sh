@@ -16,14 +16,6 @@ function blog-cd() {
     cd "${XDG_DOCUMENTS_DIR:-${HOME}/Documents}/blog/posts"
 }
 
-function blog-update() {
-    FILE="$(find ${XDG_DOCUMENTS_DIR:-${HOME}/Documents}/blog/posts/ -maxdepth 1 -type f | fzf -e)" || return 1
-    TEMP_FILE="$(mktemp)"
-    sed -E "s/updated: ([0-9]|-)+/updated: $(date +'%Y-%m-%d')/g" "${FILE}" > "${TEMP_FILE}"
-    mv "${TEMP_FILE}" "${FILE}"
-    unset FILE TEMP_FILE
-}
-
 function blog-create() {
     if [[ "${#}" -ne 0 ]]; then
         echo 'This function only supports interactive prompt' && return 1
@@ -79,27 +71,15 @@ function blog-create() {
     echo '' >> "${FILE}"
     echo "${DESCRIPTION}" >> "${FILE}"
     echo '' >> "${FILE}"
-    echo '## References' >> "${FILE}"
     echo '' >> "${FILE}"
-    echo ' - Reference 1: [Reference](reference_link)' >> "${FILE}"
+    echo '[^1] description: link' >> "${FILE}"
 
     unset FILE
     unset TITLE
     unset DESCRIPTION
 }
 
-function blog-finish() {
-    FILE="$(find ${XDG_DOCUMENTS_DIR:-${HOME}/Documents}/blog/posts/ -maxdepth 1 -type f | fzf -e)" || return 1
-    TEMP_FILE="$(mktemp)"
-    sed -E "s/draft: true/draft: false/g" "${FILE}" > "${TEMP_FILE}"
-    mv "${TEMP_FILE}" "${FILE}"
-    unset FILE TEMP_FILE
-}
-
-function blog-open() {
-    FILE="$(find ${XDG_DOCUMENTS_DIR:-${HOME}/Documents}/blog/posts/ -maxdepth 1 -type f | fzf -e)" || return 1
-    TEMP_FILE="$(mktemp)"
-    sed -E "s/draft: false/draft: true/g" "${FILE}" > "${TEMP_FILE}"
-    mv "${TEMP_FILE}" "${FILE}"
-    unset FILE TEMP_FILE
+function blog-edit() {
+	find "${XDG_DOCUMENTS_DIR:-${HOME}/Documents}/blog/posts" -maxdepth 1 -type f | \
+		fzf --preview 'cat {}' --layout=reverse --bind 'enter:execute(EDITOR='nvim' blog-edit-post {})'
 }
