@@ -47,3 +47,4 @@ backup
 .config/simple-update-notifier
 .config/rbw/config.json
 .config/okularrc
+.config/QDirStat
