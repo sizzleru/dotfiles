@@ -46,3 +46,4 @@ backup
 .config/torbrowser
 .config/simple-update-notifier
 .config/rbw/config.json
+.config/okularrc
