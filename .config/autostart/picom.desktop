@@ -1,15 +1,13 @@
 [Desktop Entry]
-Version=1.0
-Type=Application
-NoDisplay=false
 Name=Picom
+Name[en_US]=Picom
 GenericName=X compositor
+GenericName[en_US]=X compositor
 Comment=An X compositor
-Categories=Utility;
-Keywords=compositor;composite manager;window effects;transparency;opacity;
-TryExec=bash -c 'picom --config ${XDG_CONFIG_HOME:-${HOME}/.config}/picom/picom.conf --daemon'
-Exec=picom
-StartupNotify=false
+Exec='picom --config ${XDG_CONFIG_HOME:-${HOME}/.config}/picom/picom.conf --daemon'
 Terminal=false
-# Thanks to quequotion for providing this file!
+Type=Application
 Icon=compton
+Categories=Utility
+Keywords=compositor;composite manager;window effects;transparency;opacity;
+NoDisplay=true
