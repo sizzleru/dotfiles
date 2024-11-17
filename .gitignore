@@ -53,3 +53,8 @@ backup
 .config/keys
 .config/nginx
 .config/php
+.config/Plexamp
+.config/flameshot
+.config/flameshot
+.config/plex.tv
+.config/appimagelauncher.cfg
