@@ -73,5 +73,10 @@ function restart() {
 function logout() {
 	i3-msg exit
 }
+
+function tailscale-ssh()  {
+	tailscale status | grep '^[0-9]' | grep -v disconnected | awk 'FNR > 1 { print $2 }' | fzf --preview 'tailscale-host-info {}' --bind 'enter:execute(kitten ssh {})'
+}
+
 alias remove='gio trash'
 alias dcu='sudo docker compose up --build --detach --remove-orphans'

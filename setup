@@ -8,6 +8,7 @@ set -euo pipefail
 : "${XDG_CACHE_HOME:=${HOME}/.cache}"
 : "${XDG_DATA_HOME:=${HOME}/.local/share}"
 : "${XDG_STATE_HOME:=${HOME}/.local/state}"
+: "${XDG_BIN_HOME:=${HOME}/.local/bin}"
 
 # Prompting
 function prompt() {
@@ -24,7 +25,13 @@ CURRENT_DIR="$(dirname "$(readlink -f "${0}")")"
 # ~/.config files
 if $(prompt 'Would you like to copy over ~/.config files?'); then
     [[ -d "${XDG_CONFIG_HOME}" ]] && echo "${XDG_CONFIG_HOME} exists, please backup before running script. Exiting..." && exit 1
-    ln -vfs "${CURRENT_DIR}/.config" "${HOME}/.config"
+    ln -vfs "${CURRENT_DIR}/.config" "${XDG_CONFIG_HOME}"
+fi
+
+# ~/.local/bin files
+if $(prompt 'Would you like to copy over ~/.local/bin files?'); then
+    [[ -d "${XDG_BIN_HOME}" ]] && echo "${XDG_BIN_HOME} exists, please backup before running script. Exiting..." && exit 1
+    ln -vfs "${CURRENT_DIR}/.local/bin" "${XDG_BIN_HOME}"
 fi
 
 # Bash files
