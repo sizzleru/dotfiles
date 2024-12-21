@@ -1,0 +1,12 @@
+XDG_FOLDER="${XDG_DATA_HOME}/terminfo"
+FOLDER="${HOME}/.terminfo"
+
+
+if [[ -d "${FOLDER}" ]]; then
+    echo "TERMINFO='${XDG_FOLDER}'" | tee -a "${XDG_CONFIG_HOME}/bash/profile_files/0_app.sh"
+    echo "TERMINFO_DIRS=${XDG_FOLDER}:/usr/share/terminfo" | tee -a "${XDG_CONFIG_HOME}/bash/profile_files/0_app.sh"
+    mv -v "${FOLDER}" "${XDG_FOLDER}"
+fi
+
+unset XDG_FOLDER
+unset FOLDER

@@ -21,3 +21,7 @@ WGETRC='/home/sizzleru/.config/wget/wgetrc'
 alias wget='wget --hsts=file=/home/sizzleru/.cache/wget/wget-hsts'
 alias yarn='yarn --use-yarnrc /home/sizzleru/.config/yarn/config'
 GTK2_RC_FILES='/home/sizzleru/.config/gtk-2.0/settings.ini'
+TERMINFO='/home/sizzleru/.local/share/terminfo'
+TERMINFO_DIRS=/home/sizzleru/.local/share/terminfo:/usr/share/terminfo
+GOPATH='/home/sizzleru/.local/share/go'
+GOMODCACHE=/home/sizzleru/.cache/go/mod
