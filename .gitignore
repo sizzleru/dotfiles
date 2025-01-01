@@ -58,3 +58,5 @@ backup
 .config/flameshot
 .config/plex.tv
 .config/appimagelauncher.cfg
+.config/balenaEtcher
+.config/xournalpp

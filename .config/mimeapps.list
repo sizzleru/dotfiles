@@ -20,3 +20,4 @@ application/zip=thunar.desktop;
 application/x-zerosize=nvim.desktop;
 image/jpeg=okularApplication_kimgio.desktop;
 application/pdf=okularApplication_pdf.desktop;
+text/plain=code-oss.desktop;
