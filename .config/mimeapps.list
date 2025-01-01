@@ -10,14 +10,14 @@ application/javascript=nvim.desktop
 text/plain=nvim.desktop
 inode/x-empty=nvim.desktop
 application/zip=thunar.desktop
-application/x-zerosize=nvim.desktop
+application/x-zerosize=vlc.desktop
 
 [Added Associations]
 x-scheme-handler/mailto=userapp-Thunderbird-NNG3S2.desktop;
 x-scheme-handler/mid=userapp-Thunderbird-NNG3S2.desktop;
 application/octet-stream=vlc.desktop;
 application/zip=thunar.desktop;
-application/x-zerosize=nvim.desktop;
+application/x-zerosize=nvim.desktop;vlc.desktop;
 image/jpeg=okularApplication_kimgio.desktop;
 application/pdf=okularApplication_pdf.desktop;
 text/plain=code-oss.desktop;
