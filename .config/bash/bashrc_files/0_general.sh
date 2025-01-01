@@ -1,5 +1,5 @@
-alias bashrc="source ${XDG_CONFIG_HOME:-${HOME}/.config}/bash/bashrc"
-alias profile="source ${XDG_CONFIG_HOME:-${HOME}/.config}/bash/profile"
+alias bashrc="source ${XDG_CONFIG_HOME}/bash/bashrc"
+alias profile="source ${XDG_CONFIG_HOME}/bash/profile"
 alias v="${EDITOR}"
 alias python=python3
 
@@ -60,14 +60,18 @@ function y() {
     rm -f -- "$tmp"
 }
 
+function sshfs_umount() {
+	cat /home/sizzleru/.config/tree/sshfs_mounts.txt | awk '{ print $3 }' | xargs -n 1 sudo umount
+}
+
 function shutdown() {
-	ps -ax | grep -v grep | grep sshfs | awk '{ print $1 }' | sudo xargs -I % kill -9 %
-    poweroff
+	sshfs_umount
+	poweroff
 }
 
 function restart() {
-	ps -ax | grep -v grep | grep sshfs | awk '{ print $1 }' | sudo xargs -I % kill -9 %
-    reboot
+	sshfs_umount
+	reboot
 }
 
 function logout() {

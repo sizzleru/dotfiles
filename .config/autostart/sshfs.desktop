@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=sshfs
+Name[en_US]=sshfs
+Comment=Mounts remote dirs from moon
+Exec=/home/sizzleru/.local/bin/sshfs.sh
+Terminal=false
+Type=Application
+NoDisplay=true

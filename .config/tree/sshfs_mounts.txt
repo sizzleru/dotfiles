@@ -1,0 +1,6 @@
+sizzleru@moon /home/sizzleru/Documents /home/sizzleru/Documents
+sizzleru@moon /home/sizzleru/Pictures /home/sizzleru/Pictures
+sizzleru@moon /home/sizzleru/Media/media/books /home/sizzleru/Books
+sizzleru@moon /home/sizzleru/Media/media/movies /home/sizzleru/Movies
+sizzleru@moon /home/sizzleru/Media/media/music /home/sizzleru/Music
+sizzleru@moon /home/sizzleru/Media/media/tv /home/sizzleru/TV
