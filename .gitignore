@@ -60,3 +60,4 @@ backup
 .config/appimagelauncher.cfg
 .config/balenaEtcher
 .config/xournalpp
+.config/yazi/plugins
