@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Wacom
+Name[en_US]=Wacom
+GenericName=Wacom Tablet
+GenericName[en_US]=Wacom Tablet
+Comment=A wacom stylus mapping
+Exec=/home/sizzleru/.local/bin/wacom-map
+Terminal=false
+Type=Application
+Categories=Utility
+NoDisplay=true

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cat /home/sizzleru/.config/tree/sshfs_mounts.txt | awk '{ print $3 }' | xargs -n 1 sudo umount
