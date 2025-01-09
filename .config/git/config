@@ -1,11 +1,33 @@
-[alias]
-
-	# Status
-    s = status --show-stash --ahead-behind
-    lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(white)%s%C(reset) %C(dim white) %C(bold yellow)%d%C(reset)' --all
-    lgfull = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''%C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
-
-	# Branching
-    br = branch -a --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
+[commit]
+    verbose = true
+[core]
+    editor = nvim
+    pager = delta # fancy pager
+    whitespace = fix,-indent-with-non-tab
+[diff]
+    algorithm = histogram # better diff formatting
+    tool = vimdiff
+[fetch]
+    fsckobjects = true # data corruption check
+    prune = true
+    prunetags = true
+[init]
+    defaultBranch = main
+[merge]
+    conflictstyle = diff3 # adds additional information during conflicts
+    tool = nvim
+[push]
+    default = current
+    followtags = true
+[receive]
+    fsckobjects = true # data corrution check
+[rerere]
+    enabled = true # REuse REcovered REsolution, remembers conflict resolution for next rebase
+[transfer]
+    fsckobjects = true # data corruption check
+[url "git@github.com:"]
+    insteadOf = "https://github.com/" # ssh instead of https
+[web]
+    browser = vivaldi
 [include]
-	path = /home/sizzleru/.config/git/TimothyOngko
+	path = /home/sizzleru/.config/git/sizzleru
