@@ -44,7 +44,9 @@ function custom_git() {
 
 function custom_profile() {
 	case "${1:-show}" in
-		show) echo "name: $(\git config user.name), email: $(\git config user.email), key: $(ssh-add -l | awk '{ print $3 }')" ;;
+		show) echo "name: $(\git config user.name), email: $(\git config user.email), key: $(if $(ssh-add -l &> /dev/null); then ssh-add -l | awk '{ print $3 }'; else echo 'none'; fi)" ;;
 		*) \git config --global include.path "${HOME}/.config/git/${1}" && ssh-add -D && ssh-add "${HOME}/.ssh/${1}" ;;
 	esac
 }
+
+git profile sizzleru &> /dev/null

@@ -3,7 +3,6 @@ if [[ -f "${HOME}/.ssh/agent" ]]; then eval "$(< "${HOME}/.ssh/agent")" &> /dev/
 if [[ ! $(ssh-add -l 2> /dev/null) ]]; then
 	(umask 066; ssh-agent > "${HOME}/.ssh/agent")
 	eval "$(<${HOME}/.ssh/agent)" > /dev/null
-	ssh-add "${HOME}/.ssh/sizzleru" &> /dev/null
 fi
 
 function tailscale-ssh()  {
