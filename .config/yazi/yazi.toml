@@ -1,9 +1,20 @@
 [manager]
-cwd = { fg = "#81c8be" }
+
+# General
+ratio = [1, 2, 2]
 sort_by = "alphabetical"
+sort_sensitive = false
 sort_reverse = false
+sort_dir_first = false
+sort_translit = false # Only if sort_by = natural
 linemode = "permissions"
-show_hidden = true
+show_hidden = false
+show_symlink = true
+# scrolloff
+# mouse_events
+#title_format = "{cwd}"
+
+cwd = { fg = "#81c8be" }
 
 # Hovered
 hovered         = { fg = "#303446", bg = "#8caaee" }
@@ -34,6 +45,38 @@ border_style  = { fg = "#838ba7" }
 
 # Highlighting
 syntect_theme = "~/.config/yazi/Catppuccin-frappe.tmTheme"
+
+[preview]
+wrap = "yes"
+tab_size = 2
+#max_width
+#max_height
+cache_dir = "/home/sizzleru/.cache/yazi"
+#image_delay
+#image_filter
+#image_quality
+#sixel_fraction
+#ueberzug_scale/ueberzuf_offest
+
+[opener]
+play = [
+	{ run = 'vlc "${@}"', orphan = true, for = "unix" },
+]
+edit = [
+	{ run = 'nvim "${@}"', block = true, for = "unix" },
+]
+open = [
+	{ run = 'xdg-open "${@}"', desc = "Open" },
+]
+
+[open]
+prepend_rules = [
+	{ name = "*.txt", use = "edit" },
+]
+
+append_rules = [
+	{ name = "*", use = "open" },
+]
 
 [status]
 separator_open  = ""

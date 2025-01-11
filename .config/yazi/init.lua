@@ -1,4 +1,4 @@
--- ~/.config/yazi/init.lua
+-- Bookmarks config
 require("bookmarks"):setup({
 	last_directory = { enable = true, persist = true },
 	persist = "all",

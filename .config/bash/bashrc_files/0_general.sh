@@ -6,8 +6,8 @@ alias dcu='sudo docker compose up --build --detach --remove-orphans'
 
 function s() {
     if [[ -z $(command -v kitten) ]]; then
-        return 1
+        ssh "${1}"
     else
-        kitten ssh "sizzleru@$1"
+        kitten ssh "${1}"
     fi
 }
