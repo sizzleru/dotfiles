@@ -1,5 +1,0 @@
-[plugin]
-deps = [{ use = "dedukun/bookmarks", rev = "202e450" }]
-
-[flavor]
-deps = []
