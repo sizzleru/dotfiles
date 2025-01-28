@@ -4,6 +4,7 @@ case "${1}" in
     daisy) 			echo '🌼' ;;
     forest) 		echo '🍂' ;;
     gaia) 			echo '🔮' ;;
+    hallway) 			echo '🎒' ;;
     terra) 			echo '🌍' ;;
     moon) 			echo '🌕' ;;
     power) 			echo '⚡' ;;
