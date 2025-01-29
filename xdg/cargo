@@ -1,0 +1,10 @@
+XDG_FOLDER="${XDG_DATA_HOME}/cargo"
+FOLDER="${HOME}/.cargo"
+
+if [[ -d "${FOLDER}" ]]; then
+    echo "CARGO_HOME='${XDG_FOLDER}'" | tee -a "${XDG_CONFIG_HOME}/bash/profile_files/0_app.sh"
+    mv -v "${FOLDER}" "${XDG_FOLDER}"
+fi
+
+unset XDG_FOLDER
+unset FOLDER
