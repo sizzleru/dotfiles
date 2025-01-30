@@ -62,3 +62,4 @@ backup
 .config/xournalpp
 .config/yazi/plugins
 .config/yazi/package.toml
+.config/nvim/lazy-lock.json
