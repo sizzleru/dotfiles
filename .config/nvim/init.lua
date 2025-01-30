@@ -1,5 +1,4 @@
 require('config.lazy')
-require('config.lazyclip')
 require('config.catppuccin')
 require('config.nvim-treesitter')
 require('config.lualine')
