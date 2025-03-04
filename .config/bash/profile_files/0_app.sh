@@ -25,3 +25,4 @@ TERMINFO='/home/sizzleru/.local/share/terminfo'
 TERMINFO_DIRS=/home/sizzleru/.local/share/terminfo:/usr/share/terminfo
 GOPATH='/home/sizzleru/.local/share/go'
 GOMODCACHE=/home/sizzleru/.cache/go/mod
+CARGO_HOME='/home/sizzleru/.local/share/cargo'

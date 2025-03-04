@@ -1,1 +1,1 @@
-PATH=/usr/sbin:/usr/bin:/sbin:/bin:"${HOME}/.local/bin:":/usr/local/bin
+PATH=/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/bin:"${HOME}/.local/bin":"${HOME}/.local/share/cargo/bin"

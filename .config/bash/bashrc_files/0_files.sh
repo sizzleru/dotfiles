@@ -32,11 +32,27 @@ function l() {
 
 
 function copy() {
-    mkdir -p "$2" && tar -cf - -C "$1" ./ | bar -s $(du -sb "$1" | awk '{ print $1 }') | tar -xf - -C "$2"
+
+	if [[ ${#} -lt 2 ]]; then
+		echo 'there must be at least 2 parameters' && return 1
+	fi
+
+	if [[ -d ${@: -1} ]]; then
+		tar -cf - ${@:1:$#-1} | pv -s $(du -b ${@:1:$#-1} | awk '{ print $1 }' | paste -sd+ | bc) | tar -xf - -C ${@: -1}
+	else
+
+		if [[ -f $(realpath ${@: -1}) ]]; then
+			echo 'file already exists in that location' && return 1
+		else
+			echo 'file does not exit, but operation is not supported yet'
+			echo 'resorting back to mv...'
+			mv ${@}
+		fi
+fi
 }
 
 function move() {
-    copy "$1" "$2" && rm -r "$1"
+	rsync -aP "${@}" && rm -rf "${@:1:$#-1}"
 }
 
 function f() {
