@@ -30,4 +30,4 @@
 [web]
     browser = vivaldi
 [include]
-	path = /home/sizzleru/.config/git/sizzleru
+	path = /home/sizzleru/.config/git/timothy-ongko
