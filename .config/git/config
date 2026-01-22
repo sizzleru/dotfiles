@@ -2,7 +2,12 @@
 	path = user.config
 [core]
 	editor = vim
-	pager = less
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true
+	light = false
 [init]
 	defaultBranch = main
 [commit]
