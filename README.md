@@ -13,6 +13,10 @@ git remove add origin git@github.com:sizzleru/dotfiles.git
 git fetch
 git checkout -f main
 ```
+## Environments
+
+- feature/xorg => anything that uses X11 display server (Because my gtx1070ti can't handle wayland)
+
 ## Hosts
 
 |Hostname|Operating System|Flavour|naming|description|
@@ -28,3 +32,14 @@ git checkout -f main
 - bash
 - gvim (vim didn't support clipboarding)
 - git
+- xorg-server xorg-xinit xorg-apps xorg-fonts
+
+### Visuals
+
+- fontconfig (for managing fonts)
+- ttf-iosevka-nerd (main font)
+- ttf-font-awesome-5 (more unicode fonts)
+- noto-fonts-emoji (emoji)
+- otf-ipafont (Japanese)
+- ttf-nanum (Korean)
+- wqy-zenhei (Chinese)
