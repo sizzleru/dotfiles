@@ -16,7 +16,7 @@ let &t_SR = "\e[4 q" " Replace mode - underline
 autocmd VimEnter * silent execute 'silent !printf "' . substitute(&t_EI, '\\e', '\e', '') . '"'
 
 " Status line
-set statusline=[%Y]%r%h%w\ %t\%= " left - file information
+set statusline=[%Y]%r%h%w\ %F\%= " left - file information
 set statusline+=[\ (%c,%l)\ =>\ ascii:\ %b\ ]\ %l/%L\ (%p%%) " right - vim information
 set laststatus=2
 
