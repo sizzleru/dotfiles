@@ -29,9 +29,9 @@ git checkout -f main
 
 ### Applications
 
-- bash
-- gvim (vim didn't support clipboarding)
-- git
+- `bash`
+- `gvim` (vim didn't support clipboarding)
+- `git` `git-delta` (when `less` isn't cutting it anymore)
 - xorg-server xorg-xinit xorg-apps xorg-fonts
 
 ### Visuals
