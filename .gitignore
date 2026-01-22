@@ -1,0 +1,13 @@
+# Ignore everything - let's not push some secrets ;)
+*
+
+# except maybe these
+!.gitignore
+!README.md
+
+# or these, or everything else :p
+!.config/
+
+# vim
+!.config/vim/
+!.config/vim/vimrc

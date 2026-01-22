@@ -1,0 +1,41 @@
+" Code visuals
+set number
+set shiftwidth=4
+set tabstop=4
+
+" Spaces
+set list
+set listchars=tab:→\ ,trail:·,nbsp:%
+
+" Cursor visuals
+let &t_SI = "\e[6 q" " Normal mode - fat
+let &t_EI = "\e[2 q" " Insert mode - thin
+let &t_SR = "\e[4 q" " Replace mode - underline
+
+" Fix initial cursor on load
+autocmd VimEnter * silent execute 'silent !printf "' . substitute(&t_EI, '\\e', '\e', '') . '"'
+
+" Status line
+set statusline=[%Y]%r%h%w\ %t\%= " left - file information
+set statusline+=[\ (%c,%l)\ =>\ ascii:\ %b\ ]\ %l/%L\ (%p%%) " right - vim information
+set laststatus=2
+
+" Syntax
+syntax on
+set nowrap
+
+" Clipboard
+if has('clipboard')
+	set clipboard=unnamedplus
+endif
+
+" History
+set history=1024
+if version >= 703
+	set undodir=~/.cache/vim/swap/
+	set undofile
+	set undoreload=8192
+endif
+
+" Files
+autocmd Filetype html setlocal tabstop=2 shiftwidth=2 expandtab
