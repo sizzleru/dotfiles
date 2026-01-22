@@ -1,13 +1,26 @@
 # sizzleru's dotfiles
 
-and you know I don't give a shit when I have a README on my ~
+and you know I don't give a shit when I have a `README.md` on my `~`
 
 ---
 
-## Environment
+## Setup
 
- - distro: "I know you know it btw"
- - display server: X11 (Because my gtx1070ti can't handle wayland)
+If you also have the balls to have `README.md` and `.git` on your `~` here's how you set it up without funny businesses
+```
+git init
+git remove add origin git@github.com:sizzleru/dotfiles.git
+git fetch
+git checkout -f main
+```
+
+## Hosts
+
+|Hostname|Operating System|Flavour|naming|description|
+|:-:|:-:|:-:|:-:|:-:|
+|tree|Linux|Arch Linux|(shizuru's) tree|my beloved daily driver|
+|moon|Linux|Arch Linux|(kagari's) moon|my overabused server|
+|forest|Windows|Windows 10|(kotori's) forest|my neglected kid|
 
 ## Packages (i.e. bloat)
 
