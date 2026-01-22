@@ -3,6 +3,7 @@
 
 # except maybe these
 !.gitignore
+!.bashrc
 !README.md
 
 # or these, or everything else :p
