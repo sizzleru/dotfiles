@@ -15,3 +15,4 @@ and you know I don't give a shit when I have a README on my ~
 
 - bash
 - gvim (vim didn't support clipboarding)
+- git

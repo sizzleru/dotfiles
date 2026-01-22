@@ -11,3 +11,7 @@
 # vim
 !.config/vim/
 !.config/vim/vimrc
+
+# git
+!.config/git/
+!.config/git/config
