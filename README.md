@@ -16,3 +16,13 @@ and you know I don't give a shit when I have a README on my ~
 - bash
 - gvim (vim didn't support clipboarding)
 - git
+
+### Visuals
+
+- fontconfig (for managing fonts)
+- ttf-iosevka-nerd (main font)
+- ttf-font-awesome-5 (more unicode fonts)
+- noto-fonts-emoji (emoji)
+- otf-ipafont (Japanese)
+- ttf-nanum (Korean)
+- wqy-zenhei (Chinese)

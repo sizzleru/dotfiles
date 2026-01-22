@@ -15,3 +15,7 @@
 # git
 !.config/git/
 !.config/git/config
+
+# fonts
+!.config/fontconfig/
+!.config/fontconfig/fonts.conf
