@@ -31,8 +31,8 @@
 	# Stash
 	sl = stash list
 	ss = stash save
-	sa = "!git stash apply stash@{${1}}"
-	sd = "!git stash drop stash@{${1}}"
+	sa = "!sh -c 'git stash apply \"stash@{${1:-0}}\"' -"
+	sd = "!sh -c 'git stash drop \"stash@{${1:-0}}\"' -"
 	
 	# Review
 	review = status --verbose --show-stash --ahead-behind -v
