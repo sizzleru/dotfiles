@@ -13,7 +13,6 @@ git remove add origin git@github.com:sizzleru/dotfiles.git
 git fetch
 git checkout -f main
 ```
-
 ## Hosts
 
 |Hostname|Operating System|Flavour|naming|description|
@@ -29,13 +28,3 @@ git checkout -f main
 - bash
 - gvim (vim didn't support clipboarding)
 - git
-
-### Visuals
-
-- fontconfig (for managing fonts)
-- ttf-iosevka-nerd (main font)
-- ttf-font-awesome-5 (more unicode fonts)
-- noto-fonts-emoji (emoji)
-- otf-ipafont (Japanese)
-- ttf-nanum (Korean)
-- wqy-zenhei (Chinese)
