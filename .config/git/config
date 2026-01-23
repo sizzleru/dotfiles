@@ -1,13 +1,5 @@
 [include]
 	path = user.config
-[core]
-	editor = vim
-	pager = delta
-[interactive]
-	diffFilter = delta --color-only
-[delta]
-	navigate = true
-	light = false
 [init]
 	defaultBranch = main
 [commit]
@@ -16,6 +8,18 @@
 	ff = false
 [push]
 	autoSetupRemote = true
+[core]
+	editor = vim
+	pager = delta
+[delta]
+	navigate = true
+	light = false
+[interactive]
+	diffFilter = delta --color-only
+[pager]
+	status = delta
+	log = delta
+	diff = delta
 [alias]
 	# General
 	s = status --show-stash --ahead-behind --untracked-files=all
