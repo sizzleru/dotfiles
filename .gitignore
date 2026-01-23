@@ -3,11 +3,19 @@
 
 # except maybe these
 !.gitignore
-!.bashrc
 !README.md
 
 # or these, or everything else :p
 !.config/
+!.local/
+!.local/bin/
+!.local/bin/log
+
+# shell
+!.bashrc
+!.profile
+!.config/shell/
+!.config/shell/**
 
 # vim
 !.config/vim/
@@ -20,3 +28,7 @@
 # fonts
 !.config/fontconfig/
 !.config/fontconfig/fonts.conf
+
+# xorg
+!.xinitrc
+!.xprofile

@@ -16,6 +16,7 @@ git checkout -f main
 ## Environments
 
 - feature/xorg => anything that uses X11 display server (Because my gtx1070ti can't handle wayland)
+- feature/git => should be pretty much every environment, because I'm intense nerd on dotfiles
 
 ## Hosts
 
@@ -32,14 +33,17 @@ git checkout -f main
 - `bash`
 - `gvim` (vim didn't support clipboarding)
 - `git` `git-delta` (when `less` isn't cutting it anymore)
-- xorg-server xorg-xinit xorg-apps xorg-fonts
+- `xorg-server` `xorg-xinit` `xorg-apps` `xorg-fonts` `dunst` (fuck you nvidia)
+- `scrot` `xclip` `xdotool` `dunst`
+- `kitty`
+- `nemo`
 
 ### Visuals
 
-- fontconfig (for managing fonts)
-- ttf-iosevka-nerd (main font)
-- ttf-font-awesome-5 (more unicode fonts)
-- noto-fonts-emoji (emoji)
-- otf-ipafont (Japanese)
-- ttf-nanum (Korean)
-- wqy-zenhei (Chinese)
+- `fontconfig` (for managing fonts)
+- `ttf-iosevka-nerd` (main font)
+- `woff2-font-awesome` (more unicode fonts)
+- `noto-fonts-emoji` (emoji)
+- `otf-ipafont` (Japanese)
+- `ttf-nanum` (Korean)
+- `wqy-zenhei` (Chinese)
