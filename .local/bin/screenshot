@@ -1,0 +1,23 @@
+#!/bin/sh
+
+# Requirements
+for cmd in scrot xclip notify-send; do
+	if ! command -v "${cmd}" > /dev/null 2>&1; then
+		printf 'Error: Required command %s not found. Please install it.\n' "${cmd}" >&2
+		exit 1
+	fi
+done
+
+FILE=$(mktemp -u --suffix=.png "/tmp/scrot-$(date +%Y-%m-%d_%H-%M-%S)-XXXX")
+[ -f "${FILE}" ] && rm -v "${FILE}"
+
+printf 'Attempting to create screenshot at %s.\n' "${FILE}"
+
+if scrot -s "${FILE}"; then
+	printf 'Copying image to clipboard ...\n'
+	xclip -selection clipboard -t image/png -i "${FILE}"
+	notify-send 'Screenshot saved' "File saved to ${FILE}"
+else
+	printf 'ERROR: Screenshot cancelled or failed.\n' "${FILE}" >&2
+	exit 1
+fi

@@ -1,0 +1,20 @@
+[Desktop Entry]
+
+# Required
+Name=Wacom Stylus mapper
+Exec=sh -c '~/.local/bin/wacom-map'
+Type=Application
+Icon=wacom
+
+# Metadata
+Version=0.0.1
+Comment=A script that maps the stylus onto the monitor it came with
+Categories=Wacom;Stylus;Tablet;Drawing;
+Terminal=false
+StartupNotify=false
+Keywords=wacom;stylus;tablet;drawing;monitor;xrandr;
+
+# Other useful keys
+NoDisplay=true
+Hidden=true
+TryExec=xrandr

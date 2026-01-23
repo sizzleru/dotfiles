@@ -1,0 +1,21 @@
+[Desktop Entry]
+
+# Required
+Name=Feh
+Exec=sh -c '~/.local/bin/feh.sh'
+Type=Application
+Icon=feh
+
+# Metadata
+Version=0.0.1
+Comment=Fast and light imlib2-based image viewer
+Categories=Image Viewer;Background;Wallpaper;Graphics;2DGraphics;Viewer;
+Terminal=false
+StartupNotify=false
+Keywords=image;viewer;background;wallpaper;
+MimeType=image/jpg;image/jpeg;image/pjpeg;image/png;image/x-portable-anymap;image/tiff;image/bmp;image/x-bmp;image/webp;image/gif;
+
+# Other useful keys
+NoDisplay=true
+Hidden=true
+TryExec=feh

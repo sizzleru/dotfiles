@@ -1,0 +1,21 @@
+[Desktop Entry]
+
+# Required
+Name=ibus
+Exec=ibus-daemon -drxv
+Type=Application
+Icon=ibus
+
+# Metadata
+Version=0.0.1
+Comment=Intelligent input bus for Linux/Unix
+Categories=Input;Keyboard;
+Terminal=false
+StartupNotify=false
+Keywords=input;keyboard;bus;
+
+# Other useful keys
+NoDisplay=false
+Hidden=false
+DBusActivatable=true
+TryExec=ibus

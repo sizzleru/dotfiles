@@ -1,0 +1,20 @@
+[Desktop Entry]
+
+# Required
+Name=Dunst
+Exec=dunst
+Type=Application
+Icon=dunst
+
+# Metadata
+Version=0.0.1
+Comment=Customizable and lightweight notification-daemon
+Categories=Notification;
+Terminal=false
+StartupNotify=false
+Keywords=notification;
+
+# Other useful keys
+NoDisplay=true
+Hidden=true
+TryExec=dunst

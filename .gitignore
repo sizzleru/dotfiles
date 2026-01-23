@@ -1,15 +1,23 @@
 # Ignore everything - let's not push some secrets ;)
 *
 
-# except maybe these
+# except maybe these ... or everything else :p
 !.gitignore
 !README.md
 
-# or these, or everything else :p
+# Root folders
 !.config/
 !.local/
+
+# Templates
+!Templates/
+!Templates/*
+
+# Application and scripts
 !.local/bin/
-!.local/bin/log
+!.local/bin/*
+!.config/autostart/
+!.config/autostart/*
 
 # shell
 !.bashrc

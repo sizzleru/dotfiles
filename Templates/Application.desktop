@@ -1,0 +1,85 @@
+[Desktop Entry]
+
+# Required
+Name=Name of the application shown in menus.
+Exec=Command to execute the program, can include placeholder like %f (filename), %u (URL)
+Type=Type of the desktop entry (Application, Link, Directory)
+Icon=Icon name or path for the app
+
+# Metadata
+Version=0.0.1
+Comment=A tooltip or description string.
+Categories=Categories this app belongs to, semicolon seperate (e.g. Utility;TextEditor;Development;)
+Terminal=(true or false) — whether to launch the app in a terminal emulator (true or false)
+StartupNotify=(true or false) — whether to enable startup notification (true or false)
+Keywords=Semicolon-seperated list of additional search terms
+MimeType=Semicolon-seperated list of MIME types the app supports
+Actions=Semicolon-seperated list of extra actions the app supports
+
+# Localisation
+Name[ja]=名前
+Comment[ja]=コメント
+
+# Other useful keys
+NoDisplay=(true or false) — whether to hide from menus but keep available.
+Hidden=(true or false) — hide completely.
+OnlyShowIn=List of desktop environments in which to show this entry.
+NotShowIn=List of desktop environments in which to hide this entry.
+DBusActivatable=(true or false) — whether app is activated via DBus.
+StartupWMClass=Window Manager class used for matching the app's window.
+TryExec=Command to test if the app is installed. If it fails, the app won't be shown.
+
+# For Link type desktop entries
+URL=The URL to open.
+
+# For Directory type desktop entries
+Icon=Directory icon.
+
+# Actions
+Actions=NewWindow;Settings;
+
+[Desktop Action NewWindow]
+Name=Open a New Window
+Exec=app --new-window
+OnlyShowIn=GNOME;KDE;
+
+[Desktop Action Settings]
+Name=Settings
+Exec=app --settings
+
+# Notes for exec
+# %f - Single file name
+# %F - Multiple files
+# %u - Single URL
+# %U - Multiple URLs
+# %i - Icon
+# %c - Translated name
+# %k - The path of the desktop file itself
+
+#[Desktop Entry]
+#Version=1.0
+#Type=Application
+#Name=ExampleApp
+#Name[fr]=ExempleApp
+#Comment=A sample application to demonstrate desktop entries
+#Comment[fr]=Une application exemple pour démontrer les entrées de bureau
+#Exec=exampleapp %F
+#Icon=exampleapp-icon
+#Terminal=false
+#Categories=Utility;Development;TextEditor;
+#MimeType=text/plain;application/x-example;
+#Keywords=sample;example;demo;
+#StartupNotify=true
+#TryExec=exampleapp
+#StartupWMClass=ExampleApp
+#Actions=NewWindow;Settings;
+#
+#[Desktop Action NewWindow]
+#Name=Open a New Window
+#Exec=exampleapp --new-window
+#OnlyShowIn=GNOME;KDE;
+#
+#[Desktop Action Settings]
+#Name=Settings
+#Exec=exampleapp --settings
+

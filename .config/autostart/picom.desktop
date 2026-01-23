@@ -1,0 +1,20 @@
+[Desktop Entry]
+
+# Required
+Name=Picom
+Exec=picom --daemon
+Type=Application
+Icon=compton
+
+# Metadata
+Version=0.0.1
+Comment=An X compositor
+Categories=Compositor;
+Terminal=false
+StartupNotify=false
+Keywords=compositor;x;xorg;
+
+# Other useful keys
+NoDisplay=true
+Hidden=false
+TryExec=picom
