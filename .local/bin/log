@@ -1,0 +1,137 @@
+#!/bin/sh
+
+BASE_DIR="${HOME}/.local/share"
+
+usage() {
+	printf 'Usage:\n log [-n name] command args...\n or: command | log [-n name]\n'
+	exit 1
+}
+
+# Parameters
+while [ "${#}" -gt 0 ]; do
+	case "${1}" in
+		-m)
+			shift
+			set -- printf -- "${@}"
+			;;
+		-n)
+			shift
+			[ "${#}" -eq 0 ] && usage
+			app="${1}"
+			shift
+			;;
+		-h)
+			usage
+			;;
+		--)
+			shift
+			break
+			;;
+		-*)
+			break
+			;;
+		*)
+			break
+			;;
+	esac
+done
+
+# Times
+current_date() {
+	date '+%F'
+}
+current_time() {
+	date '+%F %T'
+}
+
+log_setup() {
+	log_dir="${BASE_DIR}/${app}"
+	mkdir -p "${log_dir}" || {
+		printf 'Failed to create log directory: %s\n' "${log_dir}" >&2
+		exit 1
+	}
+}
+
+log_output() {
+	while IFS= read -r line || [ -n "${line}" ]; do
+		printf '[%s] %s\n' "$(current_time)" "${line}" >> "${log_dir}/$(current_date).log"
+	done
+}
+
+log_stdin() {
+	log_setup
+	log_output
+}
+
+log_command() {
+	log_setup
+
+	tmpfifo="$(mktemp -u)"
+	mkfifo "${tmpfifo}"
+
+	# Run command in background, redirect both stdout and stderr to the fifo
+	"${@}" > "${tmpfifo}" 2>&1 &
+	log_output < "${tmpfifo}"
+
+	# Wait for command to finish and get its exit status
+	wait "${!}"
+	status="${?}"
+
+	rm -f "${tmpfifo}"
+
+	# If you want stdout to be separated from stderr (caveat: desynced logs)
+	#tmpfile=$(mktemp) || exit 1
+	#"${@}" 1> "${tmpfile}" 2> >(tee -a "${log_dir}/$(current_date).log" >&2)
+	#cat "${tmpfile}" >> "${log_dir}/$(current_date).log"
+	#rm -f "${tmpfile}"
+
+	# Check for command status
+	if [ "${status}" -ne 0 ]; then
+		printf '\033[31mERROR: Command "%s" exited with status %d. See logs in %s\033[0m\n' "${*}" "${status}" "${log_dir}" >&2
+	fi
+
+	return "${status}"
+}
+
+main() {
+	if [ -t 0 ]; then
+		if [ "${#}" -eq 0 ]; then
+			usage
+		fi
+
+		if [ -z "${app}" ]; then
+			case "${1}" in
+				printf) app='stdout' ;;
+				echo) app='stdout' ;;
+				*) app="$(basename -- "${1}")" ;;
+			esac
+		fi
+
+		log_command "${@}"
+	else
+		if [ -z "${app}" ]; then
+			if [ "${#}" -gt 0 ]; then
+				app="${1:-'stdout'}"
+				shift
+			else
+				app='stdout'
+			fi
+		fi
+
+		log_stdin
+
+		# Bash-specific pipe status check
+		if [ -n "${BASH_VERSION:-}" ]; then
+			status="${PIPESTATUS[0]:-0}"
+			if [ "${status}" -ne 0 ]; then
+				printf '\033[31mWarning: Upstream command exited with status %d. Please check %s for details.\033[0m\n' "${status}" "${log_dir}/$(current_date).log" >&2
+				exit "${status}"
+			fi
+		fi
+
+		printf '\033[33mWarning: Running in pipe mode, exit status of upstream command is not captured. Please check %s for logs if process exited\033[0m.\n' "${log_dir}/$(current_date).log" >&2
+		exit 0
+	fi
+}
+
+main "${@}"
