@@ -5,3 +5,7 @@
 !.config/
 !.gitignore
 !README.md
+
+# git
+!.config/git/
+!.config/git/config
