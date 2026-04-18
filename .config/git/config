@@ -36,6 +36,7 @@
 	bs = "!f() { if $(git rev-parse --verify ${1} > /dev/null 2>&1); then git switch ${1}; else git switch -c ${1}; fi }; f"
 	bm = merge
 	bd = "!f() { if $(git show-ref --verify --quiet refs/remotes/origin/${1}); then git push origin --delete ${1}; else git branch -d ${1}; fi }; f"
+	bh = "!f() { git symbolic-ref HEAD refs/heads/${1}; }; f"
 	
 	# Stash
 	sl = stash list
@@ -51,6 +52,6 @@
 	rst = "!git merge --abort 2>/dev/null || true; git reset --hard @; git clean -fd"
 
 	# Others
-	alias = !echo 'General: [s,a,c,ac,ca,p,l,lg], Branch: [bl,bs,bm,bd], Stash: [sl,ss,sa,sd], Review: [review,changes,undo,unstage,rst], Others: [alias,aliases,profile]'
+	alias = !echo 'General: [s,a,c,ac,ca,p,l,lg], Branch: [bl,bs,bm,bd,bh], Stash: [sl,ss,sa,sd], Review: [review,changes,undo,unstage,rst], Others: [alias,aliases,profile]'
 	aliases = "!git config --get-regexp '^alias\\.' | grep -v '^alias\\.alias' | sed -E 's/^alias\\.([^ ]+) (.+)$/\\1 => \\2/' | sed -E 's/^([^ ]+ => )!f\\(\\) \\{ (.+) \\}; f$/\\1\\2/' | sed -E 's/(.* => .{128}).*/\\1…/'"
 	profile = "!echo \"$(git config user.email) - $(git config user.name)$([ ! -z $(git config user.username) ] && echo \" (a.k.a $(git config user.username))\")\""
