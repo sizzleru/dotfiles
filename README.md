@@ -19,3 +19,4 @@ git checkout -f main
 ### Applications
 
 - `bash` `git` (essentials baby)
+- `hyprland` `xdg-desktop-portal` `xdg-desktop-portal-hyprland`
