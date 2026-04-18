@@ -5,3 +5,7 @@
 !.config/
 !.gitignore
 !README.md
+
+# wofi
+!.config/wofi/
+!.config/wofi/*
