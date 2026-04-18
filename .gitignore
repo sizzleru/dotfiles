@@ -19,3 +19,7 @@
 # kitty
 !/.config/kitty/
 !/.config/kitty/*
+
+# wofi
+!.config/wofi/
+!.config/wofi/*
