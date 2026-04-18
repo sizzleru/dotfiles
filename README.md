@@ -26,5 +26,6 @@ git checkout -f main
 
 - `bash` `git` (essentials baby)
 - `git-delta` (when less just isn't cutting it anymore)
+- `hyprland` `xdg-desktop-portal` `xdg-desktop-portal-hyprland`
 - `kitty`
 - `wofi`
