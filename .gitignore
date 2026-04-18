@@ -5,3 +5,9 @@
 !.config/
 !.gitignore
 !README.md
+
+# shell
+!.bashrc
+!.profile
+!.config/shell/
+!.config/shell/**
