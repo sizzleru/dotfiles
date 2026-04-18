@@ -5,3 +5,9 @@
 !.config/
 !.gitignore
 !README.md
+
+# hypr
+!.config/hypr/
+!.config/hypr/*
+!.config/hypr/config/
+!.config/hypr/config/*
