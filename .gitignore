@@ -5,3 +5,7 @@
 !.config/
 !.gitignore
 !README.md
+
+# fontconfig
+!.config/fontconfig/
+!.config/fontconfig/*
