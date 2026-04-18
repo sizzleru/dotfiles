@@ -20,6 +20,12 @@
 !/.config/kitty/
 !/.config/kitty/*
 
+# shell
+!.bashrc
+!.profile
+!.config/shell/
+!.config/shell/**
+
 # waybar
 !.config/waybar/
 !.config/waybar/*
