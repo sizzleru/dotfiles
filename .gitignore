@@ -5,3 +5,7 @@
 !.config/
 !.gitignore
 !README.md
+
+# waybar
+!.config/waybar/
+!.config/waybar/*
