@@ -15,3 +15,7 @@
 !.config/hypr/*
 !.config/hypr/config/
 !.config/hypr/config/*
+
+# kitty
+!/.config/kitty/
+!/.config/kitty/*

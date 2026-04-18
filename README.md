@@ -26,3 +26,4 @@ git checkout -f main
 
 - `bash` `git` (essentials baby)
 - `git-delta` (when less just isn't cutting it anymore)
+- `kitty`
