@@ -19,3 +19,4 @@ git checkout -f main
 ### Applications
 
 - `bash` `git` (essentials baby)
+- `thunar-{extended,archive-plugin,media-tags-plugin,vcs-plugin,volman}` `ffmpeg-audio-thumbnailer`

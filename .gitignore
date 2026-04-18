@@ -5,3 +5,7 @@
 !.config/
 !.gitignore
 !README.md
+
+# thunar
+!.config/Thunar/
+!.config/Thunar/*
