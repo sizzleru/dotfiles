@@ -5,3 +5,7 @@
 !.config/
 !.gitignore
 !README.md
+
+# kitty
+!/.config/kitty/
+!/.config/kitty/*
