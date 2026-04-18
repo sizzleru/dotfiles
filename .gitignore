@@ -9,3 +9,9 @@
 # git
 !.config/git/
 !.config/git/config
+
+# hypr
+!.config/hypr/
+!.config/hypr/*
+!.config/hypr/config/
+!.config/hypr/config/*
