@@ -26,6 +26,10 @@
 !.config/shell/
 !.config/shell/**
 
+# thunar
+!.config/Thunar/
+!.config/Thunar/*
+
 # vim
 !.config/vim/
 !.config/vim/*
