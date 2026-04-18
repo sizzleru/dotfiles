@@ -4,10 +4,10 @@
 
 	"modules-left": ["hyprland/workspaces"],
 	"modules-center": ["clock"],
-	"modules-right": ["pulseaudio", "network", "tray"],
+	"modules-right": ["pulseaudio", "tray"],
 
 	"clock": {
-		"format": "  {:%a %H:%M}"
+		"format": "  {:%A, %e %b  %I:%M %p}"
 	},
 
 	"pulseaudio": {
