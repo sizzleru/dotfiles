@@ -28,4 +28,5 @@ git checkout -f main
 - `git-delta` (when less just isn't cutting it anymore)
 - `hyprland` `xdg-desktop-portal` `xdg-desktop-portal-hyprland`
 - `kitty`
+- `waybar`
 - `wofi`

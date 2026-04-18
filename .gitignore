@@ -20,6 +20,10 @@
 !/.config/kitty/
 !/.config/kitty/*
 
+# waybar
+!.config/waybar/
+!.config/waybar/*
+
 # wofi
 !.config/wofi/
 !.config/wofi/*

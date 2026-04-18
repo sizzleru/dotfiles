@@ -1,0 +1,36 @@
+* {
+	font-size: 13px;
+}
+
+window#waybar {
+	background: rgba(30, 30, 46, 0.85);
+	color: #cdd6f4;
+	border-radius: 12px;
+	margin: 8px;
+}
+
+/* workspace buttons */
+#workspaces button {
+	padding: 0 10px;
+	color: #cdd6f4;
+	border-radius: 10px;
+}
+
+#workspaces button.active {
+	background: #f5c2e7;
+	color: #1e1e2e;
+}
+
+/* modules */
+#clock, #pulseaudio, #network, #tray {
+	padding: 0 10px;
+	margin: 4px;
+	border-radius: 10px;
+}
+
+/* hover softness */
+#pulseaudio:hover,
+#network:hover,
+#clock:hover {
+	background: rgba(245, 194, 231, 0.15);
+}
