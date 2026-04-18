@@ -26,6 +26,10 @@
 !.config/shell/
 !.config/shell/**
 
+# vim
+!.config/vim/
+!.config/vim/*
+
 # waybar
 !.config/waybar/
 !.config/waybar/*
