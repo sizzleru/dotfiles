@@ -6,6 +6,10 @@
 !.gitignore
 !README.md
 
+# fontconfig
+!.config/fontconfig/
+!.config/fontconfig/*
+
 # git
 !.config/git/
 !.config/git/config
