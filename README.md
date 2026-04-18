@@ -28,6 +28,7 @@ git checkout -f main
 - `git-delta` (when less just isn't cutting it anymore)
 - `hyprland` `xdg-desktop-portal` `xdg-desktop-portal-hyprland`
 - `kitty`
+- `mpvpaper`
 - `gvim` `wl-clipboard` (`vim` didn't support clipboarding)
 - `waybar`
 - `wofi`
