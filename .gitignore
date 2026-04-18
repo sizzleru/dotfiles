@@ -1,0 +1,7 @@
+# Ignore everything - let's not push some secrets ;)
+*
+
+# except some important ones maybe
+!.config/
+!.gitignore
+!README.md
