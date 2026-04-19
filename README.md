@@ -19,3 +19,4 @@ git checkout -f main
 ### Applications
 
 - `bash` `git` (essentials baby)
+- `nwg-look` `catppuccin-gtk-theme-mocha` `catppuccin-cursors-mocha` `tela-circle-icon-theme-pink` `catppuccin-qt5ct-git` `catppuccin-fcitx5-git`
