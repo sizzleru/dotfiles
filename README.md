@@ -25,6 +25,7 @@ git checkout -f main
 ### Applications
 
 - `bash` `git` (essentials baby)
+- `trash-cli` (get it before ya regret it mate)
 - `fontconfig` `maplemono-nf` `ttf-nunito` `ttf-adobe-source-serif-fonts` `woff2-font-awesome` `noto-fonts-emoji` `otf-ipafont` `ttf-nanum` `wqy-zenhei` `terminus-font`
 - `git-delta` (when less just isn't cutting it anymore)
 - `nwg-look` `catppuccin-gtk-theme-mocha` `catppuccin-cursors-mocha` `tela-circle-icon-theme-pink` `catppuccin-qt5ct-git` `catppuccin-fcitx5-git`
