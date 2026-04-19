@@ -14,7 +14,7 @@
 
 # fontconfig
 !.config/fontconfig/
-!.config/fontconfig/*
+!.config/fontconfig/**
 
 # git
 !.config/git/
