@@ -6,6 +6,12 @@
 !.gitignore
 !README.md
 
+# fcitx
+!.config/fcitx/
+!.config/fcitx/*
+!.config/fcitx5/
+!.config/fcitx5/*
+
 # fontconfig
 !.config/fontconfig/
 !.config/fontconfig/*
