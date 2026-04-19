@@ -27,6 +27,7 @@ git checkout -f main
 - `bash` `git` (essentials baby)
 - `fontconfig` `maplemono-nf` `ttf-nunito` `ttf-adobe-source-serif-fonts` `woff2-font-awesome` `noto-fonts-emoji` `otf-ipafont` `ttf-nanum` `wqy-zenhei` `terminus-font`
 - `git-delta` (when less just isn't cutting it anymore)
+- `nwg-look` `catppuccin-gtk-theme-mocha` `catppuccin-cursors-mocha` `tela-circle-icon-theme-pink` `catppuccin-qt5ct-git` `catppuccin-fcitx5-git`
 - `hyprland` `xdg-desktop-portal` `xdg-desktop-portal-hyprland`
 - `kitty`
 - `mpvpaper`
