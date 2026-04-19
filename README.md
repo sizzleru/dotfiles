@@ -19,4 +19,4 @@ git checkout -f main
 ### Applications
 
 - `bash` `git` (essentials baby)
-- `waybar`
+- `waybar` `playerctl`
