@@ -19,4 +19,4 @@ git checkout -f main
 ### Applications
 
 - `bash` `git` (essentials baby)
-- `fontconfig` `maplemono-nf` `ttf-nunito` `ttf-adobe-source-serif-fonts` `woff2-font-awesome` `noto-fonts-emoji` `otf-ipafont` `ttf-nanum` `wqy-zenhei` `terminus-font`
+- `fontconfig` `maplemono-nf` `ttf-nunito` `ttf-adobe-source-serif-fonts` `woff2-font-awesome` `ttf-twemoji-color` `ttf-bitstream-vera` `otf-ipafont` `ttf-nanum` `wqy-zenhei` `terminus-font`
