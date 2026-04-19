@@ -19,3 +19,4 @@ git checkout -f main
 ### Applications
 
 - `bash` `git` (essentials baby)
+- `fcitx5` `fcitx5-mozc` `fcitx5-gtk` `fcitx5-qt` `fcitx5-configtool`
