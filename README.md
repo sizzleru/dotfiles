@@ -37,4 +37,4 @@ git checkout -f main
 - `thunar-{extended,archive-plugin,media-tags-plugin,vcs-plugin,volman}` `ffmpeg-audio-thumbnailer`
 - `gvim` `wl-clipboard` `vim-colors-catppuccin-git` (`vim` didn't support clipboarding)
 - `waybar` `playerctl`
-- `wofi` `rofimoji`
+- `wofi` `rofimoji` `wl-paste`
