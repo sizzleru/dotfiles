@@ -1,36 +1,74 @@
 * {
+	min-height: 0;
+	font-family: Maple Mono NF;
 	font-size: 13px;
 }
 
-window#waybar {
-	background: rgba(30, 30, 46, 0.85);
-	color: #cdd6f4;
-	border-radius: 12px;
-	margin: 8px;
+#waybar {
+	padding: 0;
+	margin: 0;
 }
 
-/* workspace buttons */
+window#waybar {
+    margin: 0 12px;
+}
+
+/* generic modules */
+#battery,
+#clock,
+#network,
+#pulseaudio,
+#tray,
+#workspaces{
+	background: rgba(30, 30, 46, 0.8);
+	padding: 0 12px;
+	margin: 6px 6px;
+	border-radius: 12px;
+}
+
+/*
+#workspaces:hover
+*/
+
+#battery:hover,
+#clock:hover,
+#network:hover,
+#pulseaudio:hover,
+#tray:hover{
+	background: rgba(245, 194, 231, 0.15);
+}
+
+/* workspaces */
 #workspaces button {
-	padding: 0 10px;
-	color: #cdd6f4;
-	border-radius: 10px;
+padding: 0 8px;
+margin: 0 3px;
+color: #cdd6f4;
+border-radius: 8px;
 }
 
 #workspaces button.active {
-	background: #f5c2e7;
-	color: #1e1e2e;
+background: #f5c2e7;
+color: #1e1e2e;
 }
 
-/* modules */
-#clock, #pulseaudio, #network, #tray {
-	padding: 0 10px;
-	margin: 4px;
-	border-radius: 10px;
+/* pulseaudio */
+#pulseaudio {
+	border-right: 1px solid rgba(255,255,255,0.1);
 }
 
-/* hover softness */
-#pulseaudio:hover,
-#network:hover,
-#clock:hover {
-	background: rgba(245, 194, 231, 0.15);
+/* custom/network */
+#custom-ipv4_local,
+#custom-ipv4_public {
+	padding: 0 6px;
+	margin: 0 2px;
+}
+
+#custom-player_play {
+	padding: 0 6px;
+	margin: 0 2px;
+}
+#custom-player_prev,
+#custom-player_next {
+	padding: 0 12px;
+	margin: 0 4px;
 }
