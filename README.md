@@ -34,5 +34,5 @@ git checkout -f main
 - `grim` `slurp` `swappy` `wl-clipboard` (screenshot stack)
 - `thunar-{extended,archive-plugin,media-tags-plugin,vcs-plugin,volman}` `ffmpeg-audio-thumbnailer`
 - `gvim` `wl-clipboard` `vim-colors-catppuccin-git` (`vim` didn't support clipboarding)
-- `waybar`
+- `waybar` `playerctl`
 - `wofi`
