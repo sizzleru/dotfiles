@@ -19,3 +19,4 @@ git checkout -f main
 ### Applications
 
 - `bash` `git` (essentials baby)
+- `trash-cli` (get it before ya regret it mate)
