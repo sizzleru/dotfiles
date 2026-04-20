@@ -66,3 +66,7 @@
 # wofi
 !.config/wofi/
 !.config/wofi/*
+
+# yazi
+!.config/yazi/
+!.config/yazi/*

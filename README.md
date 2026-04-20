@@ -39,3 +39,4 @@ git checkout -f main
 - `gvim` `wl-clipboard` `vim-colors-catppuccin-git` (`vim` didn't support clipboarding)
 - `waybar` `playerctl`
 - `wofi` `rofimoji` `wl-paste`
+- `yazi` `ueberzugpp` `ffmpegthumbnailer` `poppler` `fd` `ripgrep`
