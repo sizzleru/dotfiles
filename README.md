@@ -33,6 +33,7 @@ git checkout -f main
 - `nwg-look` `catppuccin-gtk-theme-mocha` `catppuccin-cursors-mocha` `tela-circle-icon-theme-pink` `catppuccin-qt5ct-git` `catppuccin-fcitx5-git`
 - `hyprland` `xdg-desktop-portal` `xdg-desktop-portal-hyprland`
 - `kitty`
+- `obs-studio` `pipewire` `wireplumber` `xdg-desktop-portal` `xdg-desktop-portal-wlr`
 - `mpvpaper`
 - `grim` `slurp` `swappy` `wl-clipboard` (screenshot stack)
 - `thunar-{extended,archive-plugin,media-tags-plugin,vcs-plugin,volman}` `ffmpeg-audio-thumbnailer`

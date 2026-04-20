@@ -45,6 +45,10 @@
 !/.config/kitty/
 !/.config/kitty/*
 
+# obs-studio
+!.config/obs-studio/
+!.config/obs-studio/*
+
 # shell
 !.bashrc
 !.profile
