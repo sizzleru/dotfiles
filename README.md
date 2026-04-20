@@ -19,4 +19,4 @@ git checkout -f main
 ### Applications
 
 - `bash` `git` (essentials baby)
-- `yazi` `ueberzugpp` `ffmpegthumbnailer` `poppler` `fd` `ripgrep`
+- `yazi` `ffmpeg` `ffmpegthumbnailer` `p7zip` `jq` `poppler` `fd` `ripgrep` `fzf` `zoxide` `resvg` `imagemagick` `wl-clipboard` `ueberzugpp`
