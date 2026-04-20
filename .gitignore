@@ -5,3 +5,7 @@
 !.config/
 !.gitignore
 !README.md
+
+# obs-studio
+!.config/obs-studio/
+!.config/obs-studio/*

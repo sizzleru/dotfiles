@@ -19,3 +19,4 @@ git checkout -f main
 ### Applications
 
 - `bash` `git` (essentials baby)
+- `obs-studio` `pipewire` `wireplumber` `xdg-desktop-portal` `xdg-desktop-portal-wlr`
