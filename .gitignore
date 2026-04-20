@@ -17,8 +17,7 @@
 !.config/fcitx5/*
 
 # fontconfig
-!.config/fontconfig/
-!.config/fontconfig/**
+!.config/fontconfig/ !.config/fontconfig/**
 
 # git
 !.config/git/
@@ -47,7 +46,7 @@
 
 # obs-studio
 !.config/obs-studio/
-!.config/obs-studio/*
+!.config/obs-studio/global.ini
 
 # shell
 !.bashrc
