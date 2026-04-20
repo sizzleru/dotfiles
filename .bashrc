@@ -18,6 +18,23 @@ alias v=vim
 alias vi=vim
 alias rm='trash-put'
 
+gitbh() {
+	cd "${HOME}"
+	git bh "${1}"
+	git unstage
+	git restore .gitignore README.md
+}
+
+y() {
+	local tmp="$( mktemp -t "yazi-cwd.XXXXXX" )"
+	yazi "${@}" --cwd-file="${tmp}"
+
+	if [ -f "${tmp}" ]; then
+		cd "$( cat "${tmp}" )"
+		rm -f "${tmp}"
+	fi
+}
+
 cp() {
 
 	CP='/usr/bin/cp'
