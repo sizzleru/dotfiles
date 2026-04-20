@@ -25,6 +25,7 @@ git checkout -f main
 ### Applications
 
 - `bash` `git` (essentials baby)
+- `dunst`
 - `trash-cli` (get it before ya regret it mate)
 - `fcitx5` `fcitx5-mozc` `fcitx5-gtk` `fcitx5-qt` `fcitx5-configtool`
 - `fontconfig` `maplemono-nf` `ttf-nerd-fonts-symbols` `ttf-nerd-fonts-symbols-mono` `ttf-nunito` `ttf-adobe-source-serif-fonts` `woff2-font-awesome` `ttf-twemoji-color` `otf-ipafont` `ttf-nanum` `wqy-zenhei` `terminus-font`

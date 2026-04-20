@@ -1,0 +1,78 @@
+[global]
+	monitor = 0
+	follow = mouse
+	width = 360
+	height = 200
+	origin = top-right
+	offset = 12x12
+	scale = 0
+	
+	padding = 10
+	horizontal_padding = 12
+	frame_width = 2
+	frame_color = "#f4b8e4"
+	
+	separator_height = 2
+	separator_color = "#414559"
+	
+	transparency = 10
+	corner_radius = 12
+	
+	line_height = 0
+	markup = full
+	format = "<b>%s</b>\n<span size='small'>%b</span>"
+	
+	alignment = left
+	vertical_alignment = center
+	show_age_threshold = 60
+	
+	idle_threshold = 120
+	ignore_newline = no
+	word_wrap = yes
+	ellipsize = middle
+
+	enable_recursive_icon_lookup = true
+	
+	icon_position = left
+	min_icon_size = 24
+	max_icon_size = 48
+	
+	indicate_hidden = yes
+	sticky_history = yes
+	history_length = 20
+
+	progress_bar_width = 300
+	progress_bar_height = 8
+	progress_bar_frame = false
+	progress_bar_frame_color = "#f4b8e4"
+	progress_bar_color = "#f4b8e4"
+
+	show_indicators = yes
+	mouse_left_click = close_current
+	mouse_right_click = close_all
+[col]
+	active_border = rgba(f5c2e7ff)
+[urgency_low]
+	background = "#303446"
+	foreground = "#c6d0f5"
+	timeout = 4
+	
+[urgency_normal]
+	background = "#303446"
+	foreground = "#C6D0F5"
+	timeout = 6
+	
+[urgency_critical]
+	background = "#303446"
+	foreground = "#E78284"
+	frame_color = "#E78284"
+	timeout = 0
+[volume]
+	summary = "Volume*"
+	frame_color = "#8caaee"
+[brightness]
+	summary = "Brightness*"
+	frame_color = "#e5c890"
+[network]
+	appname = "NetworkManager"
+	frame_color = "#a6d189"

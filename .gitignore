@@ -6,6 +6,10 @@
 !.gitignore
 !README.md
 
+# dunst
+!.config/dunst
+!.config/dunst/*
+
 # fcitx
 !.config/fcitx/
 !.config/fcitx/*
