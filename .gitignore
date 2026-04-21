@@ -3,6 +3,8 @@
 
 # except some important ones maybe
 !.config/
+!.local/
+!.local/bin/
 !.gitignore
 !README.md
 
@@ -40,6 +42,9 @@
 !.config/hypr/*
 !.config/hypr/config/
 !.config/hypr/config/*
+
+# l
+!.local/bin/l
 
 # kitty
 !/.config/kitty/
