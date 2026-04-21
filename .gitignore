@@ -19,7 +19,8 @@
 !.config/fcitx5/*
 
 # fontconfig
-!.config/fontconfig/ !.config/fontconfig/**
+!.config/fontconfig/
+!.config/fontconfig/**
 
 # git
 !.config/git/
