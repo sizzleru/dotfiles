@@ -1,5 +1,5 @@
 for file in path; do
-	if [ -f "${HOME}/.config/shell/env/${file}.sh" ]; then
-		source "${HOME}/.config/shell/env/${file}.sh"
+	if [ -f "${HOME}/.config/shell/profile/env/${file}.sh" ]; then
+		source "${HOME}/.config/shell/profile/env/${file}.sh"
 	fi
 done
