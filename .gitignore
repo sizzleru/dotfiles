@@ -61,6 +61,10 @@
 !.config/shell/
 !.config/shell/**
 
+# swappy
+!.config/swappy/
+!.config/swappy/*
+
 # thunar
 !.config/Thunar/
 !.config/Thunar/*
