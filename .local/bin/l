@@ -9,10 +9,11 @@ from argparse import ArgumentParser
 from subprocess import run, PIPE, DEVNULL
 
 parser = ArgumentParser()
-parser.add_argument("file_path", nargs="?", default=".")
-parser.add_argument("--sort-by", default="file_type,file_name")
-parser.add_argument("--reverse", action="store_true")
-parser.add_argument("--hidden", action="store_true")
+parser.add_argument("file_path", nargs="*", default=".")
+parser.add_argument("-s", "--sort-by", default="file_type,file_name")
+parser.add_argument("-r", "--reverse", action="store_true")
+parser.add_argument("-a", "-A", "--hidden", action="store_true")
+parser.add_argument("-d", "--directory", action="store_true")
 args = parser.parse_args()
 
 def get_ext_attrs(file_path: str) -> str:
@@ -123,17 +124,17 @@ class File:
 
 		return str_file_attributes
 
-# Get a list of files
-files = []
-
-for path_file in Path(args.file_path).iterdir():
+def attributise(path_file: Path) -> File:
 	stat_file = path_file.lstat()
 
-	if path_file.name[0] == "." and not args.hidden:
-		continue
+	#print(dir(path_file))
+	#print(path_file.as_posix())
+	#exit()
+	if path_file.as_posix()[0] == "." and not args.hidden and ( not args.directory or not path_file.is_dir() ):
+		return None
 
 	file_gid = FileAttribute( "file_gid", stat_file.st_gid, lambda x: f"{x:<4}" )
-	file_name = FileAttribute( "file_name", path_file.name )
+	file_name = FileAttribute( "file_name", path_file.as_posix() )
 	file_perms = FileAttribute( "file_perms", stat_file.st_mode & 0o7777, lambda x: f"{x:>4o}" )
 	file_size = FileAttribute( "file_size", stat_file.st_size, lambda x: str(human_size(x)) )
 	file_type = FileAttribute( "file_type", file_type_map( filemode(stat_file.st_mode)[0] ) )
@@ -141,12 +142,31 @@ for path_file in Path(args.file_path).iterdir():
 	file_symlink = FileAttribute( "file_symlink", path_file.readlink() if path_file.is_symlink() else "" )
 	file_ext_attr = FileAttribute( "file_ext_attr", get_ext_attrs(path_file._raw_path) )
 
-	files.append(File(  file_gid, file_name, file_perms, file_size, file_type, file_uid, file_symlink, file_ext_attr ))
+	return File( file_gid, file_name, file_perms, file_size, file_type, file_uid, file_symlink, file_ext_attr )
 
-# sort the files
-#files.sort(key=lambda file: (file["file_type"].value, file[args.sort_by].value), reverse=args.reverse)
-files.sort( key=lambda file: tuple( file[file_attr].value for file_attr in args.sort_by.split(",") ), reverse=(args.reverse) )
+#print( args.file_path )
+#exit()
 
-# display
-for file in files:
-	print(file)
+for file_path in args.file_path:
+
+	# Get a list of files
+	files = []
+
+	if ( path_object := Path(file_path) ).is_dir() and not args.directory:
+		print( f"{path_object.absolute()}:" )
+		for path_file in path_object.iterdir():
+			if ( file_attribute := attributise(path_file) ) is not None:
+				files.append(file_attribute)
+	else:
+		if ( file_attribute := attributise(path_object) ) is not None:
+			files.append( file_attribute )
+
+	# sort the files
+	#files.sort(key=lambda file: (file["file_type"].value, file[args.sort_by].value), reverse=args.reverse)
+	files.sort( key=lambda file: tuple( file[file_attr].value for file_attr in args.sort_by.split(",") ), reverse=(args.reverse) )
+
+	# display
+	for file in files:
+		print(file)
+	if not args.directory:
+		print()
