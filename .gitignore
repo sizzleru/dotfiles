@@ -67,7 +67,7 @@
 
 # vim
 !.config/vim/
-!.config/vim/*
+!.config/vim/vimrc
 
 # waybar
 !.config/waybar/
