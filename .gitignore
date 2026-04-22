@@ -3,5 +3,7 @@
 
 # except some important ones maybe
 !.config/
+!.local/
+!.local/bin/
 !.gitignore
 !README.md
