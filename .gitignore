@@ -7,3 +7,7 @@
 !.local/bin/
 !.gitignore
 !README.md
+
+# swappy
+!.config/swappy/
+!.config/swappy/*
