@@ -6,7 +6,9 @@ GRAY='\[\e[38;2;108;112;134m\]'
 RESET='\[\e[0m\]'
 RED='\[\e[31m\]'
 
-PS1="$( if [ "${?}" -ne 0 ]; then echo "${RED}✗ ${RESET}"; fi )"
-PS1="${PS1}${PINK}\u${GRAY}@${BLUE}\h ${GREEN}\w ${GRAY}❯ ${RESET}"
+EXITCODE="$( if [ "${?}" -ne 0 ]; then echo "${RED}✗ ${RESET}"; fi )"
+SEPERATOR="$( if [ "${TERM}" == 'linux' ]; then echo '>'; else echo '❯'; fi )"
 
-unset PINK BLUE GREEN GRAY RESET RED
+PS1="${EXITCODE}${PINK}\u${GRAY}@${BLUE}\h ${GREEN}\w ${GRAY}${SEPERATOR} ${RESET}"
+
+unset PINK BLUE GREEN GRAY RESET RED EXITCODE SEPERATOR
