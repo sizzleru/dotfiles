@@ -1,5 +1,6 @@
 # Terminal
 export TERMINAL='kitty'
+export FETCH='uwufetch'
 
 # Editor
 export EDITOR='vim'
