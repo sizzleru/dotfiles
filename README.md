@@ -14,6 +14,12 @@ git fetch
 git checkout -f main
 ```
 
+## Hostnames
+
+|Hostname|Operating System|Flavour|naming|description|
+|:-:|:-:|:-:|:-:|:-:|
+|moon|Linux|Arch Linux|(Kagiri's) moon|my overabused server|
+
 ## Packages (i.e. bloat)
 
 ### Applications
