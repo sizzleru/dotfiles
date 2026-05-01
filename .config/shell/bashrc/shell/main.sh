@@ -1,0 +1,5 @@
+for file in interactive bash history; do
+	if [ -f "${HOME}/.config/shell/bashrc/shell/${file}.sh" ]; then
+		source "${HOME}/.config/shell/bashrc/shell/${file}.sh"
+	fi
+done
