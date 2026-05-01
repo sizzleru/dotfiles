@@ -20,3 +20,7 @@
 !.profile
 !.config/shell/
 !.config/shell/**
+
+# vim
+!.config/vim/
+!.config/vim/vimrc
