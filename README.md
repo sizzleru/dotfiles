@@ -25,3 +25,4 @@ git checkout -f main
 ### Applications
 
 - `bash` `git` (essentials baby)
+- `git-delta` (when less just isn't cutting it anymore)
