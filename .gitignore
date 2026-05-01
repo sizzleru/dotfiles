@@ -12,6 +12,9 @@
 !.config/git/
 !.config/git/config
 
+# l
+!.local/bin/l
+
 # shell
 !.bashrc
 !.profile
