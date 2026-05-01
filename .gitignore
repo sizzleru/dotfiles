@@ -8,6 +8,7 @@
 !.gitignore
 !README.md
 
+<<<<<<< HEAD
 # dunst
 !.config/dunst
 !.config/dunst/*
@@ -60,6 +61,11 @@
 !.profile
 !.config/shell/
 !.config/shell/**
+
+# streamdeckui
+!.config/streamdeck-ui/
+!.config/streamdeck-ui/*
+!.streamdeck_ui.json
 
 # swappy
 !.config/swappy/

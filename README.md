@@ -36,6 +36,7 @@ git checkout -f main
 - `obs-studio` `catppuccin-obs-theme-git` `pipewire` `wireplumber` `xdg-desktop-portal` `xdg-desktop-portal-wlr`
 - `mpvpaper`
 - `grim` `slurp` `swappy` `wl-clipboard` (screenshot stack)
+- `streamdeckui`
 - `thunar-{extended,archive-plugin,media-tags-plugin,vcs-plugin,volman}` `ffmpeg-audio-thumbnailer`
 - `gvim` `wl-clipboard` `vim-colors-catppuccin-git` (`vim` didn't support clipboarding)
 - `waybar` `playerctl`
