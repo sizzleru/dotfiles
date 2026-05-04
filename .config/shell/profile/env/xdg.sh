@@ -1,3 +1,6 @@
+# Display manager
+export DM_ENTRY='start-hyprland'
+
 # Terminal
 export TERMINAL='kitty'
 export FETCH='uwufetch'
