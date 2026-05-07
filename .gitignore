@@ -64,6 +64,11 @@
 !.config/shell/
 !.config/shell/**
 
+# ssh
+!.ssh/
+!.ssh/authorized_keys
+!.ssh/config
+
 # streamdeckui
 !.config/streamdeck-ui/
 !.config/streamdeck-ui/*
