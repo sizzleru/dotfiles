@@ -9,6 +9,10 @@ RED='\[\e[31m\]'
 EXITCODE="$( if [ "${?}" -ne 0 ]; then echo "${RED}✗ ${RESET}"; fi )"
 SEPERATOR="$( if [ "${TERM}" == 'linux' ]; then echo '>'; else echo '❯'; fi )"
 
-PS1="${EXITCODE}${PINK}\u${GRAY}@${BLUE}\h ${GREEN}\w ${GRAY}${SEPERATOR} ${RESET}"
+# Fallbacks
+: "${USERNAME:="$( whoami )"}"
+: "${HOSTNAME:="$( hostname || hostnamectl --static || echo 'localhost' )"}"
+
+PS1="${EXITCODE}${PINK}${USERNAME}${GRAY}@${BLUE}${HOSTNAME} ${GREEN}\w ${GRAY}${SEPERATOR} ${RESET}"
 
 unset PINK BLUE GREEN GRAY RESET RED EXITCODE SEPERATOR
