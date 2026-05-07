@@ -7,3 +7,8 @@
 !.local/bin/
 !.gitignore
 !README.md
+
+# ssh
+!.ssh/
+!.ssh/authorized_keys
+!.ssh/config
