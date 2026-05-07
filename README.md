@@ -31,3 +31,12 @@ git checkout -f main
 - `trash-cli` (get it before ya regret it mate)
 - `gvim` (`vim` didn't support clipboarding)
 - `yazi` `ffmpeg` `ffmpegthumbnailer` `p7zip` `jq` `poppler` `fd` `ripgrep` `fzf` `zoxide` `resvg` `imagemagick` `wl-clipboard` `ueberzugpp`
+
+
+### Application setups
+
+#### yazi
+
+```
+ya pkg add dedukun/bookmarks
+```
