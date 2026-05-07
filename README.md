@@ -18,6 +18,7 @@ git checkout -f main
 
 |Hostname|Operating System|Flavour|naming|description|
 |:-:|:-:|:-:|:-:|:-:|
+|dream|Android|Xiaomi HyperOS|(Koutarou's) dream|My sandbox phone <3|
 |moon|Linux|Arch Linux|(Kagiri's) moon|my overabused server|
 |tree|Linux|Arch Linux|(shizuru's) tree|my beloved daily driver|
 
