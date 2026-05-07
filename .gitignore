@@ -21,3 +21,6 @@
 # vim
 !.config/vim/
 !.config/vim/vimrc
+
+# l
+!.local/bin/l
