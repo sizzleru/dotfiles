@@ -14,6 +14,12 @@ git fetch
 git checkout -f main
 ```
 
+## Hostnames
+
+|Hostname|Operating System|Flavour|naming|description|
+|:-:|:-:|:-:|:-:|:-:|
+|dream|Android|Xiaomi HyperOS|(Koutarou's) dream|My sandbox phone <3|
+
 ## Packages (i.e. bloat)
 
 ### Applications
