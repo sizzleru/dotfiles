@@ -140,7 +140,7 @@ def attributise(path_file: Path) -> File:
 	file_type = FileAttribute( "file_type", file_type_map( filemode(stat_file.st_mode)[0] ) )
 	file_uid = FileAttribute( "file_uid", stat_file.st_uid, lambda x: f"{x:>4}" )
 	file_symlink = FileAttribute( "file_symlink", path_file.readlink() if path_file.is_symlink() else "" )
-	file_ext_attr = FileAttribute( "file_ext_attr", get_ext_attrs(path_file._raw_path) )
+	file_ext_attr = FileAttribute( "file_ext_attr", get_ext_attrs(path_file._raw_paths) )
 
 	return File( file_gid, file_name, file_perms, file_size, file_type, file_uid, file_symlink, file_ext_attr )
 
