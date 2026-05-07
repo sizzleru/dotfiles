@@ -14,6 +14,10 @@ git fetch
 git checkout -f main
 ```
 
+|Hostname|Operating System|Flavour|naming|description|
+|:-:|:-:|:-:|:-:|:-:|
+|space|Android|Android 13|(Closed) space|My neglected phone|
+
 ## Packages (i.e. bloat)
 
 ### Applications
