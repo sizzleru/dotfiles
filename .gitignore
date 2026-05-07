@@ -15,6 +15,9 @@
 # l
 !.local/bin/l
 
+# pacman-audit
+!.local/bin/pacman-audit
+
 # shell
 !.bashrc
 !.profile

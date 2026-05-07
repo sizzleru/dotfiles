@@ -1,0 +1,20 @@
+#!/bin/sh
+
+pacman_packages="$( cat /var/log/pacman.log )"																			# whole file
+pacman_packages="$( printf '%s\n' "${pacman_packages}" | grep -- ' -S ' )"												# User manually installed commands
+pacman_packages="$( printf '%s\n' "${pacman_packages}" | grep -o -- "'.*'" )"											# Strip everything besides the command
+pacman_packages="$( printf '%s\n' "${pacman_packages}" | sed "s/'//g" )"												# Strip the single quotes
+pacman_packages="$( printf '%s\n' "${pacman_packages}" | sed -E -- 's&pacman -S( (-?-[a-z]*( \*| /[^ ]*)*))* ?&&' )"	# Strip the command and leave just the packages
+pacman_packages="$( printf '%s\n' "${pacman_packages}" | xargs -n 1 )"													# split everything into a stream of packages
+pacman_packages="$( printf '%s\n' "${pacman_packages}" | sed -E 's|.*/||' )"											# remove the source repo and just leave the package name
+pacman_packages="$( printf '%s\n' "${pacman_packages}" | grep -oE '^([[:alnum:]]|-|\.)*' )"								# remove any version numberings
+
+aur_packages="$( cat /var/log/pacman.log )"												# whole file
+aur_packages="$( printf '%s\n' "${aur_packages}" | grep -E -- ".cache/(paru|yay)" )"	# grab by aur helpers name (paru or yay for now)
+aur_packages="$( printf '%s\n' "${aur_packages}" | awk -F/ '{ print $(NF-1) }' )"		# grab the package name by folder name
+
+all_packages="$( { printf '%s\n' "${pacman_packages}"; printf '%s\n' "${aur_packages}"; } )"	# combine the pacman with aur packages
+all_packages="$( printf '%s\n' "${all_packages}" | pacman -Qq - 2>/dev/null )"					# check if they are still installed
+all_packages="$( printf '%s\n' "${all_packages}" | sort -u )"									# sort the results (chronological isn't helpful due to upgrades, reinstalls, etc.)
+
+printf '%s\n' "${all_packages}"	# Get a list of all manually installed packages
