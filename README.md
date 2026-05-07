@@ -14,6 +14,11 @@ git fetch
 git checkout -f main
 ```
 
+## Hostnames
+
+|Hostname|Operating System|Flavour|naming|description|
+|:-:|:-:|:-:|:-:|:-:|
+
 ## Packages (i.e. bloat)
 
 ### Applications
