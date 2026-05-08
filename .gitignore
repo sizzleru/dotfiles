@@ -11,3 +11,8 @@
 # git
 !.config/git/
 !.config/git/config
+
+# ssh
+!.ssh/
+!.ssh/authorized_keys
+!.ssh/config

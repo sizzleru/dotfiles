@@ -14,6 +14,18 @@ git fetch
 git checkout -f main
 ```
 
+## Hostnames
+
+|Hostname|Operating System|Flavour|naming|description|
+|:-:|:-:|:-:|:-:|:-:|
+|district|Android|Xiaomi HyperOS|(Kazamatsuri) district|My serious phone|
+|dream|Android|Xiaomi HyperOS|(Koutarou's) dream|My sandbox phone <3|
+|forest|Windows|Windows 10 Pro|(Kotori's) forest|My hated gaming machine|
+|moon|Linux|Arch Linux|(Kagiri's) moon|my overabused server|
+|power|Linux|OpenWrt|power (spot)|My sexy router|
+|space|Android|Android 13|(Closed) space|My neglected phone|
+|tree|Linux|Arch Linux|(shizuru's) tree|my beloved daily driver|
+
 ## Packages (i.e. bloat)
 
 ### Applications
