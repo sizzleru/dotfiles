@@ -13,6 +13,7 @@
 !.config/git/config
 
 # shell
+!.ashrc
 !.bashrc
 !.profile
 !.config/shell/
