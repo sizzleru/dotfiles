@@ -12,6 +12,12 @@
 !.config/git/
 !.config/git/config
 
+# shell
+!.bashrc
+!.profile
+!.config/shell/
+!.config/shell/**
+
 # ssh
 !.ssh/
 !.ssh/authorized_keys
