@@ -26,3 +26,10 @@
 # vim
 !.config/vim/
 !.config/vim/vimrc
+
+# yazi
+!.config/yazi/
+!.config/yazi/init.lua
+!.config/yazi/yazi.toml
+!.config/yazi/keymap.toml
+!.config/yazi/theme.toml
