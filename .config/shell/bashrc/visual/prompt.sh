@@ -10,7 +10,7 @@ EXITCODE="$( if [ "${?}" -ne 0 ]; then echo "${RED}✗ ${RESET}"; fi )"
 SEPERATOR="$( if [ "${TERM}" == 'linux' ]; then echo '>'; else echo '❯'; fi )"
 
 # Fallbacks
-: "${USERNAME:="$( whoami )"}"
+: "${USERNAME:="$( id -un )"}"
 : "${HOSTNAME:="$( hostname || hostnamectl --static || echo 'localhost' )"}"
 
 PS1="${EXITCODE}${PINK}${USERNAME}${GRAY}@${BLUE}${HOSTNAME} ${GREEN}\w ${GRAY}${SEPERATOR} ${RESET}"

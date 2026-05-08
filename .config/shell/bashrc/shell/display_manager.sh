@@ -1,3 +1,9 @@
-if [ -z "${DISPLAY}" ] && [ -z "${WAYLAND_DISPLAY}" ] && [ "$( tty )" = '/dev/tty1' ] && [ ! -z "${DM_ENTRY}" ]; then
+if \
+	[ -z "${DISPLAY}" ] && \
+	[ -z "${WAYLAND_DISPLAY}" ] && \
+	$( command -v shopt >/dev/null 2>&1 ) && \
+	[ "$( tty )" = '/dev/tty1' ] && \
+	[ ! -z "${DM_ENTRY}" ]; then
+
 	exec "${DM_ENTRY}"
 fi
