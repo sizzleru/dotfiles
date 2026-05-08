@@ -11,3 +11,9 @@
 # git
 !.config/git/
 !.config/git/config
+
+# shell
+!.bashrc
+!.profile
+!.config/shell/
+!.config/shell/**
