@@ -16,3 +16,10 @@
 !.ssh/
 !.ssh/authorized_keys
 !.ssh/config
+
+# yazi
+!.config/yazi/
+!.config/yazi/init.lua
+!.config/yazi/yazi.toml
+!.config/yazi/keymap.toml
+!.config/yazi/theme.toml
