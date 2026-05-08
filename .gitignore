@@ -8,7 +8,6 @@
 !.gitignore
 !README.md
 
-<<<<<<< HEAD
 # git
 !.config/git/
 !.config/git/config
@@ -18,6 +17,11 @@
 !.profile
 !.config/shell/
 !.config/shell/**
+
+# ssh
+!.ssh/
+!.ssh/authorized_keys
+!.ssh/config
 
 # vim
 !.config/vim/
