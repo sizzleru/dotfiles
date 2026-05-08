@@ -19,6 +19,7 @@ git checkout -f main
 
 |Hostname|Operating System|Flavour|naming|description|
 |:-:|:-:|:-:|:-:|:-:|
+|district|Android|Xiaomi HyperOS|(Kazamatsuri) district|My serious phone|
 |dream|Android|Xiaomi HyperOS|(Koutarou's) dream|My sandbox phone <3|
 |moon|Linux|Arch Linux|(Kagiri's) moon|my overabused server|
 |power|Linux|OpenWrt|power (spot)|My sexy router|
