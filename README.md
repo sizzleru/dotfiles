@@ -21,6 +21,7 @@ git checkout -f main
 |:-:|:-:|:-:|:-:|:-:|
 |dream|Android|Xiaomi HyperOS|(Koutarou's) dream|My sandbox phone <3|
 |moon|Linux|Arch Linux|(Kagiri's) moon|my overabused server|
+|power|Linux|OpenWrt|power (spot)|My sexy router|
 |space|Android|Android 13|(Closed) space|My neglected phone|
 |tree|Linux|Arch Linux|(shizuru's) tree|my beloved daily driver|
 
