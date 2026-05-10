@@ -1,7 +1,7 @@
 if \
 	[ -z "${DISPLAY}" ] && \
 	[ -z "${WAYLAND_DISPLAY}" ] && \
-	$( command -v shopt >/dev/null 2>&1 ) && \
+	$( command -v tty >/dev/null 2>&1 ) && \
 	[ "$( tty )" = '/dev/tty1' ] && \
 	[ ! -z "${DM_ENTRY}" ]; then
 
