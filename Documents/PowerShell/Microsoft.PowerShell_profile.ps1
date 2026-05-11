@@ -16,3 +16,10 @@ function prompt {
     return " > "
 }
 
+# git
+function gitbh {
+	cd "${HOME}"
+	git bh ${args}[0]
+	git unstage
+	git restore .gitignore README.md
+}
