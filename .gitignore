@@ -17,6 +17,10 @@
 !.ssh/authorized_keys
 !.ssh/config
 
+# vim
+!.config/vim/
+!.config/vim/vimrc
+
 # yazi
 !.config/yazi/
 !.config/yazi/init.lua
