@@ -34,6 +34,7 @@ git checkout -f main
 
 - `bash` `git` (essentials baby)
 - `git-delta` (when less just isn't cutting it anymore)
+- `Microsoft.PowerShell`
 - `gvim` (`vim` didn't support clipboarding)
 - `yazi` `ffmpeg` `ffmpegthumbnailer` `p7zip` `jq` `poppler` `fd` `ripgrep` `fzf` `zoxide` `resvg` `imagemagick` `wl-clipboard` `ueberzugpp`
 
@@ -44,4 +45,10 @@ git checkout -f main
 
 ```
 ya pkg add dedukun/bookmarks
+```
+
+#### powershell
+
+```
+Install-Module PSReadLine -Force
 ```

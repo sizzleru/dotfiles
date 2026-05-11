@@ -12,6 +12,11 @@
 !.config/git/
 !.config/git/config
 
+# powershell
+!Documents
+!Documents/PowerShell/
+!Documents/PowerShell/*
+
 # ssh
 !.ssh/
 !.ssh/authorized_keys
