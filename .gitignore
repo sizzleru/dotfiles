@@ -7,3 +7,8 @@
 !.local/bin/
 !.gitignore
 !README.md
+
+# powershell
+!Documents
+!Documents/PowerShell/
+!Documents/PowerShell/*

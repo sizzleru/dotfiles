@@ -19,3 +19,10 @@ git checkout -f main
 ### Applications
 
 - `bash` `git` (essentials baby)
+- `Microsoft.PowerShell`
+
+#### powershell
+
+```
+Install-Module PSReadLine -Force
+```
