@@ -8,6 +8,7 @@
 !.gitignore
 !README.md
 
+<<<<<<< HEAD
 # git
 !.config/git/
 !.config/git/config
@@ -23,3 +24,9 @@
 !.config/yazi/yazi.toml
 !.config/yazi/keymap.toml
 !.config/yazi/theme.toml
+
+# shell
+!.bashrc
+!.profile
+!.config/shell/
+!.config/shell/**
