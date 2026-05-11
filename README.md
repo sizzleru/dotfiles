@@ -22,6 +22,8 @@ git checkout -f main
 |district|Android|Xiaomi HyperOS|(Kazamatsuri) district|My serious phone|
 |dream|Android|Xiaomi HyperOS|(Koutarou's) dream|My sandbox phone <3|
 |forest|Windows|Windows 10 Pro|(Kotori's) forest|My hated gaming machine|
+|hallway|Linux|Fedora Linux|(endless) hallway|My beefy server rack|
+|tree|Linux|Arch Linux|(shizuru's) tree|my beloved daily driver|
 |moon|Linux|Arch Linux|(Kagiri's) moon|my overabused server|
 |power|Linux|OpenWrt|power (spot)|My sexy router|
 |space|Android|Android 13|(Closed) space|My neglected phone|
