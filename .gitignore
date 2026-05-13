@@ -17,3 +17,10 @@
 !.profile
 !.config/shell/
 !.config/shell/**
+
+# yazi
+!.config/yazi/
+!.config/yazi/init.lua
+!.config/yazi/yazi.toml
+!.config/yazi/keymap.toml
+!.config/yazi/theme.toml

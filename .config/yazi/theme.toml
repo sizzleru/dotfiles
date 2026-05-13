@@ -1,0 +1,33 @@
+[flavor]
+use = "catppuccin-mocha"
+
+[status]
+separator_open  = ""
+separator_close = ""
+
+[selection]
+fg = "#303446"
+bg = "#F4B8E4"
+
+[cursor]
+fg = "#303446"
+bg = "#8CAAEE"
+
+[marker]
+fg = "#E5C890"
+bg = "#303446"
+
+[border]
+fg = "#414559"
+
+[preview]
+fg = "#C6D0F5"
+bg = "#303446"
+
+[statusline]
+fg = "#C6D0F5"
+bg = "#303446"
+
+[tab]
+active   = { fg = "#303446", bg = "#F4B8E4" }
+inactive = { fg = "#C6D0F5", bg = "#414559" }

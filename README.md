@@ -21,3 +21,13 @@ git checkout -f main
 - `bash` `git` (essentials baby)
 - `git-delta` (when less just isn't cutting it anymore)
 - `trash-cli` (get it before ya regret it mate)
+- `yazi` `ffmpeg` `ffmpegthumbnailer` `p7zip` `jq` `poppler` `fd` `ripgrep` `fzf` `zoxide` `resvg` `imagemagick` `wl-clipboard` `ueberzugpp`
+
+
+### Application setups
+
+#### yazi
+
+```
+ya pkg add dedukun/bookmarks
+```
