@@ -18,6 +18,10 @@
 !.config/shell/
 !.config/shell/**
 
+# vim
+!.config/vim/
+!.config/vim/vimrc
+
 # yazi
 !.config/yazi/
 !.config/yazi/init.lua
