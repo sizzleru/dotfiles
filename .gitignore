@@ -7,3 +7,8 @@
 !.local/bin/
 !.gitignore
 !README.md
+
+# vivaldi
+!.config/vivaldi/
+!.config/vivaldi/keybinds.json
+!.config/vivaldi/toolbars.json
