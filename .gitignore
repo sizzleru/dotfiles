@@ -8,6 +8,7 @@
 !.gitignore
 !README.md
 
+<<<<<<< HEAD
 # dunst
 !.config/dunst
 !.config/dunst/*
@@ -85,6 +86,11 @@
 # vim
 !.config/vim/
 !.config/vim/vimrc
+
+# vivaldi
+!.config/vivaldi/
+!.config/vivaldi/keybinds.json
+!.config/vivaldi/toolbars.json
 
 # waybar
 !.config/waybar/

@@ -1,0 +1,37 @@
+{
+  "navigation": [
+    "PanelWidthSpacer",
+    "Back",
+    "Forward",
+    "AddressField",
+    "Extensions",
+    "DownloadButton"
+  ],
+  "panel": [
+    "PanelMail",
+    "PanelContacts",
+    "PanelCalendar",
+    "PanelTasks",
+    "PanelFeeds",
+    "AccountButton",
+    "PanelBookmarks",
+    "PanelTranslate",
+    "PageActions",
+    "PanelSession",
+    "FlexibleSpacer"
+  ],
+  "status": [
+    "VersionInfo"
+  ],
+  "tabbar_after": [
+    "TabButton",
+    "NewTab",
+    "FlexibleSpacer",
+    "Rewind",
+    "Clock",
+    "FastForward"
+  ],
+  "tabbar_before": [
+    "WorkspaceButton"
+  ]
+}
