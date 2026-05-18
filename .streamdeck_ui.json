@@ -8,7 +8,7 @@
                         "states": {
                             "0": {
                                 "text": "Audio",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/music.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/music.png",
                                 "keys": "",
                                 "write": "",
                                 "command": "",
@@ -29,7 +29,7 @@
                         "states": {
                             "0": {
                                 "text": "Tailscale",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/tailscale.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/tailscale.png",
                                 "keys": "",
                                 "write": "",
                                 "command": "",
@@ -92,7 +92,7 @@
                         "states": {
                             "0": {
                                 "text": "power",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/power.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/power.png",
                                 "keys": "",
                                 "write": "",
                                 "command": "",
@@ -325,10 +325,10 @@
                         "states": {
                             "0": {
                                 "text": "",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/mute.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/mute.png",
                                 "keys": "",
                                 "write": "",
-                                "command": "/home/sizzleru/AppData/streamdeckui/scripts/audio-sink-mute-toggle.sh",
+                                "command": "/home/sizzleru/Assets/streamdeckui/scripts/audio-sink-mute-toggle.sh",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -346,10 +346,10 @@
                         "states": {
                             "0": {
                                 "text": "",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/vol_down.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/vol_down.png",
                                 "keys": "",
                                 "write": "",
-                                "command": "/home/sizzleru/AppData/streamdeckui/scripts/audio-sink-volume-lower.sh",
+                                "command": "/home/sizzleru/Assets/streamdeckui/scripts/audio-sink-volume-lower.sh",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -367,10 +367,10 @@
                         "states": {
                             "0": {
                                 "text": "",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/vol_up.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/vol_up.png",
                                 "keys": "",
                                 "write": "",
-                                "command": "/home/sizzleru/AppData/streamdeckui/scripts/audio-sink-volume-higher.sh",
+                                "command": "/home/sizzleru/Assets/streamdeckui/scripts/audio-sink-volume-higher.sh",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -388,10 +388,10 @@
                         "states": {
                             "0": {
                                 "text": "",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/mute_mic.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/mute_mic.png",
                                 "keys": "",
                                 "write": "",
-                                "command": "/home/sizzleru/AppData/streamdeckui/scripts/audio-source-mute.sh",
+                                "command": "/home/sizzleru/Assets/streamdeckui/scripts/audio-source-mute.sh",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -409,10 +409,10 @@
                         "states": {
                             "0": {
                                 "text": "",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/unmute_mic.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/unmute_mic.png",
                                 "keys": "",
                                 "write": "",
-                                "command": "/home/sizzleru/AppData/streamdeckui/scripts/audio-source-unmute.sh",
+                                "command": "/home/sizzleru/Assets/streamdeckui/scripts/audio-source-unmute.sh",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -430,10 +430,10 @@
                         "states": {
                             "0": {
                                 "text": "",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/backward.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/backward.png",
                                 "keys": "",
                                 "write": "",
-                                "command": "/home/sizzleru/AppData/streamdeckui/scripts/media-previous.sh",
+                                "command": "/home/sizzleru/Assets/streamdeckui/scripts/media-previous.sh",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -451,10 +451,10 @@
                         "states": {
                             "0": {
                                 "text": "",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/prev.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/prev.png",
                                 "keys": "",
                                 "write": "",
-                                "command": "/home/sizzleru/AppData/streamdeckui/scripts/media-seek-backwards.sh",
+                                "command": "/home/sizzleru/Assets/streamdeckui/scripts/media-seek-backwards.sh",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -472,10 +472,10 @@
                         "states": {
                             "0": {
                                 "text": "",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/pause.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/pause.png",
                                 "keys": "",
                                 "write": "",
-                                "command": "/home/sizzleru/AppData/streamdeckui/scripts/media-pause-toggle.sh",
+                                "command": "/home/sizzleru/Assets/streamdeckui/scripts/media-pause-toggle.sh",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -493,10 +493,10 @@
                         "states": {
                             "0": {
                                 "text": "",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/next.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/next.png",
                                 "keys": "",
                                 "write": "",
-                                "command": "/home/sizzleru/AppData/streamdeckui/scripts/media-seek-forwards.sh",
+                                "command": "/home/sizzleru/Assets/streamdeckui/scripts/media-seek-forwards.sh",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -514,10 +514,10 @@
                         "states": {
                             "0": {
                                 "text": "",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/forward.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/forward.png",
                                 "keys": "",
                                 "write": "",
-                                "command": "/home/sizzleru/AppData/streamdeckui/scripts/media-next.sh",
+                                "command": "/home/sizzleru/Assets/streamdeckui/scripts/media-next.sh",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -535,10 +535,10 @@
                         "states": {
                             "0": {
                                 "text": "FiiO",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/audio.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/audio.png",
                                 "keys": "",
                                 "write": "",
-                                "command": "/home/sizzleru/AppData/streamdeckui/scripts/audio-sink.sh 'FiiO'",
+                                "command": "/home/sizzleru/Assets/streamdeckui/scripts/audio-sink.sh 'FiiO'",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -556,10 +556,10 @@
                         "states": {
                             "0": {
                                 "text": "RODE_NT",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/audio.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/audio.png",
                                 "keys": "",
                                 "write": "",
-                                "command": "/home/sizzleru/AppData/streamdeckui/scripts/audio-sink.sh 'RODE_NT'",
+                                "command": "/home/sizzleru/Assets/streamdeckui/scripts/audio-sink.sh 'RODE_NT'",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -577,10 +577,10 @@
                         "states": {
                             "0": {
                                 "text": "Speaker",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/audio.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/audio.png",
                                 "keys": "",
                                 "write": "",
-                                "command": "/home/sizzleru/AppData/streamdeckui/scripts/audio-sink.sh 'Speaker'",
+                                "command": "/home/sizzleru/Assets/streamdeckui/scripts/audio-sink.sh 'Speaker'",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -598,10 +598,10 @@
                         "states": {
                             "0": {
                                 "text": "Headphones",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/audio.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/audio.png",
                                 "keys": "",
                                 "write": "",
-                                "command": "/home/sizzleru/AppData/streamdeckui/scripts/audio-sink.sh 'Headphones'",
+                                "command": "/home/sizzleru/Assets/streamdeckui/scripts/audio-sink.sh 'Headphones'",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -619,7 +619,7 @@
                         "states": {
                             "0": {
                                 "text": "",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/home.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/home.png",
                                 "keys": "",
                                 "write": "",
                                 "command": "",
@@ -642,10 +642,10 @@
                         "states": {
                             "0": {
                                 "text": "exit node",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/cancel.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/cancel.png",
                                 "keys": "",
                                 "write": "",
-                                "command": "/home/sizzleru/AppData/streamdeckui/scripts/tailscale-exit-node.sh",
+                                "command": "/home/sizzleru/Assets/streamdeckui/scripts/tailscale-exit-node.sh",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -705,10 +705,10 @@
                         "states": {
                             "0": {
                                 "text": "status",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/tailscale.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/tailscale.png",
                                 "keys": "",
                                 "write": "",
-                                "command": "/home/sizzleru/AppData/streamdeckui/scripts/tailscale-status-notify.sh",
+                                "command": "/home/sizzleru/Assets/streamdeckui/scripts/tailscale-status-notify.sh",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -726,10 +726,10 @@
                         "states": {
                             "0": {
                                 "text": "Active peers",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/tailscale.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/tailscale.png",
                                 "keys": "",
                                 "write": "",
-                                "command": "/home/sizzleru/AppData/streamdeckui/scripts/tailscale-active-peers-notify.sh",
+                                "command": "/home/sizzleru/Assets/streamdeckui/scripts/tailscale-active-peers-notify.sh",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -747,10 +747,10 @@
                         "states": {
                             "0": {
                                 "text": "tyo-001",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/japan.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/japan.png",
                                 "keys": "",
                                 "write": "",
-                                "command": "/home/sizzleru/AppData/streamdeckui/scripts/tailscale-exit-node.sh jp-tyo-wg-001",
+                                "command": "/home/sizzleru/Assets/streamdeckui/scripts/tailscale-exit-node.sh jp-tyo-wg-001",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -768,10 +768,10 @@
                         "states": {
                             "0": {
                                 "text": "lax-001",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/america.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/america.png",
                                 "keys": "",
                                 "write": "",
-                                "command": "/home/sizzleru/AppData/streamdeckui/scripts/tailscale-exit-node.sh us-lax-wg-001",
+                                "command": "/home/sizzleru/Assets/streamdeckui/scripts/tailscale-exit-node.sh us-lax-wg-001",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -789,10 +789,10 @@
                         "states": {
                             "0": {
                                 "text": "lon-001",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/britain.jpg",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/britain.jpg",
                                 "keys": "",
                                 "write": "",
-                                "command": "/home/sizzleru/AppData/streamdeckui/scripts/tailscale-exit-node.sh gb-lon-wg-001",
+                                "command": "/home/sizzleru/Assets/streamdeckui/scripts/tailscale-exit-node.sh gb-lon-wg-001",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -810,10 +810,10 @@
                         "states": {
                             "0": {
                                 "text": "sao-201",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/brazil.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/brazil.png",
                                 "keys": "",
                                 "write": "",
-                                "command": "/home/sizzleru/AppData/streamdeckui/scripts/tailscale-exit-node.sh br-sao-wg-201",
+                                "command": "/home/sizzleru/Assets/streamdeckui/scripts/tailscale-exit-node.sh br-sao-wg-201",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -831,10 +831,10 @@
                         "states": {
                             "0": {
                                 "text": "los-001",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/nigeria.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/nigeria.png",
                                 "keys": "",
                                 "write": "",
-                                "command": "/home/sizzleru/AppData/streamdeckui/scripts/tailscale-exit-node.sh ng-los-wg-001",
+                                "command": "/home/sizzleru/Assets/streamdeckui/scripts/tailscale-exit-node.sh ng-los-wg-001",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -852,10 +852,10 @@
                         "states": {
                             "0": {
                                 "text": "mel-401",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/australia.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/australia.png",
                                 "keys": "",
                                 "write": "",
-                                "command": "/home/sizzleru/AppData/streamdeckui/scripts/tailscale-exit-node.sh au-mel-wg-401",
+                                "command": "/home/sizzleru/Assets/streamdeckui/scripts/tailscale-exit-node.sh au-mel-wg-401",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -873,10 +873,10 @@
                         "states": {
                             "0": {
                                 "text": "syd-001",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/australia.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/australia.png",
                                 "keys": "",
                                 "write": "",
-                                "command": "/home/sizzleru/AppData/streamdeckui/scripts/tailscale-exit-node.sh au-syd-wg-001",
+                                "command": "/home/sizzleru/Assets/streamdeckui/scripts/tailscale-exit-node.sh au-syd-wg-001",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -894,10 +894,10 @@
                         "states": {
                             "0": {
                                 "text": "adl-301",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/australia.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/australia.png",
                                 "keys": "",
                                 "write": "",
-                                "command": "/home/sizzleru/AppData/streamdeckui/scripts/tailscale-exit-node.sh au-adl-wg-301",
+                                "command": "/home/sizzleru/Assets/streamdeckui/scripts/tailscale-exit-node.sh au-adl-wg-301",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -915,10 +915,10 @@
                         "states": {
                             "0": {
                                 "text": "bne-301",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/australia.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/australia.png",
                                 "keys": "",
                                 "write": "",
-                                "command": "/home/sizzleru/AppData/streamdeckui/scripts/tailscale-exit-node.sh au-bne-wg-301",
+                                "command": "/home/sizzleru/Assets/streamdeckui/scripts/tailscale-exit-node.sh au-bne-wg-301",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -936,7 +936,7 @@
                         "states": {
                             "0": {
                                 "text": "",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/home.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/home.png",
                                 "keys": "",
                                 "write": "",
                                 "command": "",
@@ -1253,7 +1253,7 @@
                         "states": {
                             "0": {
                                 "text": "",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/home.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/home.png",
                                 "keys": "",
                                 "write": "",
                                 "command": "",
@@ -1570,7 +1570,7 @@
                         "states": {
                             "0": {
                                 "text": "",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/home.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/home.png",
                                 "keys": "",
                                 "write": "",
                                 "command": "",
@@ -1593,7 +1593,7 @@
                         "states": {
                             "0": {
                                 "text": "poweroff",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/power_off.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/power_off.png",
                                 "keys": "",
                                 "write": "",
                                 "command": "systemctl poweroff -i",
@@ -1614,7 +1614,7 @@
                         "states": {
                             "0": {
                                 "text": "reboot",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/power_off.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/power_off.png",
                                 "keys": "",
                                 "write": "",
                                 "command": "systemctl reboot -i",
@@ -1887,7 +1887,7 @@
                         "states": {
                             "0": {
                                 "text": "",
-                                "icon": "/home/sizzleru/AppData/streamdeckui/icons/home.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/home.png",
                                 "keys": "",
                                 "write": "",
                                 "command": "",
