@@ -24,8 +24,8 @@
     "VersionInfo"
   ],
   "tabbar_after": [
-    "TabButton",
     "NewTab",
+    "TabButton",
     "FlexibleSpacer",
     "Rewind",
     "Clock",
