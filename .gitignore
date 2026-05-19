@@ -7,3 +7,6 @@
 !.local/bin/
 !.gitignore
 !README.md
+
+# open_in_terminal
+!.local/bin/open_in_terminal.sh
