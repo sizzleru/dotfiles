@@ -8,7 +8,6 @@
 !.gitignore
 !README.md
 
-<<<<<<< HEAD
 # dunst
 !.config/dunst
 !.config/dunst/*
@@ -55,6 +54,9 @@
 # obs-studio
 !.config/obs-studio/
 !.config/obs-studio/global.ini
+
+# open_in_terminal
+!.local/bin/open_in_terminal.sh
 
 # pacman-audit
 !.local/bin/pacman-audit
