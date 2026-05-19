@@ -9,6 +9,4 @@
 !README.md
 
 # streamdeckui
-!.config/streamdeck-ui/
-!.config/streamdeck-ui/*
 !.streamdeck_ui.json
