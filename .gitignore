@@ -21,6 +21,7 @@
 
 # shell
 !.bashrc
+!.bash_profile
 !.profile
 !.config/shell/
 !.config/shell/**
