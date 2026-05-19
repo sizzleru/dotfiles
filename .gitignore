@@ -71,8 +71,6 @@
 !.ssh/config
 
 # streamdeckui
-!.config/streamdeck-ui/
-!.config/streamdeck-ui/*
 !.streamdeck_ui.json
 
 # swappy
