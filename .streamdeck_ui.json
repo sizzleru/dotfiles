@@ -391,7 +391,7 @@
                                 "icon": "/home/sizzleru/Assets/streamdeckui/icons/mute_mic.png",
                                 "keys": "",
                                 "write": "",
-                                "command": "/home/sizzleru/Assets/streamdeckui/scripts/audio-source-mute.sh",
+                                "command": "/home/sizzleru/Assets/streamdeckui/scripts/audio-source-mute-toggle.sh",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
@@ -409,10 +409,10 @@
                         "states": {
                             "0": {
                                 "text": "",
-                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/unmute_mic.png",
+                                "icon": "/home/sizzleru/Assets/streamdeckui/icons/pwvucontrol.jpg",
                                 "keys": "",
                                 "write": "",
-                                "command": "/home/sizzleru/Assets/streamdeckui/scripts/audio-source-unmute.sh",
+                                "command": "hyprctl dispatch togglespecialworkspace volumemixer",
                                 "brightness_change": 0,
                                 "switch_page": 0,
                                 "switch_state": 0,
