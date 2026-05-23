@@ -5,11 +5,35 @@
 	<name>Open Terminal Here</name>
 	<submenu></submenu>
 	<unique-id>1769433306562769-1</unique-id>
-	<command>&quot;${HOME}/.local/bin/open_in_terminal.sh&quot; --directory %f</command>
+	<command>&quot;${HOME}/.local/bin/open_in_terminal.sh&quot; --directory &quot;%f&quot;</command>
 	<description>Example for a custom action</description>
 	<range></range>
 	<patterns>*</patterns>
 	<startup-notify/>
 	<directories/>
+</action>
+<action>
+	<icon>vim</icon>
+	<name>Open file in terminal editor</name>
+	<submenu></submenu>
+	<unique-id>1779182443878988-1</unique-id>
+	<command>&quot;${TERMINAL}&quot; &quot;${EDITOR}&quot; &apos;%f&apos;</command>
+	<description>Open file in terminal editor</description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<other-files/>
+	<text-files/>
+</action>
+<action>
+	<icon>kdiff3</icon>
+	<name>Compare files</name>
+	<submenu></submenu>
+	<unique-id>1779182636883749-2</unique-id>
+	<command>&quot;${TERMINAL}&quot; vimdiff %F</command>
+	<description>Compare differences between files using vimdiff</description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<other-files/>
+	<text-files/>
 </action>
 </actions>
