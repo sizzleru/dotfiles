@@ -29,27 +29,27 @@ while [ "${#}" -gt 0 ]; do
 	esac
 done
 
-# Set default directory to ${HOME} if not available
-: "${directory:="${HOME}"}"
+# Set default directory to ${PWD} or ${HOME} if not available
+: "${directory:="'${PWD:="${HOME}"}'"}"
 
 # check if sftp mounted
 case "${directory}" in
-	"/run/user/$( id -u )/gvfs/sftp:host="*",user=$( id -un )"*)
+	"'/run/user/$( id -u )/gvfs/sftp:host="*",user=$( id -un )"*)
 		SSH_USER="$( echo "${directory}" | grep -oE 'user=[^/]+/' | sed -E -- 's-(^user=|/$)--g' )"
 		SSH_HOST="$( echo "${directory}" | grep -oE 'host=[^,]+,' | sed -E -- 's-(^host=|,$)--g' )"
-		SSH_DIRECTORY="$( echo "${directory}" | sed -E -- "s/.*user=${SSH_USER}//" )"
+		SSH_DIRECTORY="$( echo "${directory}" | sed -E -- "s-(.*user=${SSH_USER}|')--g" )"
 
 		if command -v kitty >/dev/null; then
 			if command -v kitten >/dev/null; then
-				kitty kitty +kitten ssh -t "${SSH_USER}@${SSH_HOST}" "cd ${SSH_DIRECTORY} && exec \${SHELL} -l"
+				kitty kitty +kitten ssh -t "${SSH_USER}@${SSH_HOST}" "cd '${SSH_DIRECTORY}' && exec \${SHELL} -l"
 			else
-				kitty ssh -t "${SSH_USER}@${SSH_HOST}" "cd ${SSH_DIRECTORY} && exec \${SHELL} -l"
+				kitty ssh -t "${SSH_USER}@${SSH_HOST}" "cd '${SSH_DIRECTORY}' && exec \${SHELL} -l"
 			fi
 		else
-			"${TERMINAL?'No terminals available'}" ssh -t "${SSH_USER}@${SSH_HOST}" "cd ${SSH_DIRECTORY} && exec \${SHELL} -l"
+			"${TERMINAL?'No terminals available'}" ssh -t "${SSH_USER}@${SSH_HOST}" "cd '${SSH_DIRECTORY}' && exec \${SHELL} -l"
 		fi
 		;;
 	*)
-		"${TERMINAL?'No terminals available'}" "${directory}"
+		"${TERMINAL?'No terminals available'}" "$( echo ${directory} | sed -E -- "s-(^'|'$)--g" )"
 		;;
 esac
