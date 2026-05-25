@@ -174,7 +174,10 @@ build_prompt() {
 	PS1="${PS1}${MIDDLE_ROW}"
 	PS1="${PS1}${ROW_START}${row_time_display}$( row_fill "${#row_time}" )${ROW_END}"
 	PS1="${PS1}${ROW_START}${row_mount_display}$( row_fill "${#row_mount}" )${ROW_END}"
-	PS1="${PS1}${ROW_START}${row_directory_perms_display}$( row_fill "${#row_directory_perms}" )${ROW_END}"
+	
+	if command -v stat >/dev/null 2>&1; then
+		PS1="${PS1}${ROW_START}${row_directory_perms_display}$( row_fill "${#row_directory_perms}" )${ROW_END}"
+	fi
 	PS1="${PS1}${ROW_START}${row_directory_display}$( row_fill "${#row_directory}" )${ROW_END}"
 	PS1="${PS1}${ROW_START}${row_status_display}$( row_fill "${#row_status}" )${ROW_END}"
 	PS1="${PS1}${END_ROW}"
