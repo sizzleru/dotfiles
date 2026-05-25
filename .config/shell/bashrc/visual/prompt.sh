@@ -22,30 +22,37 @@ GRAY='\[\e[38;2;88;91;112m\]'
 
 RESET='\[\e[0m\]'
 
-# Fgit_allbacks
+# fallbacks
 : "${USERNAME:="$( id -un )"}"
 : "${HOSTNAME:="$( hostname || hostnamectl --static || echo 'localhost' )"}"
 
-#PS1="${EXITCODE}${PINK}${USERNAME}${GRAY}@${BLUE}${HOSTNAME} ${GREEN}\w ${GRAY}${SEPERATOR} ${RESET}"
-
 build_prompt() {
+
+	# saved for later
 	exit_code="${?}"
 
-	INNER_PADDING_LEFT=1
-	INNER_PADDING_RIGHT=1
+	# formatting
+	OUTER_PADDING_LENGTH=1
+	INNER_PADDING_LENGTH=1
 
-	row_username="󰀄  ${USERNAME}"
-	row_username_display="󰀄  ${MAUVE}${USERNAME}${RESET}"
+	OUTER_PADDING="$( printf "%${OUTER_PADDING_LENGTH}s" )"
+	INNER_PADDING="$( printf "%${INNER_PADDING_LENGTH}s" )"
 
-	row_hostname="  ${HOSTNAME}"
-	row_hostname_display="  ${BLUE}${HOSTNAME}${RESET}"
+	row_username_data="${USERNAME}"
+	row_username="󰀄${INNER_PADDING}${row_username_data}"
+	row_username_display="󰀄${INNER_PADDING}${MAUVE}${row_username_data}${RESET}"
 
-	row_os="  $( uname -o )"
-	row_os_display="  ${SAPPHIRE}$( uname -o )${RESET}"
+	row_hostname_data="${HOSTNAME}"
+	row_hostname="${INNER_PADDING}${row_hostname_data}"
+	row_hostname_display="${INNER_PADDING}${BLUE}${row_hostname_data}${RESET}"
 
-	git_branch="$( git branch --show-current 2>/dev/null )"
-	row_git_branch="  ${git_branch}"
-	row_git_branch_display="  ${PINK}${git_branch}${RESET}"
+	row_os_data="$( uname -o )"
+	row_os="${INNER_PADDING}${row_os_data}"
+	row_os_display="${INNER_PADDING}${SAPPHIRE}${row_os_data}${RESET}"
+
+	row_git_branch_data="$( git branch --show-current 2>/dev/null )"
+	row_git_branch="${INNER_PADDING}${row_git_branch_data}"
+	row_git_branch_display="${INNER_PADDING}${PINK}${row_git_branch_data}${RESET}"
 
 	git_staged="$( git diff --cached --name-only 2>/dev/null | wc -l | tr -d ' ' )"
 	git_unstaged="$( git diff --name-only 2>/dev/null | wc -l | tr -d ' ' )"
@@ -54,87 +61,127 @@ build_prompt() {
 	git_behind="$( git rev-list HEAD..@{u} 2>/dev/null | wc -l | tr -d ' ' )"
 	git_all="$(( "${staged}" + "${git_unstaged}" + "${git_untracked}" + "${git_ahead}" + "${git_behind}" ))"
 
-	row_git_status=' '
-	row_git_status_display=' '
+	row_git_status="${INNER_PADDING}"
+	row_git_status_display="${INNER_PADDING}"
 	if [ "${git_staged}" -gt 0 ]; then
-		row_git_status="${row_git_status} ●${git_staged}"
-		row_git_status_display="${row_git_status_display} ${GREEN}●${RESET}${git_staged}"
+		row_git_status="${row_git_status}●${git_staged} "
+		row_git_status_display="${row_git_status_display}${GREEN}●${RESET}${git_staged} "
 	fi
 
 	if [ "${git_unstaged}" -gt 0 ]; then
-		row_git_status="${row_git_status} ●${git_unstaged}"
-		row_git_status_display="${row_git_status_display} ${YELLOW}●${RESET}${git_unstaged}"
+		row_git_status="${row_git_status}●${git_unstaged} "
+		row_git_status_display="${row_git_status_display}${YELLOW}●${RESET}${git_unstaged} "
 	fi
 
 	if [ "${git_untracked}" -gt 0 ]; then
-		row_git_status="${row_git_status} ●${git_untracked}"
-		row_git_status_display="${row_git_status_display} ${RED}●${RESET}${git_untracked}"
+		row_git_status="${row_git_status}●${git_untracked} "
+		row_git_status_display="${row_git_status_display}${RED}●${RESET}${git_untracked} "
 	fi
 
 	if [ "${git_ahead}" -gt 0 ]; then
-		row_git_status="${row_git_status} ●${git_ahead}"
-		row_git_status_display="${row_git_status_display} ${BLUE}↑${RESET}${git_ahead}"
+		row_git_status="${row_git_status}●${git_ahead} "
+		row_git_status_display="${row_git_status_display}${BLUE}↑${RESET}${git_ahead} "
 	fi
 
 	if [ "${git_behind}" -gt 0 ]; then
-		row_git_status="${row_git_status} ●${git_behind}"
-		row_git_status_display="${row_git_status_display} ${PINK}↓${RESET}${git_behind}"
+		row_git_status="${row_git_status}●${git_behind} "
+		row_git_status_display="${row_git_status_display}${PINK}↓${RESET}${git_behind} "
 	fi
 
-	row_time="  $( date '+%r' )"
-	row_time_display="  ${OVERLAY}$( date '+%r' )${RESET}"
+	row_git_status="$( printf '%s\n' "${row_git_status}" | sed 's/ $//' )"
+	row_git_status_display="$( printf '%s\n' "${row_git_status_display}" | sed 's/ $//' )"
 
-	row_mount="󰋊  $( df "${PWD}" | awk 'NR==2 { print $NF }' )"
-	row_mount_display="󰋊  ${SAPPHIRE}$( df "${PWD}" | awk 'NR==2 { print $NF }' )${RESET}"
+	row_time_data="$( date '+%r' )"
+	row_time="  ${row_time_data}"
+	row_time_display="  ${OVERLAY}${row_time_data}${RESET}"
 
-	row_directory="  ${PWD}"
-	row_directory_display="  ${BLUE}${PWD}${RESET}"
+	row_mount_data="$( df "${PWD}" | awk 'NR==2 { print $NF }' )"
+	row_mount="󰋊${INNER_PADDING}${row_mount_data}"
+	row_mount_display="󰋊${INNER_PADDING}${SAPPHIRE}${row_mount_data}${RESET}"
 
-	row_status="󰈆  ${exit_code}"
-	row_status_display="󰈆  $( if [ "${exit_code}" -eq 0 ]; then printf '%s\n' "${GREEN}${exit_code}${RESET}"; else printf '%s\n' "${RED}${exit_code}${RESET}"; fi )"
+	directory_user="$( stat -c '%u' "${PWD}" || stat -f '%Su' "${PWD}" )"
+	directory_group="$( stat -c '%g' "${PWD}" || stat -f '%Sg' "${PWD}" )"
+	directory_perms="$( stat -c '%a' "${PWD}" || stat -f '%Sp' "${PWD}" )"
+
+	row_directory_perms="󰈆${INNER_PADDING}${directory_perms}"
+	row_directory_perms_display="󰈆${INNER_PADDING}${OVERLAY}${directory_perms}${RESET}"
+
+	if [ "${directory_user}" != "$( id -u )" ] || [ "${directory_group}" != "$( id -g )" ]; then
+		row_directory_perms="${row_directory_perms} (${directory_user}:${directory_group})"
+		if [ "${directory_user}" -eq 0 ]; then
+			row_directory_perms_display="${row_directory_perms_display} (${MAUVE}${directory_user}${RESET}:${MAUVE}${directory_group}${RESET})"
+		else
+			row_directory_perms_display="${row_directory_perms_display} (${PEACH}${directory_user}${RESET}:${PEACH}${directory_group}${RESET})"
+		fi
+	fi
+
+	row_directory_data="${PWD}"
+	row_directory="${INNER_PADDING}${row_directory_data}"
+	row_directory_display="${INNER_PADDING}${BLUE}${row_directory_data}${RESET}"
+
+	row_status_data="${exit_code}"
+	row_status="󰈆${INNER_PADDING}${row_status_data}"
+	row_status_display="󰈆${INNER_PADDING}"
+	if [ "${row_status_data}" -eq 0 ]; then
+		row_status_display="${row_status_display}${GREEN}${row_status_data}${RESET}"
+	else
+		row_status_display="${row_status_display}${RED}${row_status_data}${RESET}"
+	fi
 
 	max_row_width="$(
-		printf '%s %s %s %s %s %s %s %s %s\n' \
+		printf '%s %s %s %s %s %s %s %s %s %s\n' \
 			"${#row_username}" \
 			"${#row_hostname}" \
 			"${#row_os}" \
 			"${#row_git_branch}" \
-			"${row_git_status}" \
+			"${#row_git_status}" \
 			"${#row_time}" \
 			"${#row_mount}" \
+			"${#row_directory_perms}" \
 			"${#row_directory}" \
 			"${#row_status}" | tr ' ' '\n' | sort -rn | head -n 1
 	)"
 
-	total_row_width="$(( "${max_row_width}" + "${INNER_PADDING_LEFT}" + "${INNER_PADDING_RIGHT}" ))"
+	total_row_width="$(( "${max_row_width}" + 2 * "${OUTER_PADDING_LENGTH}" ))"
+	TOP_ROW="${TEXT}┌$( printf '%.0s─' $( seq 1 "${total_row_width}" ) )┐${RESET}\n"
+	MIDDLE_ROW="${TEXT}├$( printf '%.0s─' $( seq 1 "${total_row_width}" ) )┤${RESET}\n"
+	END_ROW="${TEXT}├$( printf '%.0s─' $( seq 1 "${total_row_width}" ) )┘${RESET}\n"
+	PROMPT_ROW="${TEXT}╰─◆─▶${RESET} "
+
+	ROW_START="${TEXT}│${RESET}${OUTER_PADDING}"
+	row_fill() {
+		printf "%$(( "${max_row_width}" - "${1}" ))s"
+	}
+	ROW_END="${OUTER_PADDING}${TEXT}│${RESET}\n"
 
 	PS0=''
 	PS1=''
 
-	PS1="${PS1}${TEXT}┌$( printf '%.0s─' $( seq 1 "${total_row_width}" ) )┐${RESET}\n"
-	PS1="${PS1}${TEXT}│${RESET} ${row_username_display} $( printf "%$(( "${max_row_width}" - "${#row_username}" ))s" )${TEXT}│${RESET}\n"
-	PS1="${PS1}${TEXT}│${RESET} ${row_hostname_display} $( printf "%$(( "${max_row_width}" - "${#row_hostname}" ))s" )${TEXT}│${RESET}\n"
-	PS1="${PS1}${TEXT}│${RESET} ${row_os} $( printf "%$(( "${max_row_width}" - "${#row_os}" ))s" )${TEXT}│${RESET}\n"
+	PS1="${PS1}${TOP_ROW}"
+	PS1="${PS1}${ROW_START}${row_username_display}$( row_fill "${#row_username}" )${ROW_END}"
+	PS1="${PS1}${ROW_START}${row_hostname_display}$( row_fill "${#row_hostname}" )${ROW_END}"
+	PS1="${PS1}${ROW_START}${row_os_display}$( row_fill "${#row_os}" )${ROW_END}"
 
 	# git
-	if [ -n "${git_branch}" ]; then
-		PS1="${PS1}├$( printf '%.0s─' $( seq 1 "${total_row_width}" ) )┤\n"
-		PS1="${PS1}│ ${row_git_branch} $( printf "%$(( "${max_row_width}" - "${#row_git_branch}" ))s" )│\n"
+	if [ -n "${row_git_branch_data}" ] && $( git status >/dev/null 2>&1 ); then
+		PS1="${PS1}${MIDDLE_ROW}"
+		PS1="${PS1}${ROW_START}${row_git_branch_display}$( row_fill "${#row_git_branch}" )${ROW_END}"
 		if [ "${git_all}" -gt 0 ]; then
-			PS1="${PS1}│ ${row_git_status_display} $( printf "%$(( "${max_row_width}" - "${#row_git_status}" ))s" )│\n"
+			PS1="${PS1}${ROW_START}${row_git_status_display}$( row_fill "${#row_git_status}" )${ROW_END}"
 		fi
 	fi
 
-	PS1="${PS1}├$( printf '%.0s─' $( seq 1 "${total_row_width}" ) )┤\n"
-	PS1="${PS1}│ ${row_time_display} $( printf "%$(( "${max_row_width}" - "${#row_time}" ))s" )│\n"
-	PS1="${PS1}│ ${row_mount_display} $( printf "%$(( "${max_row_width}" - "${#row_mount}" ))s" )│\n"
-	PS1="${PS1}│ ${row_directory_display} $( printf "%$(( "${max_row_width}" - "${#row_directory}" ))s" )│\n"
-	PS1="${PS1}│ ${row_status_display} $( printf "%$(( "${max_row_width}" - "${#row_status}" ))s" )│\n"
-
-
-	PS1="${PS1}├$( printf '%.0s─' $( seq 1 "${total_row_width}" ) )┘\n"
-	PS1="${PS1}╰─◆─▶ "
+	PS1="${PS1}${MIDDLE_ROW}"
+	PS1="${PS1}${ROW_START}${row_time_display}$( row_fill "${#row_time}" )${ROW_END}"
+	PS1="${PS1}${ROW_START}${row_mount_display}$( row_fill "${#row_mount}" )${ROW_END}"
+	PS1="${PS1}${ROW_START}${row_directory_perms_display}$( row_fill "${#row_directory_perms}" )${ROW_END}"
+	PS1="${PS1}${ROW_START}${row_directory_display}$( row_fill "${#row_directory}" )${ROW_END}"
+	PS1="${PS1}${ROW_START}${row_status_display}$( row_fill "${#row_status}" )${ROW_END}"
+	PS1="${PS1}${END_ROW}"
+	PS1="${PS1}${PROMPT_ROW}"
 
 	PS2="  │ "
+
+	unset row_fill
 }
 PROMPT_COMMAND='build_prompt'
