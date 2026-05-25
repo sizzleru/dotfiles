@@ -103,15 +103,17 @@ build_prompt() {
 	directory_group="$( stat -c '%g' "${PWD}" || stat -f '%Sg' "${PWD}" )"
 	directory_perms="$( stat -c '%a' "${PWD}" || stat -f '%Sp' "${PWD}" )"
 
-	row_directory_perms="󰈆${INNER_PADDING}${directory_perms}"
-	row_directory_perms_display="󰈆${INNER_PADDING}${OVERLAY}${directory_perms}${RESET}"
+	if command -v stat >/dev/null 2>&1; then
+		row_directory_perms="󰈆${INNER_PADDING}${directory_perms}"
+		row_directory_perms_display="󰈆${INNER_PADDING}${OVERLAY}${directory_perms}${RESET}"
 
-	if [ "${directory_user}" != "$( id -u )" ] || [ "${directory_group}" != "$( id -g )" ]; then
-		row_directory_perms="${row_directory_perms} (${directory_user}:${directory_group})"
-		if [ "${directory_user}" -eq 0 ]; then
-			row_directory_perms_display="${row_directory_perms_display} (${MAUVE}${directory_user}${RESET}:${MAUVE}${directory_group}${RESET})"
-		else
-			row_directory_perms_display="${row_directory_perms_display} (${PEACH}${directory_user}${RESET}:${PEACH}${directory_group}${RESET})"
+		if [ "${directory_user}" != "$( id -u )" ] || [ "${directory_group}" != "$( id -g )" ]; then
+			row_directory_perms="${row_directory_perms} (${directory_user}:${directory_group})"
+			if [ "${directory_user}" -eq 0 ]; then
+				row_directory_perms_display="${row_directory_perms_display} (${MAUVE}${directory_user}${RESET}:${MAUVE}${directory_group}${RESET})"
+			else
+				row_directory_perms_display="${row_directory_perms_display} (${PEACH}${directory_user}${RESET}:${PEACH}${directory_group}${RESET})"
+			fi
 		fi
 	fi
 
