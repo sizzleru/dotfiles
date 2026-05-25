@@ -163,7 +163,7 @@ build_prompt() {
 	PS1="${PS1}${ROW_START}${row_os_display}$( row_fill "${#row_os}" )${ROW_END}"
 
 	# git
-	if [ -n "${git_branch}" ] && $( git status >/dev/null 2>&1 ); then
+	if [ -n "${row_git_branch_data}" ] && $( git status >/dev/null 2>&1 ); then
 		PS1="${PS1}${MIDDLE_ROW}"
 		PS1="${PS1}${ROW_START}${row_git_branch_display}$( row_fill "${#row_git_branch}" )${ROW_END}"
 		if [ "${git_all}" -gt 0 ]; then
