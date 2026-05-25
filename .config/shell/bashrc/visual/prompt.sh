@@ -22,7 +22,7 @@ GRAY='\[\e[38;2;88;91;112m\]'
 
 RESET='\[\e[0m\]'
 
-# Fallbacks
+# Fgit_allbacks
 : "${USERNAME:="$( id -un )"}"
 : "${HOSTNAME:="$( hostname || hostnamectl --static || echo 'localhost' )"}"
 
@@ -43,42 +43,42 @@ build_prompt() {
 	row_os="  $( uname -o )"
 	row_os_display="  ${SAPPHIRE}$( uname -o )${RESET}"
 
-	staged="$( git diff --cached --name-only 2>/dev/null | wc -l | tr -d ' ' )"
-	unstaged="$( git diff --name-only 2>/dev/null | wc -l | tr -d ' ' )"
-	untracked="$( git ls-files --others --exclude-standard 2>/dev/null | wc -l | tr -d ' ' )"
-	ahead="$( git rev-list @{u}..HEAD 2>/dev/null | wc -l | tr -d ' ' )"
-	behind="$( git rev-list HEAD..@{u} 2>/dev/null | wc -l | tr -d ' ' )"
-
-
 	git_branch="$( git branch --show-current 2>/dev/null )"
 	row_git_branch="  ${git_branch}"
 	row_git_branch_display="  ${PINK}${git_branch}${RESET}"
 
-	row_git_status=" "
-	row_git_status_display=" "
-	if [ "${staged}" -gt 0 ]; then
-		row_git_status="${row_git_status} ●${staged}"
-		row_git_status_display="${row_git_status_display} ${GREEN}●${RESET}${staged}"
+	git_staged="$( git diff --cached --name-only 2>/dev/null | wc -l | tr -d ' ' )"
+	git_unstaged="$( git diff --name-only 2>/dev/null | wc -l | tr -d ' ' )"
+	git_untracked="$( git ls-files --others --exclude-standard 2>/dev/null | wc -l | tr -d ' ' )"
+	git_ahead="$( git rev-list @{u}..HEAD 2>/dev/null | wc -l | tr -d ' ' )"
+	git_behind="$( git rev-list HEAD..@{u} 2>/dev/null | wc -l | tr -d ' ' )"
+	git_all="$(( "${staged}" + "${git_unstaged}" + "${git_untracked}" + "${git_ahead}" + "${git_behind}" ))"
+
+	row_git_status=' '
+	row_git_status_display=' '
+	if [ "${git_staged}" -gt 0 ]; then
+		row_git_status="${row_git_status} ●${git_staged}"
+		row_git_status_display="${row_git_status_display} ${GREEN}●${RESET}${git_staged}"
 	fi
 
-	if [ "${unstaged}" -gt 0 ]; then
-		row_git_status="${row_git_status} ●${unstaged}"
-		row_git_status_display="${row_git_status_display} ${YELLOW}●${RESET}${unstaged}"
+	if [ "${git_unstaged}" -gt 0 ]; then
+		row_git_status="${row_git_status} ●${git_unstaged}"
+		row_git_status_display="${row_git_status_display} ${YELLOW}●${RESET}${git_unstaged}"
 	fi
 
-	if [ "${untracked}" -gt 0 ]; then
-		row_git_status="${row_git_status} ●${untracked}"
-		row_git_status_display="${row_git_status_display} ${RED}●${RESET}${untracked}"
+	if [ "${git_untracked}" -gt 0 ]; then
+		row_git_status="${row_git_status} ●${git_untracked}"
+		row_git_status_display="${row_git_status_display} ${RED}●${RESET}${git_untracked}"
 	fi
 
-	if [ "${ahead}" -gt 0 ]; then
-		row_git_status="${row_git_status} ●${ahead}"
-		row_git_status_display="${row_git_status_display} ${BLUE}↑${RESET}${ahead}"
+	if [ "${git_ahead}" -gt 0 ]; then
+		row_git_status="${row_git_status} ●${git_ahead}"
+		row_git_status_display="${row_git_status_display} ${BLUE}↑${RESET}${git_ahead}"
 	fi
 
-	if [ "${behind}" -gt 0 ]; then
-		row_git_status="${row_git_status} ●${behind}"
-		row_git_status_display="${row_git_status_display} ${PINK}↓${RESET}${behind}"
+	if [ "${git_behind}" -gt 0 ]; then
+		row_git_status="${row_git_status} ●${git_behind}"
+		row_git_status_display="${row_git_status_display} ${PINK}↓${RESET}${git_behind}"
 	fi
 
 	row_time="  $( date '+%r' )"
@@ -108,15 +108,8 @@ build_prompt() {
 
 	total_row_width="$(( "${max_row_width}" + "${INNER_PADDING_LEFT}" + "${INNER_PADDING_RIGHT}" ))"
 
-	if [ -n "${PROMPT_STARTED}" ]; then
-		PS1='\n'
-	else
-		PS1=''
-	fi
-
-	PROMPT_STARTED=1
-
 	PS0=''
+	PS1=''
 
 	PS1="${PS1}${TEXT}┌$( printf '%.0s─' $( seq 1 "${total_row_width}" ) )┐${RESET}\n"
 	PS1="${PS1}${TEXT}│${RESET} ${row_username_display} $( printf "%$(( "${max_row_width}" - "${#row_username}" ))s" )${TEXT}│${RESET}\n"
@@ -127,7 +120,9 @@ build_prompt() {
 	if [ -n "${git_branch}" ]; then
 		PS1="${PS1}├$( printf '%.0s─' $( seq 1 "${total_row_width}" ) )┤\n"
 		PS1="${PS1}│ ${row_git_branch} $( printf "%$(( "${max_row_width}" - "${#row_git_branch}" ))s" )│\n"
-		PS1="${PS1}│ ${row_git_status_display} $( printf "%$(( "${max_row_width}" - "${#row_git_status}" ))s" )│\n"
+		if [ "${git_all}" -gt 0 ]; then
+			PS1="${PS1}│ ${row_git_status_display} $( printf "%$(( "${max_row_width}" - "${#row_git_status}" ))s" )│\n"
+		fi
 	fi
 
 	PS1="${PS1}├$( printf '%.0s─' $( seq 1 "${total_row_width}" ) )┤\n"
