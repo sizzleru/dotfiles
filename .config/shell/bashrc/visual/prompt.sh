@@ -99,11 +99,11 @@ build_prompt() {
 	row_mount="󰋊${INNER_PADDING}${row_mount_data}"
 	row_mount_display="󰋊${INNER_PADDING}${SAPPHIRE}${row_mount_data}${RESET}"
 
-	directory_user="$( stat -c '%u' "${PWD}" || stat -f '%Su' "${PWD}" )"
-	directory_group="$( stat -c '%g' "${PWD}" || stat -f '%Sg' "${PWD}" )"
-	directory_perms="$( stat -c '%a' "${PWD}" || stat -f '%Sp' "${PWD}" )"
-
 	if command -v stat >/dev/null 2>&1; then
+		directory_user="$( stat -c '%u' "${PWD}" || stat -f '%Su' "${PWD}" )"
+		directory_group="$( stat -c '%g' "${PWD}" || stat -f '%Sg' "${PWD}" )"
+		directory_perms="$( stat -c '%a' "${PWD}" || stat -f '%Sp' "${PWD}" )"
+
 		row_directory_perms="󰈆${INNER_PADDING}${directory_perms}"
 		row_directory_perms_display="󰈆${INNER_PADDING}${OVERLAY}${directory_perms}${RESET}"
 
