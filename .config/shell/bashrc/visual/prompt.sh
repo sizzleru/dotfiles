@@ -18,7 +18,7 @@ SEPERATOR="$( if [ "${TERM}" == 'linux' ]; then echo '>'; else echo '❯'; fi )"
 : "${USERNAME:="$( id -un )"}"
 : "${HOSTNAME:="$( hostname || hostnamectl --static || echo 'localhost' )"}"
 
-PS1="${EXITCODE}${PINK}${USERNAME}${GRAY}@${BLUE}${HOSTNAME} ${GREEN}\w ${GRAY}${SEPERATOR} ${RESET}"
+#PS1="${EXITCODE}${PINK}${USERNAME}${GRAY}@${BLUE}${HOSTNAME} ${GREEN}\w ${GRAY}${SEPERATOR} ${RESET}"
 
 build_prompt() {
 	exit_code="${?}"
@@ -63,7 +63,17 @@ build_prompt() {
 
 	total_row_width="$(( "${max_row_width}" + "${INNER_PADDING_LEFT}" + "${INNER_PADDING_RIGHT}" ))"
 
-	PS1="┌$( printf '%.0s─' $( seq 1 "${total_row_width}" ) )┐\n"
+	if [ -n "${PROMPT_STARTED}" ]; then
+		PS1='\n'
+	else
+		PS1=''
+	fi
+
+	PROMPT_STARTED=1
+
+	PS0='\n'
+
+	PS1="${PS1}┌$( printf '%.0s─' $( seq 1 "${total_row_width}" ) )┐\n"
 	PS1="${PS1}│ ${row_username_display} $( printf "%$(( "${max_row_width}" - "${#row_username}" ))s" )│\n"
 	PS1="${PS1}│ ${row_hostname_display} $( printf "%$(( "${max_row_width}" - "${#row_hostname}" ))s" )│\n"
 	PS1="${PS1}│ ${row_os} $( printf "%$(( "${max_row_width}" - "${#row_os}" ))s" )│\n"
@@ -72,6 +82,9 @@ build_prompt() {
 	PS1="${PS1}│ ${row_mount_display} $( printf "%$(( "${max_row_width}" - "${#row_mount}" ))s" )│\n"
 	PS1="${PS1}│ ${row_directory_display} $( printf "%$(( "${max_row_width}" - "${#row_directory}" ))s" )│\n"
 	PS1="${PS1}│ ${row_status_display} $( printf "%$(( "${max_row_width}" - "${#row_status}" ))s" )│\n"
-	PS1="${PS1}└$( printf '%.0s─' $( seq 1 "${total_row_width}" ) )┘\n"
+	PS1="${PS1}├$( printf '%.0s─' $( seq 1 "${total_row_width}" ) )┘\n"
+	PS1="${PS1}╰─◆─▶ "
+
+	PS2="  │ "
 }
 PROMPT_COMMAND='build_prompt'
