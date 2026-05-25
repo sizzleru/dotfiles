@@ -1,20 +1,100 @@
 #!/bin/sh
 
-pacman_packages="$( cat /var/log/pacman.log )"																			# whole file
-pacman_packages="$( printf '%s\n' "${pacman_packages}" | grep -- ' -S ' )"												# User manually installed commands
-pacman_packages="$( printf '%s\n' "${pacman_packages}" | grep -o -- "'.*'" )"											# Strip everything besides the command
-pacman_packages="$( printf '%s\n' "${pacman_packages}" | sed "s/'//g" )"												# Strip the single quotes
-pacman_packages="$( printf '%s\n' "${pacman_packages}" | sed -E -- 's&pacman -S( (-?-[a-z]*( \*| /[^ ]*)*))* ?&&' )"	# Strip the command and leave just the packages
-pacman_packages="$( printf '%s\n' "${pacman_packages}" | xargs -n 1 )"													# split everything into a stream of packages
-pacman_packages="$( printf '%s\n' "${pacman_packages}" | sed -E 's|.*/||' )"											# remove the source repo and just leave the package name
-pacman_packages="$( printf '%s\n' "${pacman_packages}" | grep -oE '^([[:alnum:]]|-|\.)*' )"								# remove any version numberings
+log() {
 
-aur_packages="$( cat /var/log/pacman.log )"												# whole file
-aur_packages="$( printf '%s\n' "${aur_packages}" | grep -E -- ".cache/(paru|yay)" )"	# grab by aur helpers name (paru or yay for now)
-aur_packages="$( printf '%s\n' "${aur_packages}" | awk -F/ '{ print $(NF-1) }' )"		# grab the package name by folder name
+	RED=$'\033[31m'
+	GREEN=$'\033[32m'
+	YELLOW=$'\033[33m'
+	BLUE=$'\033[34m'
+	WHITE=$'\033[37m'
+	RST=$'\033[0m'
 
-all_packages="$( { printf '%s\n' "${pacman_packages}"; printf '%s\n' "${aur_packages}"; } )"	# combine the pacman with aur packages
-all_packages="$( printf '%s\n' "${all_packages}" | pacman -Qq - 2>/dev/null )"					# check if they are still installed
-all_packages="$( printf '%s\n' "${all_packages}" | sort -u )"									# sort the results (chronological isn't helpful due to upgrades, reinstalls, etc.)
+	case "${2:-INFO}" in
+		INFO) message_colour="${BLUE}" ;;
+		WARN) message_colour="${YELLOW}" ;;
+		SUCCESS) message_colour="${GREEN}" ;;
+		ERROR) message_colour="${RED}" ;;
+		*) message_colour="${WHITE}" ;;
+	esac
 
-printf '%s\n' "${all_packages}"	# Get a list of all manually installed packages
+	if [ "${2}" == 'ERROR' ] || [ "${verbose_logging}" == 'true' ]; then
+		printf '[%s] [%s] %s\n' "$( date )" "${2:-INFO}" "${message_colour}${1}${RST}"
+	fi
+}
+
+usage() {
+	log "Usage: ${0} [-p|--pacman] [-a|--aur] [-r|--readme] [-v|--verbose] [-h|--help]" 'ERROR' >&2
+	exit 1
+}
+
+log 'Parsing parameters'
+while [ "${#}" -gt 0 ]; do
+	case "${1}" in
+		-p|--pacman)
+			check_pacman_packages='true'
+			shift ;;
+		-a|--aur)
+			check_aur_packages='true'
+			shift ;;
+		-r|--readme)
+			filter_readme_packages='true'
+			shift ;;
+		-v|--vebose)
+			verbose_logging='true'
+			shift ;;
+		-h|--help)
+			usage ;;
+		--)
+			shift
+			break ;;
+		*)
+			break ;;
+	esac
+done
+
+log 'checking pacman and aur flags to set defaults'
+if [ -z "${check_pacman_packages}" ] && [ -z "${check_aur_packages}" ]; then
+	check_pacman_packages='true'
+	check_aur_packages='true'
+fi
+
+log 'grabbing a list of pacman packages'
+if [ "${check_pacman_packages}" == 'true' ]; then
+	pacman_packages="$( cat /var/log/pacman.log )";																			log 'Whole file'
+	pacman_packages="$( printf '%s\n' "${pacman_packages}" | grep -- ' -S ' )";												log 'User manually installed commands'
+	pacman_packages="$( printf '%s\n' "${pacman_packages}" | grep -o -- "'.*'" )";											log 'Strip everything besides the command'
+	pacman_packages="$( printf '%s\n' "${pacman_packages}" | sed "s/'//g" )";												log 'Strip the single quotes'
+	pacman_packages="$( printf '%s\n' "${pacman_packages}" | sed -E -- 's&pacman -S( (-?-[a-z]*( \*| /[^ ]*)*))* ?&&' )";	log 'Strip the command and leave just the packages'
+	pacman_packages="$( printf '%s\n' "${pacman_packages}" | xargs -n 1 )";													log 'split everything into a stream of packages'
+	pacman_packages="$( printf '%s\n' "${pacman_packages}" | sed -E 's|.*/||' )";											log 'remove the source repo and just leave the package name'
+	pacman_packages="$( printf '%s\n' "${pacman_packages}" | grep -oE '^([[:alnum:]]|-|\.)*' )";							log 'remove any version numberings'
+fi
+
+log 'grabbing a list of aur packages (paru and yay)'
+if [ "${check_aur_packages}" == 'true' ]; then
+	aur_packages="$( cat /var/log/pacman.log )";											log 'whole file'
+	aur_packages="$( printf '%s\n' "${aur_packages}" | grep -E -- ".cache/(paru|yay)" )";	log 'grab by aur helpers name (paru or yay for now)'
+	aur_packages="$( printf '%s\n' "${aur_packages}" | awk -F/ '{ print $(NF-1) }' )";		log 'grab the package name by folder name'
+fi
+
+log 'combining both pacman and aur packages'
+all_packages="$( { printf '%s\n' "${pacman_packages}"; printf '%s\n' "${aur_packages}"; } )";	log 'combine the pacman with aur packages'
+all_packages="$( printf '%s\n' "${all_packages}" | pacman -Qq - 2>/dev/null )";					log 'check if they are still installed'
+all_packages="$( printf '%s\n' "${all_packages}" | sort -u )";									log "sort the results (chronological isn't helpful due to upgrades, reinstalls, etc.)"
+
+log 'filtering by readme packages if necessary'
+if [ "${filter_readme_packages}" == 'true' ]; then
+
+	log 'grabbing contents to filter from the readme'
+	while IFS= read -rd '' readme_file; do
+		if [ -r "${readme_file}" ]; then
+			readme_packages="${readme_packages:+"${readme_packages}|"}$( grep -Eio '`([a-z0-9]|-)+`' "${readme_file}"  | sed -E 's/(^`|`$)//g' | paste -sd '|' )"
+		fi
+	done < <( cat /etc/passwd | awk -F: '{ print $6 }' | sort -u | xargs -I{} find {} -maxdepth 1 -name "README.md" -print0 2>/dev/null )
+
+	log 'filtering out the packages from the readme contents'
+	all_packages="$( printf '%s\n' "${all_packages}" | grep -vE -- "${readme_packages}" )"
+fi
+
+log 'displaying all results'
+printf '%s\n' "${all_packages}" # Get a list of all manually installed packages
