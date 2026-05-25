@@ -99,19 +99,21 @@ build_prompt() {
 	row_mount="󰋊${INNER_PADDING}${row_mount_data}"
 	row_mount_display="󰋊${INNER_PADDING}${SAPPHIRE}${row_mount_data}${RESET}"
 
-	directory_user="$( stat -c '%u' "${PWD}" || stat -f '%Su' "${PWD}" )"
-	directory_group="$( stat -c '%g' "${PWD}" || stat -f '%Sg' "${PWD}" )"
-	directory_perms="$( stat -c '%a' "${PWD}" || stat -f '%Sp' "${PWD}" )"
+	if command -v stat >/dev/null 2>&1; then
+		directory_user="$( stat -c '%u' "${PWD}" || stat -f '%Su' "${PWD}" )"
+		directory_group="$( stat -c '%g' "${PWD}" || stat -f '%Sg' "${PWD}" )"
+		directory_perms="$( stat -c '%a' "${PWD}" || stat -f '%Sp' "${PWD}" )"
 
-	row_directory_perms="󰈆${INNER_PADDING}${directory_perms}"
-	row_directory_perms_display="󰈆${INNER_PADDING}${OVERLAY}${directory_perms}${RESET}"
+		row_directory_perms="󰈆${INNER_PADDING}${directory_perms}"
+		row_directory_perms_display="󰈆${INNER_PADDING}${OVERLAY}${directory_perms}${RESET}"
 
-	if [ "${directory_user}" != "$( id -u )" ] || [ "${directory_group}" != "$( id -g )" ]; then
-		row_directory_perms="${row_directory_perms} (${directory_user}:${directory_group})"
-		if [ "${directory_user}" -eq 0 ]; then
-			row_directory_perms_display="${row_directory_perms_display} (${MAUVE}${directory_user}${RESET}:${MAUVE}${directory_group}${RESET})"
-		else
-			row_directory_perms_display="${row_directory_perms_display} (${PEACH}${directory_user}${RESET}:${PEACH}${directory_group}${RESET})"
+		if [ "${directory_user}" != "$( id -u )" ] || [ "${directory_group}" != "$( id -g )" ]; then
+			row_directory_perms="${row_directory_perms} (${directory_user}:${directory_group})"
+			if [ "${directory_user}" -eq 0 ]; then
+				row_directory_perms_display="${row_directory_perms_display} (${MAUVE}${directory_user}${RESET}:${MAUVE}${directory_group}${RESET})"
+			else
+				row_directory_perms_display="${row_directory_perms_display} (${PEACH}${directory_user}${RESET}:${PEACH}${directory_group}${RESET})"
+			fi
 		fi
 	fi
 
@@ -174,7 +176,10 @@ build_prompt() {
 	PS1="${PS1}${MIDDLE_ROW}"
 	PS1="${PS1}${ROW_START}${row_time_display}$( row_fill "${#row_time}" )${ROW_END}"
 	PS1="${PS1}${ROW_START}${row_mount_display}$( row_fill "${#row_mount}" )${ROW_END}"
-	PS1="${PS1}${ROW_START}${row_directory_perms_display}$( row_fill "${#row_directory_perms}" )${ROW_END}"
+	
+	if command -v stat >/dev/null 2>&1; then
+		PS1="${PS1}${ROW_START}${row_directory_perms_display}$( row_fill "${#row_directory_perms}" )${ROW_END}"
+	fi
 	PS1="${PS1}${ROW_START}${row_directory_display}$( row_fill "${#row_directory}" )${ROW_END}"
 	PS1="${PS1}${ROW_START}${row_status_display}$( row_fill "${#row_status}" )${ROW_END}"
 	PS1="${PS1}${END_ROW}"
