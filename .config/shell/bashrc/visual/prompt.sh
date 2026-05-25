@@ -33,7 +33,7 @@ build_prompt() {
 
 	# formatting
 	OUTER_PADDING_LENGTH=1
-	INNER_PADDING_LENGTH=1
+	INNER_PADDING_LENGTH=2
 
 	OUTER_PADDING="$( printf "%${OUTER_PADDING_LENGTH}s" )"
 	INNER_PADDING="$( printf "%${INNER_PADDING_LENGTH}s" )"
@@ -92,8 +92,8 @@ build_prompt() {
 	row_git_status_display="$( printf '%s\n' "${row_git_status_display}" | sed 's/ $//' )"
 
 	row_time_data="$( date '+%r' )"
-	row_time="  ${row_time_data}"
-	row_time_display="  ${OVERLAY}${row_time_data}${RESET}"
+	row_time="${INNER_PADDING}${row_time_data}"
+	row_time_display="${INNER_PADDING}${OVERLAY}${row_time_data}${RESET}"
 
 	row_mount_data="$( df "${PWD}" | awk 'NR==2 { print $NF }' )"
 	row_mount="󰋊${INNER_PADDING}${row_mount_data}"
