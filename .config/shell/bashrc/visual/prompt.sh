@@ -32,8 +32,8 @@ build_prompt() {
 	row_hostname="  ${HOSTNAME}"
 	row_hostname_display="  ${PINK}${HOSTNAME}${RESET}"
 
-	row_os="  $( uname -r )"
-	row_os_display="  ${CYAN}$( uname -r )${RESET}"
+	row_os="  $( uname -o )"
+	row_os_display="  ${CYAN}$( uname -o )${RESET}"
 
 	row_time="  $( date '+%r' )"
 	row_time_display="  ${PINK}$( date '+%r' )${RESET}"
