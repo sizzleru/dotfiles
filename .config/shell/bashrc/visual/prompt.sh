@@ -117,7 +117,7 @@ build_prompt() {
 		fi
 	fi
 
-	row_directory_data="${PWD}"
+	row_directory_data="$( printf '~%s\n' "${PWD#${HOME}}" )"
 	row_directory="${INNER_PADDING}${row_directory_data}"
 	row_directory_display="${INNER_PADDING}${BLUE}${row_directory_data}${RESET}"
 
