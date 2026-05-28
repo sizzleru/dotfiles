@@ -8,6 +8,9 @@
 !.gitignore
 !README.md
 
+# deploy
+!.local/bin/deploy
+
 # dunst
 !.config/dunst
 !.config/dunst/*
