@@ -7,3 +7,6 @@
 !.local/bin/
 !.gitignore
 !README.md
+
+# deploy
+!.local/bin/deploy

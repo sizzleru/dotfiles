@@ -1,0 +1,113 @@
+#!/bin/sh
+
+log() {
+
+	RED=$'\033[31m'
+	GREEN=$'\033[32m'
+	YELLOW=$'\033[33m'
+	BLUE=$'\033[34m'
+	WHITE=$'\033[37m'
+	RST=$'\033[0m'
+
+	case "${2:-INFO}" in
+		INFO|STDOUT) message_colour="${BLUE}" ;;
+		WARN) message_colour="${YELLOW}" ;;
+		SUCCESS) message_colour="${GREEN}" ;;
+		ERROR) message_colour="${RED}" ;;
+		*) message_colour="${WHITE}" ;;
+	esac
+
+	if [ "${2}" == 'STDOUT' ]; then
+		printf '[INFO] %s\n' "${message_colour}${1}${RST}"
+		return
+	fi
+
+	if [ "${2}" == 'ERROR' ] || [ "${verbose_logging}" == 'true' ] || [ "${2}" == 'STDOUT' ]; then
+		printf '[%s] [%s] %s\n' "$( date )" "${2:-INFO}" "${message_colour}${1}${RST}"
+	fi
+
+	unset RED GREEN YELLOW BLUE WHITE RST
+}
+
+USAGE="Usage: ${0} [-c|--command COMMAND] [-v|--verbose] [-h|--help] [-s|--shell SHELL] [--ssh-flags FLAGS] [--shell-flags FLAGS] MACHINE1 [MACHINE2...]"
+
+missing_argument_check() {
+	if [ -z "${2}" ]; then
+		log "${1} requires an argument" 'ERROR' >&2
+		log "${USAGE}" 'ERROR' >&2
+		exit 1
+	fi
+	log 'passed missing_argument_check'
+}
+
+log 'defining a list of machines to deploy commands to'
+machines=''
+
+log 'Parsing parameters'
+while [ "${#}" -gt 0 ]; do
+	case "${1}" in
+		-c|--command)
+			missing_argument_check "${1}" "${2}"
+			command="${2}"
+			shift 2 ;;
+		-f|--command-file)
+			missing_argument_check "${1}" "${2}"
+			command="$( cat ${2} )"
+			shift 2 ;;
+		-v|--verbose)
+			verbose_logging='true'
+			shift ;;
+		-h|--help) log "${USAGE}" 'STDOUT'
+			exit 0 ;;
+		-s|--shell)
+			missing_argument_check "${1}" "${2}"
+			shell="${2}"
+			shift 2 ;;
+		--ssh-flags)
+			missing_argument_check "${1}" "${2}"
+			ssh_flags="${2}"
+			shift 2 ;;
+		--shell-flags)
+			missing_argument_check "${1}" "${2}"
+			shell_flags="${2}"
+			shift 2 ;;
+		--)
+			shift
+			break ;;
+		-*)
+			log "Invalid flag ${1}" 'ERROR' >&2
+			log "${USAGE}" 'ERROR'
+			exit 1 ;;
+		*)
+			break ;;
+	esac
+done
+
+log 'handling parameters'
+if [ "${#}" -eq 0 ]; then
+	set -- 'localhost'
+fi
+
+if [ -z "${command}" ]; then
+	command='echo "Hello from server \"$( if [ -z "${HOSTNAME}" ]; then hostname 2>/dev/null || hostnamectl --static 2>/dev/null || echo 'localhost'; else echo "${HOSTNAME}"; fi )\"! - $( if [ -z "${USERNAME}" ] ; then id -un; else echo "${USERNAME}"; fi )"'
+fi
+
+if [ -z "${shell}" ]; then
+	shell='${SHELL}'
+fi
+
+if [ ! -z "${ssh_flags}" ]; then
+	ssh_flags="-${ssh_flags}"
+else
+	ssh_flags='--'
+fi
+
+if [ ! -z "${shell_flags}" ]; then
+	shell_flags="-${shell_flags}"
+else
+	shell_flags='-l'
+fi
+
+for machine in ${@}; do
+	printf '%s\n' "${command}" | ssh "${ssh_flags}" "${machine}" "${shell} ${shell_flags}"
+done
