@@ -93,11 +93,21 @@ build_prompt() {
 
 	row_time_data="$( date '+%r' )"
 	row_time="${INNER_PADDING}${row_time_data}"
-	row_time_display="${INNER_PADDING}${OVERLAY}${row_time_data}${RESET}"
+	row_time_display="${INNER_PADDING}${SUBTEXT}${row_time_data}${RESET}"
 
 	row_mount_data="$( df "${PWD}" | awk 'NR==2 { print $NF }' )"
-	row_mount="󰋊${INNER_PADDING}${row_mount_data}"
-	row_mount_display="󰋊${INNER_PADDING}${SAPPHIRE}${row_mount_data}${RESET}"
+	row_mount_space_data="$( df -h "${PWD}" | awk 'NR==2 { print $4 }' )"
+	row_mount_space_percentage="$( df -h "${PWD}" | awk 'NR==2 { print $5 }' | tr -d '%' )"
+	row_mount="󰋊${INNER_PADDING}${row_mount_data}${row_mount_space_data} "
+	row_mount_display="󰋊${INNER_PADDING}${SAPPHIRE}${row_mount_data}${RESET} "
+	
+	if [ "${row_mount_space_percentage}" -gt 90 ]; then
+		row_mount_display="${row_mount_display}${RED}${row_mount_space_data}${RESET}"
+	elif [ "${row_mount_space_percentage}" -gt 70 ]; then
+		row_mount_display="${row_mount_display}${YELLOW}${row_mount_space_data}${RESET}"
+	else
+		row_mount_display="${row_mount_display}${SUBTEXT}${row_mount_space_data}${RESET}"
+	fi
 
 	if command -v stat >/dev/null 2>&1; then
 		directory_user="$( stat -c '%u' "${PWD}" || stat -f '%Su' "${PWD}" )"
@@ -105,7 +115,7 @@ build_prompt() {
 		directory_perms="$( stat -c '%a' "${PWD}" || stat -f '%Sp' "${PWD}" )"
 
 		row_directory_perms="󰈆${INNER_PADDING}${directory_perms}"
-		row_directory_perms_display="󰈆${INNER_PADDING}${OVERLAY}${directory_perms}${RESET}"
+		row_directory_perms_display="󰈆${INNER_PADDING}${SUBTEXT}${directory_perms}${RESET}"
 
 		if [ "${directory_user}" != "$( id -u )" ] || [ "${directory_group}" != "$( id -g )" ]; then
 			row_directory_perms="${row_directory_perms} (${directory_user}:${directory_group})"
@@ -117,18 +127,17 @@ build_prompt() {
 		fi
 	fi
 
-	row_directory_data="$( printf '~%s\n' "${PWD#${HOME}}" )"
+	case "${PWD}" in
+		"${HOME}"*) row_directory_data="~${PWD#${HOME}}" ;;
+		*) row_directory_data="${PWD}" ;;
+	esac
+
 	row_directory="${INNER_PADDING}${row_directory_data}"
 	row_directory_display="${INNER_PADDING}${BLUE}${row_directory_data}${RESET}"
 
 	row_status_data="${exit_code}"
-	row_status="󰈆${INNER_PADDING}${row_status_data}"
-	row_status_display="󰈆${INNER_PADDING}"
-	if [ "${row_status_data}" -eq 0 ]; then
-		row_status_display="${row_status_display}${GREEN}${row_status_data}${RESET}"
-	else
-		row_status_display="${row_status_display}${RED}${row_status_data}${RESET}"
-	fi
+	row_status="✘${INNER_PADDING}${row_status_data}"
+	row_status_display="✘${INNER_PADDING}${RED}${row_status_data}${RESET}"
 
 	max_row_width="$(
 		printf '%s %s %s %s %s %s %s %s %s %s\n' \
@@ -143,11 +152,13 @@ build_prompt() {
 			"${#row_directory}" \
 			"${#row_status}" | tr ' ' '\n' | sort -rn | head -n 1
 	)"
-
+	
 	total_row_width="$(( "${max_row_width}" + 2 * "${OUTER_PADDING_LENGTH}" ))"
-	TOP_ROW="${TEXT}┌$( printf '%.0s─' $( seq 1 "${total_row_width}" ) )┐${RESET}\n"
-	MIDDLE_ROW="${TEXT}├$( printf '%.0s─' $( seq 1 "${total_row_width}" ) )┤${RESET}\n"
-	END_ROW="${TEXT}├$( printf '%.0s─' $( seq 1 "${total_row_width}" ) )┘${RESET}\n"
+	row_horizontal="$( printf '%.0s─' $( seq 1 "${total_row_width}" ) )"
+
+	TOP_ROW="${TEXT}┌${row_horizontal}┐${RESET}\n"
+	MIDDLE_ROW="${TEXT}├${row_horizontal}┤${RESET}\n"
+	END_ROW="${TEXT}├${row_horizontal}┘${RESET}\n"
 	PROMPT_ROW="${TEXT}╰─◆─▶${RESET} "
 
 	ROW_START="${TEXT}│${RESET}${OUTER_PADDING}"
@@ -181,7 +192,12 @@ build_prompt() {
 		PS1="${PS1}${ROW_START}${row_directory_perms_display}$( row_fill "${#row_directory_perms}" )${ROW_END}"
 	fi
 	PS1="${PS1}${ROW_START}${row_directory_display}$( row_fill "${#row_directory}" )${ROW_END}"
-	PS1="${PS1}${ROW_START}${row_status_display}$( row_fill "${#row_status}" )${ROW_END}"
+
+	if [ "${exit_code}" -ne 0 ]; then
+		PS1="${PS1}${MIDDLE_ROW}"
+		PS1="${PS1}${ROW_START}${row_status_display}$( row_fill "${#row_status}" )${ROW_END}"
+	fi
+
 	PS1="${PS1}${END_ROW}"
 	PS1="${PS1}${PROMPT_ROW}"
 
