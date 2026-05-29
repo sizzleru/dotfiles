@@ -165,7 +165,10 @@ function prompt {
 	if ( ( git rev-parse --is-inside-work-tree 2>$null ) -eq "true" ) {
 		Write-Host ${MIDDLE_ROW}
 		Write-Host ( ${ROW_START} + ${row_git_branch_display} + ( RowFill ${row_git_branch} ) + ${ROW_END} )
-		Write-Host ( ${ROW_START} + ${row_git_status_display} + ( RowFill ${row_git_status} ) + ${ROW_END} )
+
+		if ( $git_all -gt 0 ) {
+			Write-Host ( ${ROW_START} + ${row_git_status_display} + ( RowFill ${row_git_status} ) + ${ROW_END} )
+		}
 	}
 
 	Write-Host ${MIDDLE_ROW}
