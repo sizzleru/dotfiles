@@ -58,7 +58,7 @@ build_prompt() {
 	if [ -f "${motd_file}" ] && $( command -v shuf >/dev/null ); then
 		row_motd_data="$( cat "${HOME}/.local/share/motd/messages" | shuf -n 1 )"
 	else
-		row_motd_data="Welcome back $( ( [ -z "${USERNAME}" ] && printf '%s\n' "${USERNAME}" ) || id -un )!"
+		row_motd_data="Welcome back $( ( [ -n "${USERNAME}" ] && printf '%s\n' "${USERNAME}" ) || id -un )!"
 	fi
 	row_motd="${row_motd_icon}${INNER_PADDING}${row_motd_data}"
 	row_motd_display="${row_motd_icon}${INNER_PADDING}${PEACH}${row_motd_data}${RESET}"
