@@ -13,9 +13,8 @@
 !.config/git/config
 
 # powershell
-!Documents
-!Documents/PowerShell/
-!Documents/PowerShell/*
+!.config/powershell/
+!.config/powershell/*
 
 # ssh
 !.ssh/
