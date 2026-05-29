@@ -26,7 +26,7 @@ set nowrap
 
 " Clipboard
 if has('clipboard')
-	set clipboard=unnamedplus
+	set clipboard=unnamed,unnamedplus
 endif
 
 " History
