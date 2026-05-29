@@ -29,7 +29,7 @@ log() {
 	unset RED GREEN YELLOW BLUE WHITE RST
 }
 
-USAGE="Usage: ${0} [-c|--command COMMAND] [-v|--verbose] [-h|--help] [-s|--shell SHELL] [--ssh-flags FLAGS] [--shell-flags FLAGS] MACHINE1 [MACHINE2...]"
+USAGE="Usage: ${0} [-c|--command COMMAND] [-f|--command-file FILE] [-d|--dry-run] [-v|--verbose] [-h|--help] [-s|--shell SHELL] [--ssh-flags FLAGS] [--shell-flags FLAGS] MACHINE1 [MACHINE2...]"
 
 missing_argument_check() {
 	if [ -z "${2}" ]; then
@@ -54,6 +54,9 @@ while [ "${#}" -gt 0 ]; do
 			missing_argument_check "${1}" "${2}"
 			command="$( cat ${2} )"
 			shift 2 ;;
+		-d|--dry-run)
+			dry_run='true'
+			shift ;;
 		-v|--verbose)
 			verbose_logging='true'
 			shift ;;
@@ -92,6 +95,14 @@ if [ -z "${command}" ]; then
 	command='echo "Hello from server \"$( if [ -z "${HOSTNAME}" ]; then hostname 2>/dev/null || hostnamectl --static 2>/dev/null || echo 'localhost'; else echo "${HOSTNAME}"; fi )\"! - $( if [ -z "${USERNAME}" ] ; then id -un; else echo "${USERNAME}"; fi )"'
 fi
 
+if [ -n "${dry_run}" ]; then
+	dry_command=''
+	while IFS= read -r line; do
+		dry_command="${dry_command}echo \"[DRY RUN]:${line}\""$'\n'
+	done <<< "${command}"
+	command="${dry_command}"
+fi
+
 if [ -z "${shell}" ]; then
 	shell='${SHELL}'
 fi
@@ -108,6 +119,22 @@ else
 	shell_flags='-l'
 fi
 
+
+display_machine() {
+	OUTER_PADDING_LENGTH=0
+	INNER_PADDING_LENGTH=1
+
+	OUTER_PADDING="$( printf "%${OUTER_PADDING_LENGTH}s" )"
+	INNER_PADDING="$( printf "%${INNER_PADDING_LENGTH}s" )"
+
+	horizontal="$( printf '%.0s─' $( seq 1 "$(( "${#1}" + 2 * "${INNER_PADDING_LENGTH}" ))"  ) )"
+
+	printf '%s┌%s┐\n' "${OUTER_PADDING}" "${horizontal}"
+	printf '%s│%s%s%s│' "${OUTER_PADDING}" "${INNER_PADDING}" "${1}" "${INNER_PADDING}"
+	printf '\n%s└%s┘\n' "${OUTER_PADDING}" "${horizontal}"
+}
+
 for machine in ${@}; do
+	display_machine "${machine}"
 	printf '%s\n' "${command}" | ssh "${ssh_flags}" "${machine}" "${shell} ${shell_flags}"
 done
