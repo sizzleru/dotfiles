@@ -8,7 +8,6 @@
 !.gitignore
 !README.md
 
-<<<<<<< HEAD
 # copy
 !.local/bin/copy
 
@@ -70,6 +69,10 @@
 
 # pacman-audit
 !.local/bin/pacman-audit
+
+# powershell
+!.config/powershell/
+!.config/powershell/*
 
 # shell
 !.bashrc

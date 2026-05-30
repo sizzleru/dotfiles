@@ -44,6 +44,7 @@ git checkout -f main
 - `obs-studio` `catppuccin-obs-theme-git` `pipewire` `wireplumber` `xdg-desktop-portal` `xdg-desktop-portal-wlr`
 - `mpvpaper`
 - `grim` `slurp` `swappy` `wl-clipboard` (screenshot stack)
+- `Microsoft.PowerShell`
 - `streamdeckui`
 - `thunar-extended` `thunar-archive-plugin` `thunar-media-tags-plugin` `thunar-vcs-plugin` `thunar-volman` `ffmpeg-audio-thumbnailer`
 - `gvim` `wl-clipboard` `vim-colors-catppuccin-git` (`vim` didn't support clipboarding)
@@ -70,4 +71,9 @@ jq '.vivaldi.actions = $actions | .vivaldi.toolbars = $toolbars' \
 	--slurpfile toolbars ~/.config/vivaldi/toolbars.json \
 	~/.config/vivaldi/Default/Preferences > /tmp/Prefs.tmp \
 	&& mv /tmp/Prefs.tmp ~/.config/vivaldi/Default/Preferences
+
+#### powershell
+
+```
+Install-Module PSReadLine -Force
 ```
