@@ -66,6 +66,11 @@ function prompt {
 	$row_os = ${row_os_icon} + ${INNER_PADDING} + ${row_os_data}
 	$row_os_display = ${row_os_icon} + ${INNER_PADDING} + ${SAPPHIRE} + ${row_os_data} + ${RESET}
 
+	$row_shell_icon = ""
+	$row_shell_data = "pwsh"
+	$row_shell = ${row_shell_icon} + ${INNER_PADDING} + ${row_shell_data}
+	$row_shell_display = ${row_shell_icon} + ${INNER_PADDING} + ${TEAL} + ${row_shell_data} + ${RESET}
+
 	$row_git_branch_icon = ""
 	$row_git_branch_data = git branch --show-current 2>$null
 	$row_git_branch = ${row_git_branch_icon} + ${INNER_PADDING} + ${row_git_branch_data}
@@ -137,6 +142,7 @@ function prompt {
 		${row_username},
 		${row_hostname},
 		${row_os},
+		${row_shell},
 		${row_git_branch},
 		${row_git_status},
 		${row_time},
@@ -161,6 +167,7 @@ function prompt {
 	Write-Host ( ${ROW_START} + ${row_username_display} + ( RowFill ${row_username} ) + ${ROW_END} )
 	Write-Host ( ${ROW_START} + ${row_hostname_display} + ( RowFill ${row_hostname} ) + ${ROW_END} )
 	Write-Host ( ${ROW_START} + ${row_os_display} + ( RowFill ${row_os} ) + ${ROW_END} )
+	Write-Host ( ${ROW_START} + ${row_shell_display} + ( RowFill ${row_shell} ) + ${ROW_END} )
 
 	if ( ( git rev-parse --is-inside-work-tree 2>$null ) -eq "true" ) {
 		Write-Host ${MIDDLE_ROW}
