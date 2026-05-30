@@ -54,7 +54,7 @@ build_prompt() {
 	row_os_display="${row_os_icon}${INNER_PADDING}${SAPPHIRE}${row_os_data}${RESET}"
 
 	row_shell_icon=''
-	row_shell_data="$( ps -p "${$}" -o comm= 2>/dev/null )"
+	row_shell_data="$( basename "$( ps -p "${$}" -o comm= 2>/dev/null )" )"
 	if [ -z "${row_shell_data}" ]; then
 		if [ -n "${BASH_VERSION}" ]; then
 			row_shell_data='bash'
