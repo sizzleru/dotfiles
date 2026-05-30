@@ -8,6 +8,7 @@
 !.gitignore
 !README.md
 
+<<<<<<< HEAD
 # copy
 !.local/bin/copy
 
@@ -56,6 +57,9 @@
 # kitty
 !/.config/kitty/
 !/.config/kitty/*
+
+# move
+!.local/bin/move
 
 # obs-studio
 !.config/obs-studio/
