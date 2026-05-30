@@ -53,6 +53,11 @@ build_prompt() {
 	row_os="${row_os_icon}${INNER_PADDING}${row_os_data}"
 	row_os_display="${row_os_icon}${INNER_PADDING}${SAPPHIRE}${row_os_data}${RESET}"
 
+	row_shell_icon=''
+	row_shell_data="$( ps -p "${$}" -o comm= )"
+	row_shell="${row_shell_icon}${INNER_PADDING}${row_shell_data}"
+	row_shell_display="${row_shell_icon}${INNER_PADDING}${TEAL}${row_shell_data}${RESET}"
+
 	row_motd_icon='󰆈'
 	motd_file="${HOME}/.local/share/motd/messages"
 	if [ -f "${motd_file}" ] && $( command -v shuf >/dev/null ); then
@@ -164,6 +169,7 @@ build_prompt() {
 			"${#row_username}" \
 			"${#row_hostname}" \
 			"${#row_os}" \
+			"${#row_shell}" \
 			"${#row_motd}" \
 			"${#row_git_branch}" \
 			"${#row_git_status}" \
@@ -195,6 +201,7 @@ build_prompt() {
 	PS1="${PS1}${ROW_START}${row_username_display}$( row_fill "${#row_username}" )${ROW_END}"
 	PS1="${PS1}${ROW_START}${row_hostname_display}$( row_fill "${#row_hostname}" )${ROW_END}"
 	PS1="${PS1}${ROW_START}${row_os_display}$( row_fill "${#row_os}" )${ROW_END}"
+	PS1="${PS1}${ROW_START}${row_shell_display}$( row_fill "${#row_shell}" )${ROW_END}"
 
 	if [ -z "${MOTD_DISPLAYED}" ]; then
 		MOTD_DISPLAYED='true'
