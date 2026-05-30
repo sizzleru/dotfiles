@@ -8,6 +8,9 @@
 !.gitignore
 !README.md
 
+# copy
+!.local/bin/copy
+
 # deploy
 !.local/bin/deploy
 
