@@ -11,6 +11,7 @@ export VISUAL="${EDITOR}"
 
 # System
 export CLIPBOARD='wl-clipboard'
+export TRASH='trash'
 
 # General
 export FILE_MANAGER='thunar'
