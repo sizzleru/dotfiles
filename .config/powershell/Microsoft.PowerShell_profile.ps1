@@ -57,14 +57,19 @@ function prompt {
 	$row_username_display = ${row_username_icon} + ${INNER_PADDING} + ${MAUVE} + ${row_username_data} + ${RESET} + ${ICON_PADDING}
 
 	$row_hostname_icon = ""
-	$row_hostname_data = ${env:COMPUTERNAME}.ToLower()
+	$row_hostname_data = hostname
 	$row_hostname = ${row_hostname_icon} + ${INNER_PADDING} + ${row_hostname_data}
 	$row_hostname_display = ${row_hostname_icon} + ${INNER_PADDING} + ${BLUE} + ${row_hostname_data} + ${RESET}
 
 	$row_os_icon = ""
-	$row_os_data = ${env:OS}
+	$row_os_data = if ( ${env:OS} ) { $env:OS } else { uname -o }
 	$row_os = ${row_os_icon} + ${INNER_PADDING} + ${row_os_data}
 	$row_os_display = ${row_os_icon} + ${INNER_PADDING} + ${SAPPHIRE} + ${row_os_data} + ${RESET}
+
+	$row_shell_icon = ""
+	$row_shell_data = "pwsh"
+	$row_shell = ${row_shell_icon} + ${INNER_PADDING} + ${row_shell_data}
+	$row_shell_display = ${row_shell_icon} + ${INNER_PADDING} + ${TEAL} + ${row_shell_data} + ${RESET}
 
 	$row_git_branch_icon = ""
 	$row_git_branch_data = git branch --show-current 2>$null
@@ -115,8 +120,8 @@ function prompt {
 	$row_mount_icon = "󰋊"
 	$row_mount_data = (Get-Location).Drive.Name
 	$row_mount_space = [math]::Round( (Get-PSDrive $row_mount_data).Free / 1GB, 1 )
-	$row_mount = ${row_mount_icon} + ${INNER_PADDING} + ${row_mount_data} + ":/ " + $row_mount_space + "G"
-	$row_mount_display = ${row_mount_icon} + ${INNER_PADDING} + ${SAPPHIRE} + ${row_mount_data} + ${RESET} + ":/ " + $row_mount_space + "G" + ${ICON_PADDING}
+	$row_mount = ${row_mount_icon} + ${INNER_PADDING} + ${row_mount_data} + " " + $row_mount_space + "G"
+	$row_mount_display = ${row_mount_icon} + ${INNER_PADDING} + ${SAPPHIRE} + ${row_mount_data} + " " + ${RESET} + $row_mount_space + "G" + ${ICON_PADDING}
 
 	$row_directory_icon = ""
 	$row_directory_data = $PWD.Path.Replace('\', '/') -replace "^$([regex]::Escape($HOME.Replace('\', '/')))", "~"
@@ -137,6 +142,7 @@ function prompt {
 		${row_username},
 		${row_hostname},
 		${row_os},
+		${row_shell},
 		${row_git_branch},
 		${row_git_status},
 		${row_time},
@@ -161,6 +167,7 @@ function prompt {
 	Write-Host ( ${ROW_START} + ${row_username_display} + ( RowFill ${row_username} ) + ${ROW_END} )
 	Write-Host ( ${ROW_START} + ${row_hostname_display} + ( RowFill ${row_hostname} ) + ${ROW_END} )
 	Write-Host ( ${ROW_START} + ${row_os_display} + ( RowFill ${row_os} ) + ${ROW_END} )
+	Write-Host ( ${ROW_START} + ${row_shell_display} + ( RowFill ${row_shell} ) + ${ROW_END} )
 
 	if ( ( git rev-parse --is-inside-work-tree 2>$null ) -eq "true" ) {
 		Write-Host ${MIDDLE_ROW}
