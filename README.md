@@ -80,3 +80,9 @@ jq '.vivaldi.actions = $actions | .vivaldi.toolbars = $toolbars' \
 ```
 Install-Module PSReadLine -Force
 ```
+
+#### yazi
+
+```
+ya pkg add dedukun/bookmarks
+```
