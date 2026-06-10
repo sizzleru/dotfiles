@@ -19,3 +19,6 @@ git checkout -f main
 ### Applications
 
 - `bash` `git` (essentials baby)
+- `nvim`
+- `tree-sitter-cli` `tree-sitter-haskell` `tree-sitter-lua` `tree-sitter-python` `tree-sitter-bash`
+- `bash-language-server` `pyright` `lua-language-server`
