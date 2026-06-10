@@ -53,7 +53,14 @@ vim.keymap.set(
 	"n",
 	"<leader><CR>",
 	function()
-		vim.cmd( "belowright split | terminal make run" )
+		local dir = vim.fs.dirname(
+			vim.fs.find(
+				"Makefile", { upward = true }
+			)[1]
+		)
+
+		vim.cmd( "belowright split | terminal make -C " .. vim.fn.fnameescape(dir) )
+		--vim.cmd( "belowright split | terminal make run" )
 	end
 )
 
