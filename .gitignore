@@ -8,6 +8,7 @@
 !.gitignore
 !README.md
 
+<<<<<<< HEAD
 # copy
 !.local/bin/copy
 
@@ -59,6 +60,12 @@
 
 # move
 !.local/bin/move
+
+# nvim
+!.config/nvim/
+!.config/nvim/init.lua
+!.config/nvim/lua/
+!.config/nvim/lua/**
 
 # obs-studio
 !.config/obs-studio/

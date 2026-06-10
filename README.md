@@ -43,6 +43,9 @@ git checkout -f main
 - `kitty`
 - `obs-studio` `catppuccin-obs-theme-git` `pipewire` `wireplumber` `xdg-desktop-portal` `xdg-desktop-portal-wlr`
 - `mpvpaper`
+- `nvim`
+- `tree-sitter-cli` `tree-sitter-haskell` `tree-sitter-lua` `tree-sitter-python` `tree-sitter-bash`
+- `bash-language-server` `pyright` `lua-language-server`
 - `grim` `slurp` `swappy` `wl-clipboard` (screenshot stack)
 - `Microsoft.PowerShell`
 - `streamdeckui`
