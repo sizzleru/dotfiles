@@ -162,6 +162,11 @@ build_prompt() {
 		*) row_directory_data="${PWD}" ;;
 	esac
 
+	case "${row_mount_data}" in
+		"${HOME}"*) row_mount_data="~${row_mount_data#${HOME}}" ;;
+		*) row_mount_data="${row_mount_data}" ;;
+	esac
+
 	row_directory_icon=''
 	row_directory="${row_directory_icon}${INNER_PADDING}${row_directory_data}"
 	row_directory_display="${row_directory_icon}${INNER_PADDING}${BLUE}${row_directory_data}${RESET}"
