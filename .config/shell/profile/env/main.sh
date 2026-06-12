@@ -1,4 +1,4 @@
-for file in host path xdg; do
+for file in host locale path xdg; do
 	if [ -f "${HOME}/.config/shell/profile/env/${file}.sh" ]; then
 		. "${HOME}/.config/shell/profile/env/${file}.sh"
 	fi
