@@ -1,3 +1,4 @@
+# ~/.local/bin
 if [ -d "${HOME}/.local/bin" ]; then
 	case ":${PATH}:" in
 		*":${HOME}/.local/bin:"*) ;;
