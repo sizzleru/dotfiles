@@ -1,4 +1,4 @@
-if ( command -v locale >/dev/null ) && ( locale -a 2>/dev/null | grep -eq 'en_AU.UTF-8' ); then
+if ( command -v locale >/dev/null ) && ( locale -a 2>/dev/null | grep -qi 'en_AU.UTF-8' ); then
 	export LANG='en_AU.UTF-8'
 	export LC_CTYPE='en_AU.UTF-8'
 	export LC_NUMERIC='en_AU.UTF-8'
