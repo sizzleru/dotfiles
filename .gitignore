@@ -64,7 +64,10 @@
 !.config/nvim/
 !.config/nvim/init.lua
 !.config/nvim/lua/
-!.config/nvim/lua/**
+!.config/nvim/lua/config
+!.config/nvim/lua/core
+!.config/nvim/lua/keymaps
+!.config/nvim/lua/plugins
 
 # obs-studio
 !.config/obs-studio/
