@@ -1,5 +1,9 @@
 -- default settings
-require( "options" )
+require( "config" )
 
--- plugin manager
-require( "lazy-check" )
+-- plugins
+require( "core.lazy" )
+require( "lazy" ).setup( "plugins" )
+
+-- keymaps
+require( "keymaps" )

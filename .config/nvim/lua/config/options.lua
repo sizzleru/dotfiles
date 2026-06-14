@@ -40,39 +40,14 @@ vim.opt.termguicolors = true
 
 -- commands
 vim.g.mapleader = " "
-vim.keymap.set( "n", "<Space>", "<Nop>" )
-vim.keymap.set(
-	"n",
-	"<Esc>",
-	function()
-		vim.cmd("fclose")
-		vim.cmd("nohlsearch")
-	end
-)
-vim.keymap.set(
-	"n",
-	"<leader><CR>",
-	function()
-		local dir = vim.fs.dirname(
-			vim.fs.find(
-				"Makefile", { upward = true }
-			)[1]
-		)
-
-		vim.cmd( "belowright split | terminal make -C " .. vim.fn.fnameescape(dir) )
-		--vim.cmd( "belowright split | terminal make run" )
-	end
-)
 
 -- files
 vim.opt.swapfile = false
---vim.opt.directory = vim.fn.stdpath( "data" ) .. "/swap//"
 vim.opt.backup = false
 vim.opt.undofile = true
 
 -- clipboard
 vim.opt.clipboard = "unnamedplus"
-vim.keymap.set("n", '<leader>r', ':registers<CR>')
 
 -- behaviour
 vim.opt.smartindent = false

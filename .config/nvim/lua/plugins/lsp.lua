@@ -2,22 +2,6 @@ return {
 	"neovim/nvim-lspconfig",
 	config = function()
 
-		-- binds
-		vim.api.nvim_create_autocmd(
-			"LspAttach",
-			{
-				callback = function(ev)
-					local opts = { buffer = ev.buf }
-					vim.keymap.set( "n", "gd", vim.lsp.buf.definition, opts )
-					vim.keymap.set( "n", "gr", vim.lsp.buf.references, opts )
-					vim.keymap.set( "n", "K", vim.lsp.buf.hover, opts )
-					vim.keymap.set( "n", "<leader>R", vim.lsp.buf.rename, opts )
-					vim.keymap.set( "n", "<leader>A", vim.lsp.buf.code_action, opts )
-					vim.keymap.set( "n", "<leader><leader>", vim.diagnostic.open_float, opts )
-				end,
-			}
-		)
-
 		-- bash
 		vim.lsp.config(
 			"bashls",
@@ -59,6 +43,31 @@ return {
 			}
 		)
 
+		-- rust
+		vim.lsp.config(
+			"rust_analyzer",
+			{
+				cmd = { "rust-analyzer" },
+				filetypes = { "rust" },
+				root_markers = { "Cargo.toml", "Cargo.lock" },
+				settings = {
+					["rust-analyzer"] = {
+						checkOnSave = {
+							command = "clippy",
+						},
+						cargo = {
+							allFeatures = true,
+						},
+						inlayHints = {
+							bindingModeHints       = { enable = true },
+							chainingHints          = { enable = true },
+							closureReturnTypeHints = { enable = "always" },
+							typeHints              = { enable = true },
+						},
+					},
+				},
+			}
+		)
 
 		-- haskell
 		vim.lsp.config(

@@ -1,0 +1,7 @@
+require( "keymaps.core" )
+require( "keymaps.buffer" )
+require( "keymaps.command" )
+require( "keymaps.file" )
+require( "keymaps.keymap" )
+require( "keymaps.lsp" )
+require( "keymaps.register" )
