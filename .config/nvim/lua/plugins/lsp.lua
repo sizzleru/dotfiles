@@ -79,6 +79,6 @@ return {
 			}
 		)
 
-		vim.lsp.enable( { "bashls", "pyright", "lua_ls", "hls" } )
+		vim.lsp.enable( { "bashls", "pyright", "lua_ls", "rust_analyzer", "hls" } )
 	end
 }
