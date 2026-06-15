@@ -1,6 +1,23 @@
-# env vars
+# editor
 $env:EDITOR = "vim"
 $env:VISUAL = $env:EDITOR
+
+function v {
+    param([string]$Path = '.')
+
+    $tmp = [System.IO.Path]::GetTempFileName()
+
+    $env:FILEBROWSER_LASTDIR_FILE = $tmp
+    nvim $Path
+    $env:FILEBROWSER_LASTDIR_FILE = $null
+
+    if (Test-Path $tmp) {
+        $dir = Get-Content $tmp
+        if ($dir) { Set-Location $dir }
+        Remove-Item $tmp
+    }
+}
+Set-Alias vi v
 
 # vi mode
 Set-PSReadLineOption -EditMode Vi
