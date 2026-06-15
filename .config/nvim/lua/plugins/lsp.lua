@@ -79,6 +79,16 @@ return {
 			}
 		)
 
-		vim.lsp.enable( { "bashls", "pyright", "lua_ls", "rust_analyzer", "hls" } )
+		-- powershell
+		vim.lsp.config(
+			"powershell_es",
+			{
+				cmd = { "pwsh", "-NoLogo", "-NonInteractive", "-Command", "Start-EditorServices" },
+				bundle_path = vim.fn.stdpath('data') .. '/mason/packages/powershell-editor-services',
+				filetypes = { "ps1" },
+			}
+		)
+
+		vim.lsp.enable( { "bashls", "pyright", "lua_ls", "rust_analyzer", "hls", "poweshell_es" } )
 	end
 }
