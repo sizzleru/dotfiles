@@ -96,3 +96,18 @@ vim.keymap.set(
 		vim.cmd( "botright split | terminal make clean -C " .. vim.fn.fnameescape( dir ) )
 	end
 )
+
+vim.keymap.set(
+	"n",
+	"<leader>mq",
+	function()
+		local file = vim.fs.find( "Makefile", { upward = true } )[1]
+		if not file then
+			vim.notify( "No Makefile found", vim.log.levels.WARN )
+			return
+		end
+
+		local dir = vim.fs.dirname( file )
+		vim.cmd( "botright split | terminal make quiet -C " .. vim.fn.fnameescape( dir ) )
+	end
+)
