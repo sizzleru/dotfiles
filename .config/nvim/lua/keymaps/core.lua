@@ -6,9 +6,9 @@ vim.keymap.set(
 	"n",
 	"<Esc>",
 	function()
-		vim.cmd.fclose()
 		vim.cmd.nohlsearch()
-	end
+	end,
+	{ desc = "Close popups" }
 )
 
 -- Makefile
@@ -24,7 +24,8 @@ vim.keymap.set(
 
 		local dir = vim.fs.dirname( file )
 		vim.cmd( "botright split | terminal make -C " .. vim.fn.fnameescape( dir ) )
-	end
+	end,
+	{ desc = "Run Makefile" }
 )
 vim.keymap.set(
 	"n",
@@ -38,7 +39,8 @@ vim.keymap.set(
 
 		local dir = vim.fs.dirname( file )
 		vim.cmd( "botright split | terminal make build -C " .. vim.fn.fnameescape( dir ) )
-	end
+	end,
+	{ desc = "Run Makefile with build" }
 )
 vim.keymap.set(
 	"n",
@@ -52,8 +54,26 @@ vim.keymap.set(
 
 		local dir = vim.fs.dirname( file )
 		vim.cmd( "botright split | terminal make run -C " .. vim.fn.fnameescape( dir ) )
-	end
+	end,
+	{ desc = "Run Makefile with run" }
 )
+
+vim.keymap.set(
+	"n",
+	"<leader>mR",
+	function()
+		local file = vim.fs.find( "Makefile", { upward = true } )[1]
+		if not file then
+			vim.notify( "No Makefile found", vim.log.levels.WARN )
+			return
+		end
+
+		local dir = vim.fs.dirname( file )
+		vim.cmd( "botright split | terminal make verbose -C " .. vim.fn.fnameescape( dir ) )
+	end,
+	{ desc = "Run Makefile with verbose" }
+)
+
 vim.keymap.set(
 	"n",
 	"<leader>ms",
@@ -66,7 +86,8 @@ vim.keymap.set(
 
 		local dir = vim.fs.dirname( file )
 		vim.cmd( "botright split | terminal make setup -C " .. vim.fn.fnameescape( dir ) )
-	end
+	end,
+	{ desc = "Run Makefile with setup" }
 )
 vim.keymap.set(
 	"n",
@@ -79,12 +100,13 @@ vim.keymap.set(
 		end
 
 		local dir = vim.fs.dirname( file )
-		vim.cmd( "botright split | terminal make check -C " .. vim.fn.fnameescape( dir ) )
-	end
+		vim.cmd( "botright split | terminal make verify -C " .. vim.fn.fnameescape( dir ) )
+	end,
+	{ desc = "Run Makefile with verify" }
 )
 vim.keymap.set(
 	"n",
-	"<leader>mC",
+	"<leader>mc",
 	function()
 		local file = vim.fs.find( "Makefile", { upward = true } )[1]
 		if not file then
@@ -94,20 +116,6 @@ vim.keymap.set(
 
 		local dir = vim.fs.dirname( file )
 		vim.cmd( "botright split | terminal make clean -C " .. vim.fn.fnameescape( dir ) )
-	end
-)
-
-vim.keymap.set(
-	"n",
-	"<leader>mq",
-	function()
-		local file = vim.fs.find( "Makefile", { upward = true } )[1]
-		if not file then
-			vim.notify( "No Makefile found", vim.log.levels.WARN )
-			return
-		end
-
-		local dir = vim.fs.dirname( file )
-		vim.cmd( "botright split | terminal make quiet -C " .. vim.fn.fnameescape( dir ) )
-	end
+	end,
+	{ desc = "Run Makefile with clean" }
 )

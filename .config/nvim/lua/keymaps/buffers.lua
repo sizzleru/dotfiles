@@ -4,5 +4,6 @@ vim.keymap.set(
 	"<leader>fb",
 	function()
 		require( "telescope.builtin" ).buffers()
-	end
+	end,
+	{ desc = "Find buffers" }
 )
