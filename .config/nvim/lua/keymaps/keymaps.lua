@@ -4,5 +4,6 @@ vim.keymap.set(
 	"<leader>fk",
 	function()
 		require( "telescope.builtin" ).keymaps()
-	end
+	end,
+	{ desc = "Find keymaps" }
 )

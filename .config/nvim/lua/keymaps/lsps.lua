@@ -21,7 +21,7 @@ vim.api.nvim_create_autocmd(
 			)
 			vim.keymap.set(
 				"n",
-				"<leader>i",
+				"<leader>ii",
 				function()
 					vim.lsp.buf.hover({
 						border = "rounded",
@@ -42,4 +42,31 @@ vim.api.nvim_create_autocmd(
 			vim.keymap.set( "n", "<leader>aa", vim.lsp.buf.code_action, opts )
 		end,
 	}
+)
+
+vim.keymap.set(
+	"n",
+	"<leader>id",
+	function()
+		require( "trouble" ).toggle( "diagnostics" )
+	end,
+	{ desc = "Toggle Trouble" }
+)
+
+vim.keymap.set(
+	"n",
+	"<C-/>",
+	function()
+		require( "Comment.api" ).toggle.linewise.current()
+	end,
+	{ desc = "Toggle comment" }
+)
+
+vim.keymap.set(
+	"v",
+	"<C-/>",
+	function()
+		require( "Comment.api" ).toggle.linewise( vim.fn.visualmode() )
+	end,
+	{ desc = "Toggle comment" }
 )

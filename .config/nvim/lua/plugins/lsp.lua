@@ -2,6 +2,16 @@ return {
 	"neovim/nvim-lspconfig",
 	config = function()
 
+		-- markdown
+		vim.lsp.config(
+			"marksman",
+			{
+				cmd = { "marksman", "server" },
+				filetypes = { "markdown" },
+				root_markers = { ".marksman.toml", ".git" },
+			}
+		)
+
 		-- bash
 		vim.lsp.config(
 			"bashls",
@@ -52,7 +62,7 @@ return {
 				root_markers = { "Cargo.toml", "Cargo.lock" },
 				settings = {
 					["rust-analyzer"] = {
-						checkOnSave = {
+						check = {
 							command = "clippy",
 						},
 						cargo = {
@@ -89,6 +99,6 @@ return {
 			}
 		)
 
-		vim.lsp.enable( { "bashls", "pyright", "lua_ls", "rust_analyzer", "hls", "poweshell_es" } )
+		vim.lsp.enable( { "marksman", "bashls", "pyright", "lua_ls", "rust_analyzer", "hls", "poweshell_es" } )
 	end
 }
