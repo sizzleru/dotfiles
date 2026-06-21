@@ -1,7 +1,5 @@
 require( "keymaps.core" )
 require( "keymaps.buffers" )
-require( "keymaps.commands" )
 require( "keymaps.files" )
-require( "keymaps.keymaps" )
-require( "keymaps.lsps" )
+require( "keymaps.code" )
 require( "keymaps.registers" )

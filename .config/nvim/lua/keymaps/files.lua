@@ -1,39 +1,193 @@
-vim.keymap.set(
-	"n",
-	".",
-	require( "oil" ).toggle_hidden,
-	{ desc = "Toggle hidden files" }
+-- Oil
+vim.api.nvim_create_autocmd(
+	"FileType", {
+		pattern = "oil",
+		callback = function( ev )
+
+			vim.keymap.set(
+				"n",
+				".",
+				function()
+					require( "oil" ).toggle_hidden()
+				end,
+				{ buffer = ev.buf, desc = "[Oil] Toggle hidden files" }
+			)
+
+			vim.keymap.set(
+				"n",
+				"<leader>l",
+				function()
+					require( "oil.actions" ).select.callback()
+				end,
+				{ buffer = ev.buf, desc = "[Oil] Open selected file/folder" }
+			)
+		end,
+	}
 )
 
-vim.keymap.set(
-	"n",
-	"<leader>h",
-	require( "oil.actions" ).parent.callback,
-	{ desc = "Open file/folder (Oil)" }
+vim.api.nvim_create_autocmd(
+	"FileType", {
+		callback = function( ev )
+
+			vim.keymap.set(
+				"n",
+				"<leader>h",
+				function()
+					require( "oil.actions" ).parent.callback()
+				end,
+				{ buffer = ev.buf, desc = "[Oil] Open parent folder" }
+			)
+
+		end,
+	}
 )
 
+-- Makefile
 vim.keymap.set(
 	"n",
-	"<leader>l",
-	require( "oil.actions" ).select.callback,
-	{ desc = "Open parent folder (Oil)" }
-)
-
-vim.keymap.set(
-	"n",
-	"<leader>t",
+	"<leader>mm",
 	function()
-		local dir
-		if vim.bo.filetype == "oil" then
-			dir = require( "oil" ).get_current_dir()
-		else
-			dir = vim.fn.expand( "%:p:h" )
+		local file = vim.fs.find( "Makefile", { upward = true } )[1]
+		if not file then
+			vim.notify( "No Makefile found", vim.log.levels.WARN )
+			return
 		end
 
-		vim.cmd( "botright split" )
-		vim.cmd.lcd( dir )
-		vim.cmd.terminal()
-		vim.cmd.startinsert()
+		local dir = vim.fs.dirname( file )
+		vim.cmd( "botright split | terminal make -C " .. vim.fn.fnameescape( dir ) )
 	end,
-	{ desc = "Open terminal in current dir" }
+	{ desc = "Run Makefile" }
+)
+
+vim.keymap.set(
+	"n",
+	"<leader>mr",
+	function()
+		local file = vim.fs.find( "Makefile", { upward = true } )[1]
+		if not file then
+			vim.notify( "No Makefile found", vim.log.levels.WARN )
+			return
+		end
+
+		local dir = vim.fs.dirname( file )
+		vim.cmd( "botright split | terminal make run -C " .. vim.fn.fnameescape( dir ) )
+	end,
+	{ desc = "Run Makefile with run" }
+)
+
+-- Oil
+local oil_bookmarks = {}
+local oil_bookmarks_file = vim.fn.stdpath( "data" ) .. "/oil_bookmarks.json"
+
+local function load_bookmarks()
+	local file = io.open( oil_bookmarks_file, "r" )
+	if file then
+		local content = file:read( "*a" )
+		file:close()
+		oil_bookmarks = vim.fn.json_decode( content ) or {}
+	end
+end
+
+local function save_bookmarks()
+	local file = io.open( oil_bookmarks_file, "w" )
+	if file then
+		file:write( vim.fn.json_encode( oil_bookmarks ) )
+		file:close()
+	end
+end
+
+load_bookmarks()
+
+vim.api.nvim_create_autocmd(
+	"FileType",
+	{
+		pattern = "oil",
+		callback = function()
+
+			-- set bookmark
+			vim.keymap.set(
+				"n",
+				"m",
+				function()
+					if vim.bo.filetype ~= "oil" then
+						--vim.api.nvim_feedkeys( "m", "n", false )
+						return "m"
+					end
+
+					local dir = require( "oil" ).get_current_dir()
+					vim.ui.input(
+						{ prompt = "Bookmark key: " },
+						function(key)
+							if key and #key == 1 then
+								oil_bookmarks[ key ] = dir
+								save_bookmarks()
+								vim.notify( "Bookmarked [" .. key .. "] -> " .. dir )
+							end
+						end
+					)
+				end,
+				{ buffer = true }
+			)
+
+			-- open bookmark
+			vim.keymap.set(
+				"n",
+				"`",
+				function()
+					if vim.tbl_isempty( oil_bookmarks ) then
+						vim.notify( "No oil_bookmarks set" )
+						return
+					end
+
+					local items = {}
+					for key, path in pairs( oil_bookmarks ) do
+						table.insert( items, "[" .. key .. "] " .. path )
+					end
+
+					vim.ui.select(
+						items,
+						{ prompt = "Oil oil_bookmarks:" },
+						function( choice )
+							if choice then
+								local key = choice:match( "%[(.-)%]" )
+								require( "oil" ).open( oil_bookmarks[key] )
+							end
+						end
+					)
+				end,
+				{ buffer = true, desc = "Open Oil bookmark" }
+			)
+
+			-- delete bookmark
+			vim.keymap.set(
+				"n",
+				"<leader>bd",
+				function()
+					if vim.tbl_isempty( oil_bookmarks ) then
+						vim.notify( "No bookmarks set" )
+						return
+					end
+
+					local items = {}
+					for key, path in pairs( oil_bookmarks ) do
+						table.insert( items, "[" .. key .. "] " .. path )
+					end
+
+					vim.ui.select(
+						items,
+						{ prompt = "Delete bookmark:" },
+						function(choice)
+							if choice then
+								local key = choice:match( "%[(.-)%]" )
+								oil_bookmarks[ key ] = nil
+								save_bookmarks()
+								vim.notify( "Deleted bookmark [" .. key .. "]" )
+							end
+						end
+					)
+				end,
+				{ buffer = true, desc = "Delete Oil bookmark" }
+			)
+		end
+	}
 )
