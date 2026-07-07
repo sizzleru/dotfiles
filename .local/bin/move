@@ -1,0 +1,112 @@
+#!/bin/sh
+
+log() {
+
+	RED=$'\033[31m'
+	GREEN=$'\033[32m'
+	YELLOW=$'\033[33m'
+	BLUE=$'\033[34m'
+	WHITE=$'\033[37m'
+	RST=$'\033[0m'
+
+	case "${2:-INFO}" in
+		INFO|STDOUT) message_colour="${BLUE}" ;;
+		WARN) message_colour="${YELLOW}" ;;
+		SUCCESS) message_colour="${GREEN}" ;;
+		ERROR) message_colour="${RED}" ;;
+		*) message_colour="${WHITE}" ;;
+	esac
+
+	if [ "${2}" == 'STDOUT' ]; then
+		printf '[INFO] %s\n' "${message_colour}${1}${RST}"
+		return
+	fi
+
+	if [ "${2}" == 'ERROR' ] || [ "${verbose_logging}" == 'true' ]; then
+		printf '[%s] [%s] %s\n' "$( date )" "${2:-INFO}" "${message_colour}${1}${RST}"
+	fi
+
+	unset RED GREEN YELLOW BLUE WHITE RST
+}
+
+USAGE="Usage: ${0} [-v|--verbose] [-h|--help] SOURCE... DEST"
+
+missing_argument_check() {
+	if [ -z "${2}" ]; then
+		log "${1} requires an argument" 'ERROR' >&2
+		log "${USAGE}" 'ERROR' >&2
+		exit 1
+	fi
+	log 'passed missing_argument_check'
+}
+
+_trash() {
+	log "_trash -- ${1}"
+
+	if [ "${trash}" = 'true' ]; then
+		log "Trash detected, using ${TRASH_PUT} (set \${TRASH_PUT} for a different command)"
+		log "$( "${TRASH_PUT}" -v "${1}" )"
+	else
+		log 'Trash was not detected, creating temp folder'
+		TEMP_DIR="$( mktemp -d )"
+
+		log "${TEMP_DIR} created"
+		log "$( mv -v "${1}" "${TEMP_DIR}/$( basename "${1}" )" )"
+	fi
+}
+
+log "Checking if ${TRASH:-trash} is installed..."
+if command -v "${TRASH:-trash}" >/dev/null 2>&1; then
+	TRASH_PUT='trash-put'
+	TRASH_RESTORE='trash-restore'
+
+	trash='true'
+else
+	log 'command "trash" was not found' 'WARN'
+	trash='false'
+fi
+
+log 'Parsing parameters'
+while [ "${#}" -gt 0 ]; do
+	case "${1}" in
+		-v|--verbose)
+			verbose_logging='true'
+			copy_flags="${copy_flags:+"${copy_flags} "}${1}"
+			shift ;;
+		-h|--help)
+			log "${USAGE}" 'STDOUT'
+			exit 0 ;;
+		*)
+			break ;;
+			#copy_flags="${copy_flags:+"${copy_flags} "}${1}"
+			#shift ;;
+	esac
+done
+
+if command -v 'copy' >/dev/null; then
+	COPY='copy'
+else
+	log 'command "copy" was not found' 'WARN'
+	COPY='cp'
+fi
+
+log "Running ${COPY}..."
+"${COPY}" ${copy_flags:+${copy_flags} }"${@}"
+
+if [ "${?}" -ne 0 ]; then
+	log 'Aborting to delete source files as copy failed!' 'ERROR' >&2
+	exit "${?}"
+fi
+
+log 'Removing old files'
+while [ "${#}" -gt 1 ]; do
+	case "${1}" in
+		-*) shift ;;
+		*)
+			_trash "${1}"
+			shift ;;
+	esac
+done
+
+log 'Move complete' 'SUCCESS'
+exit 0

@@ -12,6 +12,9 @@
 !.config/git/
 !.config/git/config
 
+# move
+!.local/bin/move
+
 # ssh
 !.ssh/
 !.ssh/authorized_keys
