@@ -8,13 +8,18 @@
 !.gitignore
 !README.md
 
-<<<<<<< HEAD
 # git
 !.config/git/
 !.config/git/config
 
 # l
 !.local/bin/l
+
+# nvim
+!.config/nvim/
+!.config/nvim/init.lua
+!.config/nvim/lua/
+!.config/nvim/lua/**
 
 # pacman-audit
 !.local/bin/pacman-audit
