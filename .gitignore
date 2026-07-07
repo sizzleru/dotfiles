@@ -21,6 +21,19 @@
 # move
 !.local/bin/move
 
+# nvim
+!.config/nvim/
+!.config/nvim/init.lua
+!.config/nvim/lua/
+!.config/nvim/lua/config/
+!.config/nvim/lua/config/*
+!.config/nvim/lua/core/
+!.config/nvim/lua/core/*
+!.config/nvim/lua/keymaps/
+!.config/nvim/lua/keymaps/*
+!.config/nvim/lua/plugins/
+!.config/nvim/lua/plugins/*
+
 # ssh
 !.ssh/
 !.ssh/authorized_keys
