@@ -20,6 +20,14 @@
 !.config/nvim/init.lua
 !.config/nvim/lua/
 !.config/nvim/lua/**
+!.config/nvim/lua/config/
+!.config/nvim/lua/config/*
+!.config/nvim/lua/core/
+!.config/nvim/lua/core/*
+!.config/nvim/lua/keymaps/
+!.config/nvim/lua/keymaps/*
+!.config/nvim/lua/plugins/
+!.config/nvim/lua/plugins/*
 
 # pacman-audit
 !.local/bin/pacman-audit
