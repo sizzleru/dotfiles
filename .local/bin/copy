@@ -1,0 +1,215 @@
+#!/bin/sh
+
+log() {
+
+	RED=$'\033[31m'
+	GREEN=$'\033[32m'
+	YELLOW=$'\033[33m'
+	BLUE=$'\033[34m'
+	WHITE=$'\033[37m'
+	RST=$'\033[0m'
+
+	case "${2:-INFO}" in
+		INFO|STDOUT) message_colour="${BLUE}" ;;
+		WARN) message_colour="${YELLOW}" ;;
+		SUCCESS) message_colour="${GREEN}" ;;
+		ERROR) message_colour="${RED}" ;;
+		*) message_colour="${WHITE}" ;;
+	esac
+
+	if [ "${2}" == 'STDOUT' ]; then
+		printf '[INFO] %s\n' "${message_colour}${1}${RST}"
+		return
+	fi
+
+	if [ "${2}" == 'ERROR' ] || [ "${verbose_logging}" == 'true' ]; then
+		printf '[%s] [%s] %s\n' "$( date )" "${2:-INFO}" "${message_colour}${1}${RST}"
+	fi
+
+	unset RED GREEN YELLOW BLUE WHITE RST
+}
+
+USAGE="Usage: ${0} [-i|--ignore-errors] [-f|--force] [-v|--verbose] [-h|--help] SOURCE... DEST"
+
+missing_argument_check() {
+	if [ -z "${2}" ]; then
+		log "${1} requires an argument" 'ERROR' >&2
+		log "${USAGE}" 'ERROR' >&2
+		exit 1
+	fi
+	log 'passed missing_argument_check'
+}
+
+_space_check() {
+	log "_space_check ${1} ${2}"
+	local available_space="$( df -Pk "${2}" | tail -n 1 | awk '{ print $4 }' )"
+	local needed_space="$( du -sk "${1}" | cut -f 1 )"
+	log "available space: ${available_space}, needed space: ${needed_space}"
+
+	if [ "${available_space}" -lt "${needed_space}" ]; then
+			log "Insufficient space available in ${destination}" 'ERROR' >&2
+			_trash_restore "${2}"
+			exit 1
+	fi
+}
+
+_trash_put() {
+	log "_trash_put -- ${1}"
+
+	if [ "${force}" == 'true' ]; then
+		log '--force was provided, proceeding with directory removal' 'WARN'
+
+		if [ "${trash}" = 'true' ]; then
+			log "Trash detected, using ${TRASH_PUT} (set \${TRASH_PUT} for a different command)"
+			log "$( "${TRASH_PUT}" -v "${1}" )"
+		else
+			log 'Trash was not detected, creating temp folder'
+			TEMP_DIR="$( mktemp -d )"
+
+			log "${TEMP_DIR} created"
+			log "$( mv -v "${1}" "${TEMP_DIR}/$( basename "${1}" )" )"
+		fi
+	else
+		log "${1} already exists! if you want to replace the destination, provide --force" "ERROR" >&2
+		if [ "${ignore_errors}" == 'true' ]; then
+			log 'Ignoring error as --ignore-error was provided, continuing...' 'WARN'
+		else
+			exit 1
+		fi
+	fi
+}
+
+_trash_restore() {
+	log "_trash_restore -- ${1}"
+
+	if [ "${trash}" = 'true' ]; then
+		log "Trash detected, please manually restore the file (${1}) from trash"
+	else
+		log "Trash was not detected, restoring from temp folder (${TEMP_DIR})"
+		
+		log "$( mv -v "${TEMP_DIR}/$( basename ${1} )" "${1}" )"
+	fi
+}
+
+_copy() {
+	log "_copy ${pv_flags:+${pv_flags} }-- ${1} ${2}"
+
+	if [ ! -e "${1}" ] && [ ! -L "${1}" ]; then
+		log "${1} does not exist, please provide a valid file." 'ERROR' >&2
+		if [ "${ignore_errors}" == 'true' ]; then
+			log 'Ignoring error as --ignore-error was provied, continuing...' 'WARN'
+		else
+			exit 1
+		fi
+	fi
+
+	log 'Increment copied files counter'
+	copied_files="$(( "${copied_files:-0}" + 1 ))"
+
+	if [ "${1}" == "${2}" ]; then
+		log 'Cannot copy file to the same destination' 'ERROR' >&2
+	fi
+
+	if [ "${progress_bar}" != 'true' ]; then
+		log "$( cp -rv "${1}" "${destination}" )"
+	fi
+
+	if [ -d "${1}" ]; then
+		size="$( du -sb "${1}" 2>/dev/null | cut -f 1 )"
+		if [ -d "${destination}" ]; then
+			_trash_put "${destination}"
+		fi
+		log "$( mkdir -pv "${destination}" )"
+
+		_space_check "${1}" "${destination}"
+		tar cf - -C "$( dirname "${1}" )" "$( basename "${1}" )" | pv -s ${pv_flags:+${pv_flags} } "${size}" | tar xf - -C "${destination}"
+		
+	else
+		if [ -d "${destination}" ]; then
+			_destination="${destination}/$( basename "${1}" )"
+			if [ -f "${_destination}" ]; then
+				_trash_put "${_destination}"
+			fi
+
+			_space_check "${1}" "$( dirname ${_destination} )"
+			pv ${pv_flags:+${pv_flags} }-- "${1}" > "${_destination}"
+		else
+			if [ -f "${destination}" ]; then
+				_trash_put "${destination}"
+			fi
+
+			_space_check "${1}" "$( dirname ${destination} )"
+			pv ${pv_flags:+${pv_flags} } "${1}" > "${destination}"
+		fi
+	fi
+
+	if [ "${?}" -ne 0 ]; then
+		log "Copy failed with error ${?}" 'ERROR' >&2
+		_trash_restore "${destination}"
+		if [ "${ignore_errors}" == 'true' ]; then
+			log 'Ignoring error as --ignore-error was provided, continuing...' 'WARN'
+		else
+			exit "${?}"
+		fi
+	fi
+}
+
+log 'Checking if pv is installed...'
+if command -v 'pv' >/dev/null 2>&1; then
+	progress_bar='true'
+else
+	log 'command "pv" was not found' 'WARN'
+	progress_bar='false'
+fi
+
+log "Checking if ${TRASH:-trash} is installed..."
+if command -v "${TRASH:-trash}" >/dev/null 2>&1; then
+	TRASH_PUT='trash-put'
+	TRASH_RESTORE='trash-restore'
+
+	trash='true'
+else
+	log 'command "trash" was not found' 'WARN'
+	trash='false'
+fi
+
+log 'Obtaining destination path'
+for parameter in "${@}"; do
+	destination="${parameter}"
+done
+log "Obtained destination ${parameter}"
+
+log 'Parsing parameters'
+while [ "${#}" -gt 0 ]; do
+	case "${1}" in
+		-i|--ignore-errors)
+			ignore_errors='true'
+			shift ;;
+		-f|--force)
+			force='true'
+			shift ;;
+		-v|--verbose)
+			verbose_logging='true'
+			shift ;;
+		-h|--help)
+			log "${USAGE}" 'STDOUT'
+			exit 0 ;;
+		-*)
+			pv_flags="${pv_flags:+"${pv_flags} "}${1}"
+			shift ;;
+		*)
+			if [ "${#}" -gt 1 ]; then
+				_copy "${1}" "${destination}"
+			fi
+			shift ;;
+	esac
+done
+
+if [ -z "${copied_files}" ]; then
+	log "${0} requires at least one SOURCE and a DESTINATION" 'ERROR' >&2
+	log "${USAGE}" 'ERROR' >&2
+	exit 1
+else
+	log 'Copy complete' 'SUCCESS'
+	exit 0
+fi

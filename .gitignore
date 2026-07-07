@@ -8,6 +8,9 @@
 !.gitignore
 !README.md
 
+# copy
+!.local/bin/copy
+
 # git
 !.config/git/
 !.config/git/config
