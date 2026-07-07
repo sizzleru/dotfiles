@@ -11,6 +11,9 @@
 # copy
 !.local/bin/copy
 
+# deploy
+!.local/bin/deploy
+
 # git
 !.config/git/
 !.config/git/config
