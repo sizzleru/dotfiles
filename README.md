@@ -24,3 +24,4 @@ git checkout -f main
 - `tree-sitter-cli` `tree-sitter-haskell` `tree-sitter-lua` `tree-sitter-python` `tree-sitter-bash`
 - `bash-language-server` `pyright` `lua-language-server`
 - `trash-cli` (get it before ya regret it mate)
+- `gvim` (`vim` didn't support clipboarding)
