@@ -14,7 +14,6 @@ git fetch
 git checkout -f main
 ```
 
-<<<<<<< HEAD
 ## Hostnames
 
 |Hostname|Operating System|Flavour|naming|description|
@@ -28,6 +27,7 @@ git checkout -f main
 |power|Linux|OpenWrt|power (spot)|My sexy router|
 |space|Android|Android 13|(Closed) space|My neglected phone|
 |tree|Linux|Arch Linux|(shizuru's) tree|my beloved daily driver|
+|plaza|Linux|Proxmox VE|plaza|My experimental datacentre|
 
 ## Packages (i.e. bloat)
 
