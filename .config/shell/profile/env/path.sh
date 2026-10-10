@@ -6,6 +6,14 @@ if [ -d "${HOME}/.local/bin" ]; then
 	esac
 fi
 
+# /usr/sbin
+if [ -d '/usr/sbin' ]; then
+	case ":${PATH}:" in
+		*':/usr/sbin:'*) ;;
+		*) export PATH="/usr/sbin:${PATH}" ;;
+	esac
+fi
+
 # ~/.ghcup/bin
 if [ -d "${HOME}/.ghcup" ]; then
 	case ":${PATH}:" in
