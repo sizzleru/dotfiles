@@ -20,4 +20,7 @@ git checkout -f main
 
 - `bash` `git` (essentials baby)
 - `git-delta` (when less just isn't cutting it anymore)
+- `nvim`
+- `tree-sitter-cli` `tree-sitter-haskell` `tree-sitter-lua` `tree-sitter-python` `tree-sitter-bash`
+- `bash-language-server` `pyright` `lua-language-server`
 - `trash-cli` (get it before ya regret it mate)
