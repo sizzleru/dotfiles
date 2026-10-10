@@ -20,3 +20,4 @@ git checkout -f main
 
 - `bash` `git` (essentials baby)
 - `git-delta` (when less just isn't cutting it anymore)
+- `trash-cli` (get it before ya regret it mate)
