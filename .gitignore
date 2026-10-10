@@ -32,6 +32,11 @@
 !.config/shell/
 !.config/shell/**
 
+# ssh
+!.ssh/
+!.ssh/authorized_keys
+!.ssh/config
+
 # vim
 !.config/vim/
 !.config/vim/vimrc
