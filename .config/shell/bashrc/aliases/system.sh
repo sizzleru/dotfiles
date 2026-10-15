@@ -7,7 +7,7 @@ function shutdown() {
 	done
 	sudo pkill -x sshfs'
 	su --pty - kagirin -c "sudo sh -c '${cmd}'"
-	#systemctl poweroff
+	systemctl poweroff
 }
 
 function restart() {
