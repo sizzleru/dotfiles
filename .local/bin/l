@@ -1,0 +1,172 @@
+#!/bin/python
+
+from __future__ import annotations
+
+from pathlib import Path
+from os import stat
+from stat import filemode
+from argparse import ArgumentParser
+from subprocess import run, PIPE, DEVNULL
+
+parser = ArgumentParser()
+parser.add_argument("file_path", nargs="*", default=".")
+parser.add_argument("-s", "--sort-by", default="file_type,file_name")
+parser.add_argument("-r", "--reverse", action="store_true")
+parser.add_argument("-a", "-A", "--hidden", action="store_true")
+parser.add_argument("-d", "--directory", action="store_true")
+args = parser.parse_args()
+
+def get_ext_attrs(file_path: str) -> str:
+	try:
+		ext_attrs = run([ "lsattr", "-d", file_path ], stdout=PIPE, stderr=DEVNULL, text=True).stdout
+		ext_attrs = ext_attrs.split()
+	
+		if len(ext_attrs) == 0:
+			return ""
+
+		ext_attrs = ext_attrs[0]
+		ext_attrs = ext_attrs.replace("-", "")
+		return ext_attrs
+
+	except:
+		return ""
+
+#def file_type_map(file_type: str) -> str:
+#	return '"' + {
+#		"-": "regular file",
+#		"d": "directory",
+#		"l": "symlink",
+#		"s": "socket",
+#		"p": "FIFO",
+#		"b": "block device",
+#		"c": "char device",
+#	}[file_type] + '"'
+
+def file_type_map(file_type: str) -> str:
+	return {
+		"-": " ",
+		"d": " ",
+		"l": " ",
+		"s": " ",
+		"p": "󰟥 ",
+		"b": "󰾰 ",
+		"c": " "
+	}[file_type]
+
+def human_size(n):
+	units = ["B", "KiB", "MiB", "GiB", "TiB", "PiB"]
+	i = 0
+	while n >= 1024 and i < len(units) - 1:
+		n /= 1024
+		i += 1
+	n=f"{n:>5.1f} "
+
+	return f"{(n+units[i]):>9}"
+
+class FileAttribute:
+
+	def __init__(self: FileAttribute, name: str, value: object = None, display_function = str) -> None:
+		self._name = name
+		self._value = value
+		self._display_function = display_function
+
+	@property
+	def name(self: FileAttribute) -> str:
+		return self._name
+
+	@property
+	def value(self: FileAttribute) -> object:
+		return self._value
+
+	def __str__(self: FileAttribute) -> str:
+		return self._display_function(self._value)
+
+class File:
+
+	def __init__(self: File, *file_attributes) -> None:
+		self._file_attributes = {}
+		for file_attribute in file_attributes:
+			self._file_attributes[file_attribute.name] = file_attribute
+
+	def __getitem__(self: File, data: str) -> FileAttr:
+		return self._file_attributes[data]
+
+	def __str__(self: File) -> str:
+		str_file_attributes = ""
+
+		str_file_attributes += str(self._file_attributes["file_perms"])
+
+		str_file_attributes += " "
+		str_file_attributes += f"{self._file_attributes["file_uid"]}:{self._file_attributes["file_gid"]}"
+
+		#str_file_attributes += " ["
+		#str_file_attributes += str(self._file_attributes["file_type"])
+		#str_file_attributes += "]"
+
+		#str_file_attributes += " ("
+		#str_file_attributes += str(self._file_attributes["file_size"])
+		#str_file_attributes += ")"
+
+		str_file_attributes += " "
+		str_file_attributes += str(self._file_attributes["file_size"])
+
+
+		str_file_attributes += " "
+		str_file_attributes += str(self._file_attributes["file_type"])
+
+		str_file_attributes += " "
+		str_file_attributes += str(self._file_attributes["file_name"])
+
+		str_file_attributes += " -> " + str(file_symlink) if ( file_symlink := self._file_attributes["file_symlink"].value ) else ""
+
+		str_file_attributes += f" ({file_extr_attr})" if ( file_extr_attr := str(self._file_attributes["file_ext_attr"]) ) else ""
+
+
+		return str_file_attributes
+
+def attributise(path_file: Path) -> File:
+	stat_file = path_file.lstat()
+
+	#print(dir(path_file))
+	#print(path_file.as_posix())
+	#exit()
+	if path_file.as_posix()[0] == "." and not args.hidden and ( not args.directory or not path_file.is_dir() ):
+		return None
+
+	file_gid = FileAttribute( "file_gid", stat_file.st_gid, lambda x: f"{x:<4}" )
+	file_name = FileAttribute( "file_name", path_file.as_posix() )
+	file_perms = FileAttribute( "file_perms", stat_file.st_mode & 0o7777, lambda x: f"{x:>4o}" )
+	file_size = FileAttribute( "file_size", stat_file.st_size, lambda x: str(human_size(x)) )
+	file_type = FileAttribute( "file_type", file_type_map( filemode(stat_file.st_mode)[0] ) )
+	file_uid = FileAttribute( "file_uid", stat_file.st_uid, lambda x: f"{x:>4}" )
+	file_symlink = FileAttribute( "file_symlink", path_file.readlink() if path_file.is_symlink() else "" )
+	file_ext_attr = FileAttribute( "file_ext_attr", get_ext_attrs(path_file._raw_path) )
+
+	return File( file_gid, file_name, file_perms, file_size, file_type, file_uid, file_symlink, file_ext_attr )
+
+#print( args.file_path )
+#exit()
+
+for file_path in args.file_path:
+
+	# Get a list of files
+	files = []
+
+	if ( path_object := Path(file_path) ).is_dir() and not args.directory:
+		print( f"{path_object.absolute()}:" )
+		for path_file in path_object.iterdir():
+			if ( file_attribute := attributise(path_file) ) is not None:
+				files.append(file_attribute)
+	else:
+		if ( file_attribute := attributise(path_object) ) is not None:
+			files.append( file_attribute )
+
+	# sort the files
+	#files.sort(key=lambda file: (file["file_type"].value, file[args.sort_by].value), reverse=args.reverse)
+	files.sort( key=lambda file: tuple( file[file_attr].value for file_attr in args.sort_by.split(",") ), reverse=(args.reverse) )
+
+	# display
+	for file in files:
+		print(file)
+	if not args.directory:
+		print()
