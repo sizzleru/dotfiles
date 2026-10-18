@@ -28,6 +28,7 @@ git checkout -f main
 |space|Android|Android 13|(Closed) space|My neglected phone|
 |tree|Linux|Arch Linux|(shizuru's) tree|my beloved daily driver|
 |plaza|Linux|Proxmox VE|plaza|My experimental datacentre|
+|workshop|Linux|SteamOS|(Kotori's) workshop|Gaben my beloved|
 
 ## Packages (i.e. bloat)
 
