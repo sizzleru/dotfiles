@@ -35,8 +35,8 @@ git checkout -f main
 ### Applications
 
 - `bash` `git` (essentials baby)
-<<<<<<< HEAD
 - `git-delta` (when less just isn't cutting it anymore)
-=======
 - `trash-cli` (get it before ya regret it mate)
->>>>>>> origin/config/shell
+- `nvim`
+- `tree-sitter-cli` `tree-sitter-haskell` `tree-sitter-lua` `tree-sitter-python` `tree-sitter-bash`
+- `bash-language-server` `pyright` `lua-language-server`
