@@ -1,0 +1,5 @@
+-- monitors
+hl.monitor({ output = "DP-1",		mode = "2560x1440@144",	position = "1920x1080",	scale = 1 }) -- LG 27GL850
+hl.monitor({ output = "DP-2",		mode = "1920x1080@60",	position = "0x1080",	scale = 1 }) -- LG IPS FullHD
+hl.monitor({ output = "DP-3",		mode = "1920x1080@60",	position = "1920x0",	scale = 1 }) -- ViewSonic VA2719
+hl.monitor({ output = "HDMI-A-1",	mode = "1920x1080@60",	position = "4480x1080",	scale = 1 }) -- Wacom Cintiq 22

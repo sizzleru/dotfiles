@@ -1,0 +1,5 @@
+-- Audio signals
+-- hl.bind( "XF86AudioPlay,", hl.dsp.exec_cmd([[ ~/AppData/streamdeckui/scripts/media-pause-toggle.sh ]]) )
+-- hl.bind( "XF86AudioPrev,", hl.dsp.exec_cmd([[ ~/AppData/streamdeckui/scripts/media-previous.sh ]]) )
+-- hl.bind( "XF86AudioNext,", hl.dsp.exec_cmd([[ ~/AppData/streamdeckui/scripts/media-next.sh ]]) )
+-- hl.bind( "XF86AudioMute,", hl.dsp.exec_cmd([[ ~/AppData/streamdeckui/scripts/audio-sink-mute-toggle.sh ]]) )

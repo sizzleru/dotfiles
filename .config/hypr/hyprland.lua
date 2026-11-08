@@ -1,0 +1,10 @@
+-- Configurations
+require( "environment" )
+require( "system" )
+require( "monitors" )
+require( "windows" )
+require( "workspaces" )
+require( "visuals" )
+require( "inputs" )
+require( "applications" )
+require( "volumemixer" )
