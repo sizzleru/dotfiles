@@ -5,6 +5,7 @@ hl.bind( v.mod.."+w", hl.dsp.window.close() )
 hl.bind( v.mod.."+space", hl.dsp.window.float({ action = "toggle" }) )
 hl.bind( v.mod.."+c", hl.dsp.window.center() )
 hl.bind( v.mod.."+p", hl.dsp.window.pin() )
+hl.bind( v.mod.."+f10", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" } ) )
 
 -- Focus
 hl.bind( v.mod.."+"..v.left, hl.dsp.focus({ direction = "left" }) )
@@ -34,3 +35,10 @@ hl.bind( v.mod.."+shift+r", hl.dsp.submap( "resize" ) )
 -- Mouse controls
 hl.bind( v.mod.."+"..v.left_click, hl.dsp.window.drag(), { mouse = true } )
 hl.bind( v.mod.."+"..v.right_click, hl.dsp.window.resize(), { mouse = true } )
+
+-- Rules
+hl.window_rule({
+	name = "suppress-maximize-events",
+	match = { class = ".*" },
+	suppress_event = "maximize",
+})
